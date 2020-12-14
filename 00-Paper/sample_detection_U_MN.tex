@@ -1,0 +1,122 @@
+\section{Optimal Detection}
+\label{opt_detect}
+\subsection{Problem Formulation}
+Assume that the detection can be conducted.
+The detection rate is $U(t)$, $0 \le U(t) \le U_{m}$.
+$U_{m}$ is the limitation of the detection rate, which is the constraint from the hardware and the time sequences.
+We also use $\dot{U}$ to denote $U(t)$.
+Then, the ODEs can be reformed as
+\begin{small}
+\begin{equation}
+\label{eq:SIM_t}
+%\nonumber
+\begin{aligned}
+\dot{I} &= \beta (N-I) - \rho I, \\
+\dot{M} &= \rho I  - \beta M - \frac{M}{N} U,\\
+\dot{S} &= - \beta (N-I-M) + \frac{M}{N} U.
+\end{aligned}
+\end{equation}
+\end{small}
+Meanwhile, 
+\begin{small}
+\begin{equation}
+\label{eq:SIM_0}
+%\nonumber
+\begin{aligned}
+I(0)=0,\\
+M(0)=0,\\
+S(0)=N.
+\end{aligned}
+\end{equation}
+\end{small}
+
+Thus $I(t)$ is the same with that in the situation without detection, which is
+\begin{small}
+\begin{equation}
+%\nonumber
+\label{eq:I}
+\begin{aligned}
+I(t) = \frac{ \beta N }{ \beta + \rho } - \frac{ \beta N }{ \beta + \rho } e^{-(\beta + \rho)t}.
+\end{aligned}
+\end{equation}
+\end{small}
+
+Considering that the detection is also the cost,
+the object function will be
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+J &= \int_{0}^{T} (1-\alpha) M + \alpha U dt.
+\end{aligned}
+\end{equation}
+\end{small}
+Here $\alpha$ is the weight, which can control the importance 
+between the cost of selfish relay nodes
+and detections.
+Thus $0 < \alpha < 1$.
+Similar with the previous section,
+$I(t)$ and $M(t)$ is the state variable.
+$U(t)$ is the controllable variable, $0 \le U(t)\ \le U_{m}$.
+
+\subsection{Optimal Control by Pontryagin's Maximal Principle}
+Now we utilize the Pontryagin's maximal principle to find the optimal $U(t)$, which will minimize the total cost.
+First, the Hamilton function is
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+H =& (1-\alpha) M + \alpha U + \lambda_{1} (\beta (N-I) - \rho I) \\
+& + \lambda_{2} (\rho I  - \beta M - \frac{M}{N} U) \\
+=& (1-\alpha) M + \alpha U + \lambda_{1} (\beta (N-I) - \rho I) + \lambda_{2} \rho I\\
+& - \beta \lambda_{2} M - \lambda_{2} \frac{1}{N} U M \\
+=& (1-\alpha) M + \lambda_{1} (\beta (N-I) - \rho I) \\
+& + \lambda_{2} (\rho I  - \beta M) + ( \alpha - \lambda_{2} \frac{M}{N}) U.
+\end{aligned}
+\end{equation}
+\end{small}
+Note that $\lambda_{1}$ and $\lambda_{2}$ denote $\lambda_{1}(t)$ and $\lambda_{2}(t)$, respectively.
+Without the final constraint, the terminal condition is $\lambda_{2}(T) = 0$ and $\lambda_{3}(T) = 0$.
+The adjoint function is
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+\dot{\lambda_{2}} &= - \frac{ \partial H}{ \partial M} = \lambda_{2} (\beta + \frac{U}{N} ) - (1-\alpha).
+\end{aligned}
+\end{equation}
+\end{small}
+
+Thus
+\begin{small}
+\begin{equation}
+\label{eq:opt_U}
+%\nonumber
+U^{*}(t) =
+\left\{
+\begin{aligned}
+&0,      & \text{if }  \alpha - \lambda_{2} \frac{M}{N} \ge 0 \\
+&U_{m},        & \text{if } \alpha - \lambda_{2} \frac{M}{N} < 0
+\end{aligned}
+\right.
+\end{equation}
+\end{small}
+
+In summary, we have the ODE functions $\dot{M}$, $\dot{\lambda_{2}}$,
+the initial condition $M(0)=0$ and the boundary condition $\lambda_{2}(T)=0$,
+Thus the problem is to solve a BVP problem,
+which is
+\begin{small}
+\begin{equation}
+%\nonumber
+\label{eq:bvp}
+\begin{aligned}
+\dot{M} &= \rho I  - \beta M - \frac{M}{N} U,\\
+\dot{\lambda_{2}} &= - \frac{ \partial H}{ \partial M} = \lambda_{2} (\beta + \frac{U}{N} ) - (1-\alpha),\\
+M(0) &= 0,\\
+\lambda_{2}(T) &= 0.
+\end{aligned}
+\end{equation}
+\end{small}
+We can solve the BVP problem with the shooting method by the bvpSolve package of R.
+%footnote

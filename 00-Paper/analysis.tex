@@ -1,0 +1,97 @@
+\section{Analysis of Optimal Detection}
+\label{sec:ana_opt_detect}
+In this section, we will introduce the properties of the optimal control variable.
+
+\begin{lem}At the beginning and the end of the whole duration,
+the optimal control stop the selfish detection,
+which is $U(0)=U(T)=0$.
+\end{lem}
+
+\begin{proof}
+At the beginning of the duration, $M(0)=0$,
+which is the initial condition of \ref{eq:bvp}.
+Then $\alpha - \lambda_{2}(0) \frac{M(0)}{N} = \alpha > 0$.
+Following (\ref{eq:opt_U}), the optimal $U(0)=0$.
+
+At the end of the duration, $\lambda_{2}(T)=0$,
+which is the boundary condition of \ref{eq:bvp}.
+Then $\alpha - \lambda_{2}(T) \frac{M(T)}{N} = \alpha > 0$.
+Based on (\ref{eq:opt_U}), the optimal $U(T)=0$.
+\end{proof}
+
+Based on the differential function $\dot{I}$,
+the equilibrium point of $I$ can be obtained from $\dot{I}=0$,
+which is $I^{*}=\frac{\beta N}{\beta+\rho}$.
+When $I(t)<I^{*}$, $I(t)$ will increase with $t$ and approach to $\frac{\beta N}{\beta+\rho}$.
+Meanwhile, in this paper $I(0)=0$ at the beginning of time.
+
+Based on the differential function $\dot{M}$,
+the equilibrium point is obtained from $\dot{M}=0$,
+which is $M^{*}=\frac{\rho I}{\beta+\frac{1}{N}U}$.
+In the situation without detection,
+the equilibrium point is $M^{*}=\frac{\rho I^{*}}{\beta}=\frac{\rho N}{\beta + \rho}$.
+In the situation with full detection,
+the equilibrium point is $M^{*}=\frac{\rho I^{*}}{\beta + \frac{1}{N} U_{m}}=\frac{\rho}{\beta + \frac{1}{N} U_{m}} \frac{\beta N}{\beta+\rho}$.
+
+Since $\alpha$ is the weight of detecting the selfish nodes,
+we can assume that if $\alpha$ is enough high, the detection will not perform according to the optimal control strategy.
+\begin{lem}
+If $\alpha \ge \alpha_{th}$, the optimal control let the detection stop in the whole duration,
+namely $U(t)=0$, $0 \le t \le T$.
+\end{lem}
+
+\begin{proof}
+Assume that $\rho$, $N$, $\beta$ is given.
+Let $W(t) = \lambda_{2}(t)M(t)$.
+\begin{small}
+\begin{equation}
+%\nonumber
+\label{eq:W_diff}
+\begin{aligned}
+W^{'}(t) =& M^{'}(t) \lambda_{2}(t) + M(t) \lambda_{2}^{'}(t)\\
+=& (\rho I(t)  - \beta M(t) - \frac{M(t)}{N} U(t) )\lambda_{2}(t) \\
+&+ M(t) (\lambda_{2}(t) (\beta + \frac{U(t)}{N} ) - (1-\alpha))\\
+=& \rho \lambda_{2}(t) I(t) - (1-\alpha)M(t).
+\end{aligned}
+\end{equation}
+\end{small}
+Since $M(0)=0$ and $\lambda_{2}(T)=0$,
+$W(0)=W(T)=0<\alpha N$.
+
+Now we focus on the poles of $W(t)$, namely $t^{*}$,
+where $W^{'}(t^{*})=\rho \lambda_{2}(t^{*}) I(t^{*}) - (1-\alpha)M(t^{*})=0$.
+Then $M(t^{*}) = \frac{\rho \lambda_{2}(t^{*}) I(t^{*})}{1-\alpha}$.
+\begin{small}
+\begin{equation}
+%\nonumber
+\label{eq:W_t_star}
+\begin{aligned}
+W(t^{*}) &= \lambda_{2}(t^{*}) M(t^{*}) = \frac{\rho I(t^{*}) \lambda_{2}(t^{*})^2}{1-\alpha}.
+\end{aligned}
+\end{equation}
+\end{small}
+
+According to $\dot{\lambda_{2}}$ in (\ref{eq:bvp}), 
+the equilibrium point of $\lambda_{2}$ is that $\lambda_{2}^{*} = \frac{1-\alpha}{\beta+\frac{U}{N}}$.
+Since $0 \le U \le U_{m}$, $0 < \frac{1-\alpha}{\beta+\frac{U_{m}}{N}} \le \lambda_{2}^{*} \le \frac{1-\alpha}{\beta}$.
+Note $\lambda_{2}(T)=0$.
+Based on the phase line in ODE for $\dot{\lambda_{2}}$,
+$\lambda_{2}(t)$ decreases with $t$ when $\lambda_{2}(t) < \lambda_{2}^{*}$.
+Conversely, $\lambda_{2}(t)$ increases with $t$ when $\lambda_{2}(t) > \lambda_{2}^{*}$.
+Thus $0 \le \lambda_{2}(t) \le \lambda_{2}^{*} \le \frac{1-\alpha}{\beta}$ when $0 \le t \le T$.
+Additionally, $0 \le I(t) \le \frac{\beta N}{\beta + \rho}$.
+From (\ref{eq:W_t_star}), we can derive that the upper boundary of $W(t)$, $W_{up}$, which is
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+W(t) \le W(t^{*}) \le \frac{\rho}{1-\alpha} \frac{\beta N}{\beta + \rho} (\frac{1-\alpha}{\beta})^2 = \frac{\rho N (1-\alpha)}{\beta(\beta+\rho)} = W_{up}.
+\end{aligned}
+\end{equation}
+\end{small}
+
+Assume that $\alpha$ can satisfy that $W_{up} \le \alpha N$,
+which means that $\alpha \ge \frac{\rho}{\beta(\beta+\rho)+\rho} = \alpha_{th}$.
+Then $W(t) \le \alpha N$, when $0 \le t \le T$.
+Therefore the optimal control $U^{*}(t) \equiv 0$, when $0 \le t \le T$.
+\end{proof}
