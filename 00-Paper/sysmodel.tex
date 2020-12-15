@@ -1,0 +1,40 @@
+\section{System Models}
+\label{sec:sys_model}
+% motivation
+The source node $src$ needs to 
+disseminate its message, 
+e.g., the advertisements,
+to the vehicles or pedestrians.
+The $N$ relay nodes in the network can store the message of $src$
+and send it to the vehicles,
+which can broaden the coverage area of message.
+To encourage the collaboration of relay nodes,
+$src$ will reward the relay node based on the message carrying time.
+However, the relay node may discard the message and
+earn the reward of $src$, which is the cost of selfish behaviors.
+Furthermore, $src$ can exploit the detection method to save its rewards,
+i.e., query the checksum of specific part of message
+to the relay node. 
+In this paper, we propose the optimal detection strategy for $src$
+to achieve the tradeoff between 
+the cost of the sample detection and the selfish behaviors.
+which is shown in Fig.~1.
+
+$I(t)$ denotes the expected number of infected relay nodes,
+which carry the message,
+at time $t$.
+$M(t)$ denotes the expected number of malicious relay nodes,
+which have discarded the message but are not known by $src$,
+at time $t$.
+$S(t)$ denotes the expected number of susceptible relay nodes,
+which do not carry the message and are known by $src$,
+at time $t$.
+Fig.2 shows the transition of state.
+The message has a time-to-live, $T$.
+Thus the purpose of this paper is to minimize the wasted reward,
+\begin{equation}
+\nonumber
+\begin{aligned}
+J &= \int_{0}^{T} M(t) dt,
+\end{aligned}
+\end{equation}
