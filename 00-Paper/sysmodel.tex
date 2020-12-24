@@ -1,40 +1,71 @@
 \section{System Models}
 \label{sec:sys_model}
 % motivation
-The source node $src$ needs to 
-disseminate its message, 
-e.g., the advertisements,
-to the vehicles or pedestrians.
-The $N$ relay nodes in the network can store the message of $src$
+\begin{figure}
+  \centering
+  {\includegraphics[width=0.47\textwidth]{fig/sketch.eps}}
+     \caption{Reward and Detection of the selfish nodes in OppNets.}
+     \label{fig:sketch}
+\end{figure}
+The source node $src$ needs to disseminate its message, $m$,
+to vehicles or pedestrians.
+The $N$ relay nodes can replicate $m$
 and send it to the vehicles,
-which can broaden the coverage area of message.
-To encourage the collaboration of relay nodes,
-$src$ will reward the relay node based on the message carrying time.
-However, the relay node may discard the message and
-earn the reward of $src$, which is the cost of selfish behaviors.
-Furthermore, $src$ can exploit the detection method to save its rewards,
-i.e., query the checksum of specific part of message
-to the relay node. 
-In this paper, we propose the optimal detection strategy for $src$
-to achieve the tradeoff between 
-the cost of the sample detection and the selfish behaviors.
-which is shown in Fig.~1.
+which is shown in Fig.~\ref{fig:sketch}.
+Thus the potential coverage area of the message is broadened 
+by the opportunistic network.
 
-$I(t)$ denotes the expected number of infected relay nodes,
-which carry the message,
+To encourage the collaboration of relay nodes,
+$src$ should reward the relay node $n_{i}$ 
+$(1 \le i \le N)$ based on the time,
+when the message are carried by $n_{i}$.
+The time ranges from the replication time ($\tau_{i}$)
+to the time-to-live of the message ($T$).
+%Since the message only can be replicated
+%from $src$ to the relay node in this paper,
+%$src$ can record the replication time $\tau_{i}$.
+However, $n_{i}$ may discard $m$ immediately
+and earn the reward without carrying $m$,
+which is the selfish behavior.
+%, which is the cost of selfish behaviors.
+So $src$ can exploit the detection method to minimize its wasted rewards,
+i.e., querying the checksum of $m$'s specific part
+to the randomly selected relay node.
+In this paper, we propose the optimal randomly detection strategy
+to achieve the tradeoff between
+the cost of the random detections and 
+the wasted reward of the selfish behaviors.
+
+%1.Poisson process of contacts
+%2.Poisson process of being selfish
+$E(R(t))$ denotes the expected number of the relay nodes,
+which have not contacted $src$ before time $t$.
+$E(I(t))$ denotes the expected number of infected relay nodes,
+which still carry the message at time $t$.
+$E(D(t))$ denotes the expected number of selfish relay nodes,
+which have discarded the message but are not known by $src$
 at time $t$.
-$M(t)$ denotes the expected number of malicious relay nodes,
-which have discarded the message but are not known by $src$,
-at time $t$.
-$S(t)$ denotes the expected number of susceptible relay nodes,
-which do not carry the message and are known by $src$,
-at time $t$.
-Fig.2 shows the transition of state.
-The message has a time-to-live, $T$.
-Thus the purpose of this paper is to minimize the wasted reward,
+Similar to \cite{TCSS2018ControlM} and \cite{CC2007PerfAnaly},
+the contacts between each pair of nodes including $src$
+occur according to the Poisson process,
+in which the contact rate is $\lambda$.
+The total number of relay nodes is $N$,
+and $N=R(t)+I(t)+D(t)$, $\forall t$, $0 \le t \le T$.
+We also assume the change rate of 
+becoming the selfish node is a constant value $\rho$.
+The detection rate is $U(t)$,
+$0 \le U(t) \le U_{m}$, $\forall t$, $0 \le t \le T$.
+which is the control function.
+To simplify the denotations,
+we use $R$, $I$ and $D$ to 
+replace $E(R(t))$, $E(I(t))$ and $E(D(t))$,
+respectively.
+
+Then the main objective of our work is to solve the
+following problem,
 \begin{equation}
 \nonumber
 \begin{aligned}
-J &= \int_{0}^{T} M(t) dt,
+Min: J &= \int_{0}^{T} (1-\alpha) D + \alpha U(t) dt ,
 \end{aligned}
 \end{equation}

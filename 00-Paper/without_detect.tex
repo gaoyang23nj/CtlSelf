@@ -1,6 +1,16 @@
 \section{Selfish Nodes without Detection in Two-Hop Routing}
 \label{sec:wo_detect}
 \subsection{Analysis in temporal space by solving ODE}
+The state transition is shown
+in Fig.~2 with the following rules.
+\begin{figure}
+  \centering
+  {\includegraphics[width=0.25\textwidth]
+  {fig/state_transition_detect.eps}}
+     \caption{State transition of the relay nodes.}
+     \label{fig:ss_dt}
+\end{figure}
+
 State $I$ is the state where the node has message $m$.
 State $M$ is the state where the node has dropped $m$ as receiving it.
 $I(t)$ is the number of nodes with $m$ at time $t$.
