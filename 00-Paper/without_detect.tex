@@ -1,49 +1,75 @@
-\section{Selfish Nodes without Detection in Two-Hop Routing}
+\section{Construction of the ODE Model}
 \label{sec:wo_detect}
-\subsection{Analysis in temporal space by solving ODE}
-The state transition is shown
-in Fig.~2 with the following rules.
+We investigate the selfish detection in this and the following sections.
+Specifically, in this section, the ordinary differential equation model
+is constructed to capture the state change with time.
+\subsection{Without Detection}
 \begin{figure}
   \centering
   {\includegraphics[width=0.25\textwidth]
-  {fig/state_transition_detect.eps}}
-     \caption{State transition of the relay nodes.}
-     \label{fig:ss_dt}
+  {fig/state_transition_no_detect.eps}}
+     \caption{State transition of the relay nodes without detection.}
+     \label{fig:ss_wo_dt}
 \end{figure}
+First, we analyze the change of the network state with time
+when the selfish detection is not deployed. 
+The state transition is shown
+in Fig.~\ref{fig:ss_wo_dt} with the following rules.
+The nodes change from state $R$ to state $I$ if they contact $src$.
+The corresponding incremental rate of state $I$ is $\lambda R(t)$ at time $t$. 
+The selfish node also may contact $src$ in the opportunistic network.
+Then the total incremental rate of $I$ is 
+$\lambda (R(t)+D(t))=\lambda (N-I(t))$.
+Additionally, the infected node may become the selfish node with rate $\rho$.
+Thus we can obtain the derivative of $I(t)$ with respect to $t$,
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+\frac{\mathrm{d} I(t)}{\mathrm{d} t} &= \lambda (N-I(t)) - \rho I(t).
+\end{aligned}
+\end{equation}
+\end{small}
+where $\lambda$ and $\rho$ are constants.
+Similar to $\frac{\mathrm{d} I(t)}{\mathrm{d} t}$,
+we can get the change rate of state $D$ and state $R$,
+i.e. $\frac{\mathrm{d} D(t)}{\mathrm{d} t}$ and
+$\frac{\mathrm{d} R(t)}{\mathrm{d} t}$,
+and obtain the model,
+\begin{small}
+\begin{equation}
+\label{eq:IDR_wo}
+\begin{aligned}
+\frac{\mathrm{d} I(t)}{\mathrm{d} t} &=  \lambda (N-I(t)) - \rho I(t),\\
+\frac{\mathrm{d} D(t)}{\mathrm{d} t} &= - \lambda D(t) + \rho I(t),\\
+\frac{\mathrm{d} R(t)}{\mathrm{d} t} &= - \lambda (N-I(t)-D(t)),
+\end{aligned}
+\end{equation}
+\end{small}
+Since (\ref{eq:IDR_wo}) is formed by the first-order first-power
+ordinary differential equations,
+we can calculate the general solutions of it, that is,
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+I(t) = C e^{-(\lambda + \rho)t} + \frac{ \lambda N }{ \lambda + \rho }.
+\end{aligned}
+\end{equation}
+\end{small}
 
-State $I$ is the state where the node has message $m$.
-State $M$ is the state where the node has dropped $m$ as receiving it.
-$I(t)$ is the number of nodes with $m$ at time $t$.
-$M(t)$ is the number of nodes, which had received $m$ and then drop it, at time $t$.
-The rate of transforming from state $I$ to state $M$ is $\rho$.
 At first, $M(0)=0$ and $I(0)=0$, only $src$ has the messages.
 Note that $0 \le I(t) \le N$ and $0 \le M(t) \le N$.
 We use $\dot{I}$ and $\dot{M}$ denote $I(t)$ and $M(t)$.
 Following the two-hop routing,
 where only the source node can replicate the message to other nodes,
 we get that the corresponding ODEs like~\cite{CC2007PerfAnaly}, which are
-\begin{small}
-\begin{equation}
-\nonumber
-\begin{aligned}
-\dot{I} &= \beta (N-I) - \rho I,\\
-\dot{M} &= \rho I - \beta M,\\
-\dot{S} &= - \beta (N-I-M),
-\end{aligned}
-\end{equation}
-\end{small}
+
 when $0 \le I(t) \le N$ and $0 \le M(t) \le N$.
 
 And then we find the close-form value of $I(t)$ and $M(t)$ to ensure $I_{s}$ and $M_{s}$.
 From the first ODE, $\dot{I} + \rho I = \beta (N-I)$, we can obtain
-\begin{small}
-\begin{equation}
-\nonumber
-\begin{aligned}
-I(t) = C e^{-(\beta + \rho)t} + \frac{ \beta N }{ \beta + \rho }.
-\end{aligned}
-\end{equation}
-\end{small}
+
 Considering that $I(t=0) = 0$, $C = \frac{ -\beta N }{ \beta + \rho }$.
 Thus
 \begin{small}

@@ -1,5 +1,5 @@
-\section{System Models}
-\label{sec:sys_model}
+\section{Preliminaries}
+\label{sec:preli}
 % motivation
 \begin{figure}
   \centering
@@ -7,33 +7,36 @@
      \caption{Reward and Detection of the selfish nodes in OppNets.}
      \label{fig:sketch}
 \end{figure}
-The source node $src$ needs to disseminate its message, $m$,
+The source node $src$ needs to disseminate its message $m$
 to vehicles or pedestrians.
 The $N$ relay nodes can replicate $m$
 and send it to the vehicles,
 which is shown in Fig.~\ref{fig:sketch}.
-Thus the potential coverage area of the message is broadened 
+Thus the potential coverage area of the message is broadened
 by the opportunistic network.
-
 To encourage the collaboration of relay nodes,
-$src$ should reward the relay node $n_{i}$ 
+$src$ should reward the relay node $n_{i}$
 $(1 \le i \le N)$ based on the time,
 when the message are carried by $n_{i}$.
 The time ranges from the replication time ($\tau_{i}$)
 to the time-to-live of the message ($T$).
+$\tau_{i}$ can be recorded by $src$ when
+$n_{i}$ contacts $src$ and replicates $m$.
 %Since the message only can be replicated
 %from $src$ to the relay node in this paper,
 %$src$ can record the replication time $\tau_{i}$.
-However, $n_{i}$ may discard $m$ immediately
-and earn the reward without carrying $m$,
+However, $n_{i}$ may discard $m$ immediately after the contact
+to earn the reward without carrying $m$,
 which is the selfish behavior.
 %, which is the cost of selfish behaviors.
-So $src$ can exploit the detection method to minimize its wasted rewards,
-i.e., querying the checksum of $m$'s specific part
-to the randomly selected relay node.
+So $src$ can check the checksum of $m$'s specific part,
+which is store in the randomly selected relay node $n_{i}$.
+If the check failed,
+$n_{i}$ will be identified as the selfish node
+and can not receive the reward.
 In this paper, we propose the optimal randomly detection strategy
 to achieve the tradeoff between
-the cost of the random detections and 
+the cost of the random detections and
 the wasted reward of the selfish behaviors.
 
 %1.Poisson process of contacts
@@ -47,17 +50,17 @@ which have discarded the message but are not known by $src$
 at time $t$.
 Similar to \cite{TCSS2018ControlM} and \cite{CC2007PerfAnaly},
 the contacts between each pair of nodes including $src$
-occur according to the Poisson process,
+are assumed to occur according to the Poisson process,
 in which the contact rate is $\lambda$.
 The total number of relay nodes is $N$,
 and $N=R(t)+I(t)+D(t)$, $\forall t$, $0 \le t \le T$.
-We also assume the change rate of 
+We also assume the change rate of
 becoming the selfish node is a constant value $\rho$.
 The detection rate is $U(t)$,
 $0 \le U(t) \le U_{m}$, $\forall t$, $0 \le t \le T$.
 which is the control function.
 To simplify the denotations,
-we use $R$, $I$ and $D$ to 
+we use $R(t)$, $I(t)$ and $D(t)$ to
 replace $E(R(t))$, $E(I(t))$ and $E(D(t))$,
 respectively.
 
@@ -66,6 +69,6 @@ following problem,
 \begin{equation}
 \nonumber
 \begin{aligned}
-Min: J &= \int_{0}^{T} (1-\alpha) D + \alpha U(t) dt ,
+Min: J &= \int_{0}^{T} (1-\alpha) D(t) + \alpha U(t) dt ,
 \end{aligned}
 \end{equation}
