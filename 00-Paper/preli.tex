@@ -63,12 +63,25 @@ To simplify the denotations,
 we use $R(t)$, $I(t)$ and $D(t)$ to
 replace $E(R(t))$, $E(I(t))$ and $E(D(t))$,
 respectively.
-
-Then the main objective of our work is to solve the
-following problem,
+Then the main objective of our work is to 
+to solve the following problem,
+\begin{small}
 \begin{equation}
-\nonumber
+\label{eq:obj}
 \begin{aligned}
 Min: J &= \int_{0}^{T} (1-\alpha) D(t) + \alpha U(t) dt ,
 \end{aligned}
 \end{equation}
+\end{small}
+which minimizes the linear combination of 
+the wasted reward and the detection cost through the weight $\alpha$, $0 \le \alpha \le 1$.
+We can also get the total paid reward is
+\begin{small}
+\begin{equation}
+\label{eq:reward}
+\begin{aligned}
+P &= \int_{0}^{T} \beta ( I(t) + D(t) )dt,
+\end{aligned}
+\end{equation}
+\end{small}
+where $\beta$ is the reward paid for the one node's message carrying in a unit of time.
