@@ -59,11 +59,13 @@ becoming the selfish node is a constant value $\rho$.
 The detection rate is $U(t)$,
 $0 \le U(t) \le U_{m}$, $\forall t$, $0 \le t \le T$.
 which is the control function.
+For example, if the minimal circle of once detection $T_{m}$ is that $2$ seconds,
+the maximal detection rate is that $U_{m} = \frac{1}{T_{m}} = 0.5$ times per second.
 To simplify the denotations,
 we use $R(t)$, $I(t)$ and $D(t)$ to
 replace $E(R(t))$, $E(I(t))$ and $E(D(t))$,
 respectively.
-Then the main objective of our work is to 
+Then the main objective of our work is to
 to solve the following problem,
 \begin{small}
 \begin{equation}
@@ -73,7 +75,7 @@ Min: J &= \int_{0}^{T} (1-\alpha) D(t) + \alpha U(t) dt ,
 \end{aligned}
 \end{equation}
 \end{small}
-which minimizes the linear combination of 
+which minimizes the linear combination of
 the wasted reward and the detection cost through the weight $\alpha$, $0 \le \alpha \le 1$.
 We can also get the total paid reward is
 \begin{small}
