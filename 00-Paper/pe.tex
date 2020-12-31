@@ -2,19 +2,21 @@
 \subsection{Efficacy of the ODE model}
 \label{subsec:pe_valid}
 \begin{figure}
-  \includegraphics[width=.45\textwidth]{fig/twohop_predict_sim.eps}
-  \caption{$I(t)$ and $M(t)$ with time $t$ obtained from prediction and simulations
-  when $\beta = 0.004$, $\rho = 0.01$ and $N=100$. Here $h$ and $i$ is the mean value of $20$ simulations.}
+  \includegraphics[width=.45\textwidth]{fig/twohop_without_detection.eps}
+  \caption{$I(t)$, $D(t)$ and $R(t)$ with time computed from prediction and simulations when $\lambda = 0.004$, $\rho = 0.01$, $N=100$ and $T=2,500$.}
   \label{fig:twohop_predict_wod}
 \end{figure}
 Fig.~\ref{fig:twohop_predict_wod} shows that the change of the states
-in the experiments conforms to
-the solved solutions.
+in the experiments conforms to the solved solutions (\ref{eq:IDR_wo_solu}).
+Here $D(t)$, $I(t)$ and $R(t)$ are the mean values 
+at the specific time $t$ of $20$ simulations.
+[*** add $R(t)$ ***]
+[*** add J P p ***]
 
-Fig. XX
-for (\ref{eq:IDR_full}) and error ratio.
+\subsection{Efficacy of the approximate method}
+Fig. XX shows the approximate ratio of (\ref{eq:IDR_full}).
 
-\subsection{Optimal solution of selfish detection}
+\subsection{Optimal solution}
 \begin{figure}
   \centering
   {\includegraphics[width=0.47\textwidth]{fig/state.eps}}

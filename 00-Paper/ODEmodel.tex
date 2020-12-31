@@ -7,7 +7,7 @@ is constructed to capture the state change with time.
 \label{subsec:wo_detc}
 \begin{figure}
   \centering
-  {\includegraphics[width=0.25\textwidth]
+  {\includegraphics[width=0.23\textwidth]
   {fig/state_transition_no_detect.eps}}
      \caption{State transition of the relay nodes without detection.}
      \label{fig:ss_wo_dt}
@@ -164,7 +164,7 @@ p = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}
 \label{subsec:full_detc}
 \begin{figure}
   \centering
-  {\includegraphics[width=0.25\textwidth]
+  {\includegraphics[width=0.23\textwidth]
   {fig/state_transition_detect.eps}}
      \caption{State transition of the relay nodes.}
      \label{fig:ss_dt}
@@ -241,7 +241,7 @@ R(t) =& N - \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rho}{\lambda + \f
 We can find that $I(t) \rightarrow \frac{ \lambda N }{ \lambda + \rho }$,
 $D(t) \rightarrow \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }$,
 and $R(t) \rightarrow  N - \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)$
-when $t \rightarrow +\infty$.
+when $t \rightarrow +\infty$ according to (\ref{eq:IDR_full_solu}).
 Here $R(+\infty) \neq 0$ in the steady state is caused by the selfish detection.
 Thus the estimation of the total cost $\hat{J}$ in (\ref{eq:obj})
 can be computed as
@@ -262,8 +262,8 @@ can be computed as
 The reason why (\ref{eq:IDR_full_J}) is the estimation of the cost
 is that
 the decrement of $D(t)$ actually occurs in the end of the detection period.
-However, the change rate of $D(t)$ caused by the detection is denoted by
-$\frac{D(t)}{N}U(t)$ in the above analysis.
+However, the change rate of $D(t)$ in (\ref{eq:IDR_full})
+is denoted by $\frac{D(t)}{N}U(t)$ in the above analysis.
 So there exists a deviation between the true cost $J$ and the estimated cost $\hat{J}$
 in the case with fully detection.
 \begin{lem}
@@ -272,7 +272,7 @@ $|J - \hat{J}|$ is less than $***$.
 \end{lem}
 
 \begin{proof}
-Without loss generality,
+Without loss of generality,
 assume that $T$ can be divided into $k$ periods ($T_{m}$) and a duration $t^{'}$, where $t^{'} < T_{m}$.
 The $i$-th detection period in $[0, T]$ is denoted by $(t_{i-1}, t_{i}]$, where $t_{i} - t_{i-1} = T_{m}$.
 In the first detection period $(t_{0}, t_{1}]$,
@@ -287,7 +287,7 @@ We also can compute the approximate total reward is
 \begin{equation}
 \nonumber
 \begin{aligned}
-P &= \beta \int_{0}^{T} I(t) + D(t) dt, \\
+\hat{P} &= \beta \int_{0}^{T} I(t) + D(t) dt, \\
 \end{aligned}
 \end{equation}
 \end{small}
@@ -297,7 +297,7 @@ The utilization ratio of the reward is that
 \begin{equation}
 \nonumber
 \begin{aligned}
-p = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}
+\hat{p} = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}
 \end{aligned}
 \end{equation}
 \end{small}
