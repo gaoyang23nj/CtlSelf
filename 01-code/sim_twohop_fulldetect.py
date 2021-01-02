@@ -313,14 +313,28 @@ def draw_predict(total_time):
         para_fraction1 = (para_rho * para_lambda * para_N) / ((para_lambda + para_Um/para_N)*(para_Um/para_N - para_rho))
         para_fraction2 = (para_rho * para_lambda * para_N) / ((para_lambda + para_rho)*(para_Um/para_N - para_rho))
         para_plus = (para_rho * para_lambda * para_N) / ((para_lambda + para_rho)*(para_lambda + para_Um/para_N))
-        result = - para_fraction1 * np.math.exp(para_ele1) + para_fraction2 * np.math.exp(para_ele2) + para_plus
+        result = para_fraction1 * np.math.exp(para_ele1) - para_fraction2 * np.math.exp(para_ele2) + para_plus
         return result
 
+    def func_nr_r(t):
+        para_ele1 = -(para_lambda + para_Um / para_N) * t
+        para_fraction1 = (para_rho * para_lambda * para_N) / (
+                    (para_lambda + para_Um / para_N) * (para_Um / para_N - para_rho))
+        para_ele2 = -(para_lambda + para_Um) * t
+        para_fraction2 = (para_rho * para_lambda * para_N) / ((para_lambda + para_Um/para_N)*(para_Um/para_N - para_rho))
+        para_plus = para_N - (para_rho * para_lambda * para_N) / ((para_lambda + para_rho)*(para_lambda + para_Um/para_N))\
+                    - (para_lambda * para_N) / (para_lambda + para_rho)
+        result = para_plus + para_fraction1 * np.math.exp(para_ele1) + para_fraction2 * np.math.exp(para_ele2)
+        return result
+
+    sim_r = np.ones(total_time) * -1
     sim_i = np.ones(total_time) * -1
     sim_d = np.ones(total_time) * -1
     for i in range(total_time):
+        sim_r[i] = func_nr_r(i)
         sim_i[i] = func_nr_i(i)
         sim_d[i] = func_nr_d(i)
+    _ = plt.plot(x, sim_r, label="predict_R", color='green', linestyle='--')
     _ = plt.plot(x, sim_i, label="predict_I", color='black', linestyle='--')
     _ = plt.plot(x, sim_d, label="predict_D", color='yellow', linestyle='--')
 

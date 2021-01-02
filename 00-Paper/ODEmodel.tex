@@ -229,12 +229,12 @@ the solution of (\ref{eq:IDR_full}) is that
 \label{eq:IDR_full_solu}
 \begin{aligned}
 I(t) =& \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}),\\
-D(t) =& \frac{ \rho \lambda N }{ \lambda + \rho } \frac{1}{\lambda + \frac{U_{m}}{N}}
-- \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}\\
-& - \frac{ \rho \lambda N }{ \lambda + \rho } \frac{1}{\frac{U_{m}}{N} - \rho} e^{-(\lambda + \rho)t},\\
+D(t) =& \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }
++ \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}\\
+& - \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t},\\
 R(t) =& N - \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)
-+ \frac{ \rho \lambda N }{ \lambda + \rho } \frac{1}{\frac{U_{m}}{N} - \rho} e^{-(\lambda + \rho)t} \\
-& + \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rho}{\frac{U_{m}}{N} - \rho}+1 \right) e^{-(\lambda + \rho)t}.
++ \frac{ \lambda U_{m} }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}\\
+& - \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}.
 \end{aligned}
 \end{equation}
 \end{small}
@@ -244,7 +244,7 @@ and $R(t) \rightarrow  N - \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rh
 when $t \rightarrow +\infty$ according to (\ref{eq:IDR_full_solu}).
 Here $R(+\infty) \neq 0$ in the steady state is caused by the selfish detection.
 Thus the estimation of the total cost $\hat{J}$ in (\ref{eq:obj})
-can be computed as
+can be computed as [**err** needs to be corrected]
 \begin{small}
 \begin{equation}
 \label{eq:IDR_full_J}
