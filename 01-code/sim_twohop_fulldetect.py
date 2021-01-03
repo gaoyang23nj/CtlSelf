@@ -6,11 +6,11 @@ para_N = 100
 para_total_time = 2500
 # 指数生成
 para_lambda = 0.004
-para_rho = 0.01
+para_rho = 0.011
 
 para_alpha = 0.9
 # 检查强度 每秒执行多少次检查
-para_Um = 2
+para_Um = 1
 
 event_fromsrc = 'rcv_from_src'
 event_selfish = 'to_be_selfish'
@@ -139,17 +139,11 @@ class Sim(object):
         # 进行检查/抽查
         # 以何种方式执行？ 匀速/
         T_m = 1/para_Um
-        tmp = 0
+        tmp = T_m
         end_detection = self.total_sim_time
-        while i <= end_detection:
-            tmp = tmp + para_Um
-            if tmp >= 1:
-                self.detect_nextContact = i
-                self.list_nextContact.append((self.detect_nextContact, event_detect))
-                # tmp_print_list_detect.append((self.detect_nextContact, event_detect))
-                tmp = tmp - 1
-            i = i + 1
-        # print(tmp_print_list_detect)
+        while tmp <= end_detection:
+            self.list_nextContact.append((tmp, event_detect))
+            tmp = tmp + T_m
 
         self.list_nextContact.sort()
 
@@ -317,23 +311,17 @@ def draw_predict(total_time):
         return result
 
     def func_nr_r(t):
-        para_ele1 = -(para_lambda + para_Um / para_N) * t
-        para_fraction1 = (para_rho * para_lambda * para_N) / (
-                    (para_lambda + para_Um / para_N) * (para_Um / para_N - para_rho))
-        para_ele2 = -(para_lambda + para_Um) * t
-        para_fraction2 = (para_rho * para_lambda * para_N) / ((para_lambda + para_Um/para_N)*(para_Um/para_N - para_rho))
-        para_plus = para_N - (para_rho * para_lambda * para_N) / ((para_lambda + para_rho)*(para_lambda + para_Um/para_N))\
-                    - (para_lambda * para_N) / (para_lambda + para_rho)
-        result = para_plus + para_fraction1 * np.math.exp(para_ele1) + para_fraction2 * np.math.exp(para_ele2)
+        result = 1
+        pass
         return result
 
     sim_r = np.ones(total_time) * -1
     sim_i = np.ones(total_time) * -1
     sim_d = np.ones(total_time) * -1
     for i in range(total_time):
-        sim_r[i] = func_nr_r(i)
         sim_i[i] = func_nr_i(i)
         sim_d[i] = func_nr_d(i)
+        sim_r[i] = para_N - sim_i[i]-sim_d[i]
     _ = plt.plot(x, sim_r, label="predict_R", color='green', linestyle='--')
     _ = plt.plot(x, sim_i, label="predict_I", color='black', linestyle='--')
     _ = plt.plot(x, sim_d, label="predict_D", color='yellow', linestyle='--')
