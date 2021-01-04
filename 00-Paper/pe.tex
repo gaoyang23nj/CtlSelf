@@ -1,15 +1,44 @@
 \section{Performance Evaluation}
+We consider a $500 \times 500 m^2$ sparse sensing field with
+$50-100$ relay nodes.
+The Poisson-contact
+mobility model is quasi-synthetic,
+in which the parameter $\lambda$ is set to ?.
+The speed of nodes is randomly selected in a uniform distribution changing from ? to ? m/s,
+and the communication range of
+these nodes is set to be ? m.
+The parameter $\alpha$ is limited, i.e.,
+$\alpha \in [0, 1]$.
+we consider two cases in the simulations.
+In the first case (Case 1),
+we set ?.
+in Case 2,
+the contact rate
+is ?.
+In each simulation,
+$M$ messages are created, 
+whose maximal lifetime $T_m$ increases from $0$ to ? $s$.
+Note that, 
+all statistical results of our scheme are obtained by
+repeating 50 times.
+
 \subsection{Efficacy of the ODE model}
 \label{subsec:pe_valid}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_without_detection.eps}
-  \caption{$I(t)$, $D(t)$ and $R(t)$ with time computed from prediction and simulations when $\lambda = 0.004$, $\rho = 0.01$, $N=100$ and $T=2,500$.}
+  \caption{$I(t)$, $D(t)$ and $R(t)$ with time $t$ computed from prediction and simulations
+  when $\lambda = 0.004$, $\rho = 0.01$, $N=100$ and $T=2,500$.}
   \label{fig:twohop_predict_wod}
 \end{figure}
 Fig.~\ref{fig:twohop_predict_wod} shows that the change of the states
 in the experiments conforms to the solved solutions (\ref{eq:IDR_wo_solu}).
 Here $D(t)$, $I(t)$ and $R(t)$ are the mean values
 at the specific time $t$ of $20$ simulations.
+We can see from the figure that the $R,I,D$ with
+The change of the states
+in the experiments conforms to
+the solved solutions.
+
 [*** add $R(t)$ ***]
 [*** add J P p ***]
 
@@ -22,7 +51,7 @@ at the specific time $t$ of $20$ simulations.
 \end{figure}
 Fig.~\ref{fig:twohop_predict_full_d} shows (\ref{eq:IDR_full}).
 
-\subsection{Optimal solution}
+\subsection{Optimal solution of selfish detection}
 \begin{figure}
   \centering
   {\includegraphics[width=0.47\textwidth]{fig/state.eps}}

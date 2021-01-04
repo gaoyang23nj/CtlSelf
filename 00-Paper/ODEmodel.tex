@@ -280,7 +280,10 @@ Here the $i$-th detection period is denoted by $(t_{i-1}, t_{i}]$, where $t_{i} 
 At first, we discuss the real word scenario.
 $D(t)$ increases from $D(t_{0})$ to $D(t_{1}^{-})$ in the first period $(t_{0}, t_{1}^{-})$.
 Since the detection occurs at $t_{1}$, $D(t_{1}^{+}) = \frac{N-1}{N}D(t_{1}^{-})$.
-Considering that $U(t)=U_{m}$, 
+
+Considering that $U(t)= \hat{U(t)} = U_{m}$, 
+we can derive that $\int_{0}^{T} U(t) dt = T U_{m} 
+= \int_{0}^{T} \hat{U(t)} dt $.
 \begin{small}
 \begin{equation}
 \label{eq:delta_J}
@@ -296,7 +299,9 @@ where $\Delta{D_{i}} = \int_{t_{i-1}}^{t_{i}} |(D(t)-\hat{D(t)})| dt $.
 \begin{equation}
 \nonumber
 \begin{aligned}
-\int_{t_{i-1}}^{t_{i}} D(t) dt
+\int_{t_{i-1}}^{t_{i}} D(t) dt 
+&= \\
+&= 
 \end{aligned}
 \end{equation}
 \end{small}
