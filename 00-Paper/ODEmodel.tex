@@ -75,7 +75,7 @@ Similarly, we can calculate the general solution of the first-order ODE $D(t)$
 from $\frac{\mathrm{d} D(t)}{\mathrm{d} t} + \lambda D(t) = \rho I(t)$,
 \begin{small}
 \begin{equation}
-\nonumber
+\label{eq:D_formula}
 \begin{aligned}
 D(t) &= C_{D} e^{-\int \lambda dt} + e^{-\int \lambda dt} \int \rho I(t) e^{\int \lambda dt} dt \\
 &= C_{D} e^{- \lambda t} +
@@ -140,9 +140,9 @@ The total paid reward can be calculated as
 \begin{equation}
 \nonumber
 \begin{aligned}
-P &= \beta \int_{0}^{T} I(t) + D(t) dt, \\
-&= \beta \int_{0}^{T} (N - N e^{- \lambda t}) dt, \\
-&= N \beta (T - \frac{ 1 - e^{-\lambda T} }{\lambda} ).
+P &= \beta \int_{0}^{T} I(t) + D(t) dt
+%&= \beta \int_{0}^{T} (N - N e^{- \lambda t}) dt, \\
+= N \beta (T - \frac{ 1 - e^{-\lambda T} }{\lambda} ).
 \end{aligned}
 \end{equation}
 \end{small}
@@ -268,44 +268,90 @@ is denoted by $\frac{D(t)}{N}U(t)$ in the above analysis.
 So there exists a deviation between the true cost $J$ and the estimated cost $\hat{J}$
 in the case with fully detection.
 \begin{lem}
-In the case with fully detection,
-$|J - \hat{J}|$ is less than $***$.
+Let $D(t)$
+When $t \rightarrow +\infty$, $T_{m} \ll T$,
+a deviation between $D(t)$ (\ref{eq:IDR_full_solu}) 
+and the real world scenario is limited.
 \end{lem}
 
 \begin{proof}
+At first we discuss the real world scenario.
 Without loss of generality,
-assume that $(0, T)$ can be divided into $k$ periods ($T_{m}$) and a following duration $T_{k+1}$, where $T_{k+1} < T_{m}$.
-Here the $i$-th detection period is denoted by $(t_{i-1}, t_{i}]$, where $t_{i} - t_{i-1} = T_{m}$.
+assume that $(0, T)$ can be divided into $k$ periods 
+and a following duration $t_{k+1}$.
+Here the $i$-th period is denoted by $(t_{i-1}, t_{i}]$,
+where $t_{i} - t_{i-1} = T_{m}$ and $t_{k+1} < T_{m}$.
+$D(t)$ increases from $D(t_{i-1})$ to $D(t_{i}^{-})$ 
+in the period $(t_{0}, t_{1}^{-})$.
+Since the detection occurs at $t_{i}$, 
+$D(t_{i}^{+}) = \frac{N-1}{N}D(t_{i}^{-})$.
+Thus when $t \rightarrow +\infty$,
+we can obtain from (\ref{eq:D_formula}) that
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+D(t_{i-1}^{+}) = & C_{i} e^{-\lambda t_{i-1}^{+}} 
++ \frac{\lambda N}{\lambda + \rho} e^{-(\lambda+\rho)t_{i-1}^{+}}
++ \frac{\rho N}{\lambda+\rho}, \\
+D(t_{i}^{-}) = & C_{i} e^{-\lambda t_{i}^{+}}
++ \frac{\lambda N}{\lambda + \rho} e^{-(\lambda+\rho)t_{i}^{+}}
++ \frac{\rho N}{\lambda+\rho}. \\
+\end{aligned}
+\end{equation}
+\end{small}
+Then, when $i \rightarrow +\infty$,
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+D(t_{i}^{+}) =& \frac{N-1}{N} D(t_{i}^{-}) \\
+=& \frac{N-1}{N} D(t_{i-1}^{+}) e^{-\lambda T_{m}}
++ \frac{\rho (N-1)}{\lambda + \rho} (1 - e^{-\lambda T_{m}})
+\end{aligned}
+\end{equation}
+\end{small}
+Thus considering that $D(t_{i-1}^{+}) = D(t_{i}^{+})$, we can get that
+\begin{small}
+\begin{equation}
+\nonumber
+\begin{aligned}
+\lim_{i \rightarrow +\infty} D(t_{i}^{+}) &=
+\frac{\rho(N-1)}{\lambda+\rho} \frac{1 - e^{-\lambda T_{m}}}
+{(1 - \frac{N-1}{N}e^{-\lambda T_{m}})} \\
+\lim_{i \rightarrow +\infty} D(t_{i}^{-}) &=
+\frac{\rho N}{\lambda+\rho} \frac{1 - e^{-\lambda T_{m}}}
+{(1 - \frac{N-1}{N}e^{-\lambda T_{m}})} \\
+\end{aligned}
+\end{equation}
+\end{small}
+According to (\ref{eq:IDR_full_solu}),
+$D(+\infty) = \frac{\rho \lambda N}
+{(\lambda + \rho)(\lambda + \frac{U_{m}}{N})}$.
+Since these limitations are the limited values related to 
+$\rho$, $\lambda$, $N$, $U_{m}$.
+The deviation is limited. 
+\end{proof}
 
-At first, we discuss the real word scenario.
-$D(t)$ increases from $D(t_{0})$ to $D(t_{1}^{-})$ in the first period $(t_{0}, t_{1}^{-})$.
-Since the detection occurs at $t_{1}$, $D(t_{1}^{+}) = \frac{N-1}{N}D(t_{1}^{-})$.
-
-Considering that $U(t)= \hat{U(t)} = U_{m}$, 
-we can derive that $\int_{0}^{T} U(t) dt = T U_{m} 
+\begin{lem}
+In the case with fully detection,
+$|J - \hat{J}|$ is less than $(1-\alpha) T N$.
+\end{lem}
+\begin{proof}
+Considering that $U(t)= \hat{U(t)} = U_{m}$,
+we can derive that $\int_{0}^{T} U(t) dt = T U_{m}
 = \int_{0}^{T} \hat{U(t)} dt $.
 \begin{small}
 \begin{equation}
 \label{eq:delta_J}
 \begin{aligned}
 |J - \hat{J}| = & | \int_{0}^{T} (1-\alpha)D(t) dt - \int_{0}^{T} (1-\alpha) \hat{D(t)} dt | \\
-\le & (1-\alpha) \sum_{i=1}^{k} \int_{t_{i-1}}^{t_{i}} |(D(t)-\hat{D(t)})| dt \\
-\le & (1-\alpha) k \max_{1 \le i \le k}\{ \Delta{D_{i}} \},
+\le & (1-\alpha) \int_{0}^{T} |(D(t)-\hat{D(t)})| dt \\
+\le & (1-\alpha) T N
 \end{aligned}
 \end{equation}
 \end{small}
-where $\Delta{D_{i}} = \int_{t_{i-1}}^{t_{i}} |(D(t)-\hat{D(t)})| dt $.
-\begin{small}
-\begin{equation}
-\nonumber
-\begin{aligned}
-\int_{t_{i-1}}^{t_{i}} D(t) dt 
-&= \\
-&= 
-\end{aligned}
-\end{equation}
-\end{small}
-
+where $0 \le D(t), \hat{D(t)} \le N$.
 
 \end{proof}
 
@@ -335,7 +381,3 @@ the additional cost,
 which is caused by the detection behavior,
 i.e., energy, bandwidth and wireless communication charge.
 is introduced.
-
-Although we can get the change of state in the case of fully detection,
-there exists a difference between the true state change and (\ref{eq:IDR_full}),
-i.e. error ratio.......

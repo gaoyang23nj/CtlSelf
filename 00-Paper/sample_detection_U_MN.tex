@@ -4,16 +4,15 @@
 Assume that the detection can be conducted.
 The detection rate is $U(t)$, $0 \le U(t) \le U_{m}$.
 $U_{m}$ is the limitation of the detection rate, which is the constraint from the hardware and the time sequences.
-We also use $\dot{U}$ to denote $U(t)$.
-Then, the ODEs can be reformed as
+Then, the ODEs can be reformulated as
 \begin{small}
 \begin{equation}
 \label{eq:SIM_t}
 %\nonumber
 \begin{aligned}
-\dot{I} &= \lambda (N-I) - \rho I, \\
-\dot{D} &= \rho I  - \lambda D - \frac{D}{N} U,\\
-\dot{R} &= - \beta (N-I-D) + \frac{D}{N} U.
+\frac{d I(t)}{d t} &= \lambda (N-I(t)) - \rho I(t), \\
+\frac{d D(t)}{d t} &= \rho I(t)  - \lambda D(t) - \frac{D(t)}{N} U(t),\\
+\frac{d R(t)}{d t} &= - \beta (N-I(t)-D(t)) + \frac{D(t)}{N} U(t).
 \end{aligned}
 \end{equation}
 \end{small}
@@ -111,9 +110,10 @@ which is
 %\nonumber
 \label{eq:bvp}
 \begin{aligned}
-\dot{D} &= \rho I  - \lambda D - \frac{D}{N} U,\\
-\dot{\lambda_{2}} &= - \frac{ \partial H}{ \partial D} = \lambda_{2} (\lambda + \frac{U}{N} ) - (1-\alpha),\\
-M(0) &= 0,\\
+\dot{D} &= - (\lambda + \frac{U^{*}}{N}) D + \rho I,\\
+\dot{\lambda_{2}} &= - \frac{ \partial H}{ \partial D} = 
+(\lambda + \frac{U^{*}}{N} ) \lambda_{2} - (1-\alpha),\\
+D(0) &= 0,\\
 \lambda_{2}(T) &= 0.
 \end{aligned}
 \end{equation}
@@ -121,14 +121,22 @@ M(0) &= 0,\\
 We can solve the BVP problem with the shooting method by the bvpSolve package of R.
 %footnote
 Then we analyze the properties of the optimal control variable.
-\begin{lem}
-There exists a unique solution of (\ref{eq:bvp}).
-\end{lem}
-\begin{proof}
-(\ref{eq:bvp}) comforts to the Lipschitz condition.
-Then the solution exists and the solution is unique. ... (ODE).
-\end{proof}
-
+%BVP Problem: solution exist and unique
+%BVP解的存在和唯一性定理
+%\begin{lem}
+%There exists a unique solution of (\ref{eq:bvp}).
+%\end{lem}
+%\begin{proof}
+%The solution space is $R: 0 \le t \le T, $
+%
+%(\ref{eq:bvp}) comforts to the Lipschitz condition.
+%Then the solution exists and is unique.(ODE).
+%
+%Since $D(0) = 0$ and $\le D(t) \le N$,
+%$|D(T) - D(0)| \le \frac{N}{T} |T-0|$.
+%Thus $D(t)$ comforts to the Lipschitz conduction,
+%and the corresponding Lipschitz parameter is $\frac{N}{T}$.
+%\end{proof}
 \begin{lem}At the beginning and the end of the whole duration,
 the optimal control stop the selfish detection,
 which is $U(0)=U(T)=0$.
