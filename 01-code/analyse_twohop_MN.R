@@ -14,7 +14,7 @@ rho <- 0.011
 alpha <- 0.9
 Um <- 1
 
-time_granularity <- 1
+time_granularity <- 0.1
 
 # time
 # x[1]=0,x[2]=1...,x[500]=499,x[501]=500
@@ -81,7 +81,7 @@ L <- sol1[,3]
 
 # 计算 最优控制变量U^{*}(t) t=0,1,2...500 对应于x[1],x[2]...x[501]
 # 初始化U[1],U[2],...,U[500],U[501] = 0
-U <- array(0,dim=c(T+1))
+U <- array(0,dim=c(length(x)))
 # 控制 x:0,1,...500; idx:1,2,...501
 i <- 1
 while(i<=length(x)) {
@@ -91,6 +91,13 @@ U[i] = Um
 }
 i <- i+1
 }
+
+
+# 写入data文件
+S <- N-M-I
+all_solve <- cbind(x, M, I, S, L, U)
+write.csv(all_solve, file = output_data_name, row.names = F)
+
 
 ###########################
 # 打印出转折点的位置
@@ -109,18 +116,11 @@ i <- i+1
 # x:0,1...500; idx:1,2,...501
 turning_time <- unlist(points)-1
 print('turning_time')
-print(turning_time)
+print(x[turning_time])
 # 从0到1
 print(U[turning_time])
 # 从1到0
 print(U[turning_time+1])
-
-# 写入data文件
-S <- N-M-I
-all_solve <- cbind(x, M, I, S, L, U)
-write.csv(all_solve, file = output_data_name, row.names = F)
-
-
 
 
 ##############################
