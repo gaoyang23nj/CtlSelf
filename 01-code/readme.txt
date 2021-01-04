@@ -15,8 +15,10 @@ eps: twohop_with_fully_detection.eps
 csv: full_detection_data.csv
 
 ####################
+最优求解(BVP问题求解器)
 analyze code:
 analyse_twohop_MN.R
+csv: opt_solve.csv
 
 ####################
 simulation code:
