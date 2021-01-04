@@ -1,21 +1,26 @@
 # [Read me]
-# 输出 eps: twohop_without_detection.eps
+# 数据保存顺序为
+# time: x
+# sim: r, i, d
+# predict: predict_r, predict_i, predict_d
+# 输出图片 : twohop_without_detection.eps
+# 输出文件 : without_detection_data.csv
 
 import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 
+output_data_filename = 'without_detection_data.csv'
 para_N = 100
 para_total_time = 2500
 # 指数生成
 para_lambda = 0.004
-para_rho = 0.01
+para_rho = 0.011
 
 para_alpha = 0.9
 para_Um = 1
 
 event_fromsrc = 'rcv_from_src'
-# event_contact = 'contact'
 event_selfish = 'to_be_selfish'
 event_detect = 'detect'
 
@@ -263,19 +268,28 @@ def try_10_times(run_times, is_plot):
     print('new_cost:{}'.format(new_cost))
     print('\n')
 
-    if is_plot:
-        _ = plt.plot(x, r, label="r", color='green', linestyle='-')
-        _ = plt.plot(x, i, label="i", color='blue', linestyle='-')
-        _ = plt.plot(x, d, label="d", color='red', linestyle='-')
+    # if is_plot:
+    _ = plt.plot(x, r, label="r", color='green', linestyle='-')
+    _ = plt.plot(x, i, label="i", color='blue', linestyle='-')
+    _ = plt.plot(x, d, label="d", color='red', linestyle='-')
 
-        draw_bound(total_time)
-        draw_predict(total_time)
+    draw_bound(total_time)
+    predict_r, predict_i, predict_d = draw_predict(total_time)
 
-        _ = plt.xlabel('total waiting time (games)')
-        _ = plt.ylabel('R, I, D')
-        plt.legend()
-        # Show the plot
-        plt.show()
+    # store data
+    # time:x
+    # sim: r, i, d
+    # predict: predict_r, predict_i, predict_d
+    data = np.vstack((x, r, i, d, predict_r, predict_i, predict_d))
+    data = data.transpose()
+    np.savetxt(output_data_filename, data, delimiter=',')
+
+    _ = plt.xlabel('total waiting time (games)')
+    _ = plt.ylabel('R, I, D')
+    plt.legend()
+    # Show the plot
+    plt.show()
+
     return cost_of_selfish, cost_of_detection, total_cost, new_cost
 
 
@@ -295,17 +309,21 @@ def draw_predict(total_time):
         result = - para_N * np.math.exp(- para_lambda * t) + para_fraction * np.math.exp(para_ele) + para_plus
         return result
 
-    sim_i = np.ones(total_time) * -1
-    sim_d = np.ones(total_time) * -1
+    predict_r = np.ones(total_time) * -1
+    predict_i = np.ones(total_time) * -1
+    predict_d = np.ones(total_time) * -1
     for i in range(total_time):
-        sim_i[i] = func_nr_i(i)
-        sim_d[i] = func_nr_d(i)
-    _ = plt.plot(x, sim_i, label="predict_I", color='black', linestyle='--')
-    _ = plt.plot(x, sim_d, label="predict_D", color='yellow', linestyle='--')
+        predict_i[i] = func_nr_i(i)
+        predict_d[i] = func_nr_d(i)
+        predict_r[i] = para_N - predict_i[i]-predict_d[i]
+    _ = plt.plot(x, predict_r, label="predict_R", color='green', linestyle='--')
+    _ = plt.plot(x, predict_i, label="predict_I", color='black', linestyle='--')
+    _ = plt.plot(x, predict_d, label="predict_D", color='yellow', linestyle='--')
 
     # 比例
-    prop = np.true_divide(sim_d, sim_i+0.000001)
+    # prop = np.true_divide(sim_d, sim_i+0.000001)
     # _ = plt.plot(x, prop, label="prop", color='black', linestyle='--')
+    return predict_r, predict_i, predict_d
 
 
 def draw_bound(total_time):
