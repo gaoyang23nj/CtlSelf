@@ -22,8 +22,8 @@
 %~\cite{DBLP:journals/adhoc/RosasGH20}
 %~\cite{10.1145/345910.345955}
 
-To achieve message transmission in selfish OppNets, 
-the very first step is to find selfish nodes, 
+To achieve message transmission in selfish OppNets,
+the very first step is to find selfish nodes,
 due to their uncooperative behaviour causes vulnerability
 and decreases the performance
 of OppNets~\cite{DBLP:journals/tvt/LiSWJSZ11}.
@@ -43,20 +43,24 @@ in terms of the time and the precision.
 
 
 The other approach tries to establish social trust relationships between mobile nodes in OppNets by leveraging their online social information (explicit trust) as well as their interactions or mobility properties (implicit trust). In ~\cite{DBLP:journals/tpds/ZhuDGDC14}, a probabilistic misbehavior detection scheme(iTrust), which introduced a periodically available Trusted Authority(TA), was presented to judge a node's behaviour .
-Another trust framework PROVEST(PROVEnance-baSed Trust model) that aimed to achieve accurate peer-to-peer trust assessment was presented in ~\cite{DBLP:journals/tdsc/ChoC18}. 
+Another trust framework PROVEST(PROVEnance-baSed Trust model) that aimed to achieve accurate peer-to-peer trust assessment was presented in ~\cite{DBLP:journals/tdsc/ChoC18}.
 The partial selfishness was investigated and credit-based algorithm to measure the degree of selfishness was designed in ~\cite{DBLP:journals/tmc/ChoiSLW12}.
 
-Except approaches mentioned above, 
+Except approaches aforementioned,
 ~\cite{DBLP:journals/jnca/BasuBRB18} combined watchdog technique with trust-based communications and integrated with PRoPHET to build a global perception of forwarding behavior for detection of selfish nodes.~\cite{DBLP:conf/icdcs/GaoMAH18} introduced ensemble learning for environment-adaptive malicious node detection.
 ~\cite{DBLP:journals/tvt/NomikosCVWK20} integrated buffer-aided full-duplex/half-duplex relaying with non-orthogonal multiple access(BAHyNOMA) for relay selection.
 
 As the next step after selfish node detection, Routing is a critical bottleneck for message transmission in selfish OppNets. Incentive-based protocals, such as SEIR~\cite{DBLP:conf/ciss/ChhabraVS17}, Multicent~\cite{DBLP:journals/tpds/ChenSY15}, were devised to increase node participation in message forwarding by opting for mechanisms that reward active participation of nodes in the forwarding of messages and penalize them otherwise. To balance the tradeoff between the delivery rate and forwarding cost, game theory was introduced to optimize the configuration in MANET for more efficient energy-aware routing in~\cite{DBLP:journals/monet/MaoZ15}.
 While geo-casting routing protocols like LoSeRo~\cite{DBLP:journals/tmc/CostantinoMMS20} exploited the location data to enhance the message routing performance, onion-based anonymous routing approach~\cite{DBLP:conf/icdcs/SakaiSKWA16} and ePRIVO~\cite{DBLP:journals/tvt/MagaiaBPC18} were proposed to keep users' information private. For MOSNs, which exhibits a nested core-periphery hierarchy(NCPH), ~\cite{DBLP:journals/tvt/Zheng017} presented an up-and down routing protocol to upload message from source node to the network core and then download to the destination. ~\cite{DBLP:journals/adhoc/RosasGH20} proposed a context-aware self-adaptive routing protocol that is able to adapt to different scenarios.
 
-\subsection{Optimizations for Selfish OppNets}
-Optimization schemes for selfish OppNets can be classified into several types, the most typical one tries to explore how to control the transmitting process to get a trade-off between the energy consumption and the transmission performance.
-For instance, ~\cite{DBLP:journals/winet/SharmaRVKC20} modeled the OppIoT environment as a Markov decision process(MDP) and proposed a routing protocol RLProph for routing process optimization, which seeks to fully automate the OppIoT routing process by using the Policy Iteration algorithm to maximize the possibility of message delivery. ~\cite{DBLP:journals/tsipn/ShaghaghianC15} proposed both centralized and decentralized single-copy message forwarding algorithms to minimize the expected latencies from any node in the Opportunistic DTNs.
-All of the above works just consider one part of the optimal control of the message transmission in OppNets,
+\subsection{Optimizations of Selfish OppNets}
+Optimization schemes of selfish OppNets can be classified into several types, the most typical one tries to formulate the transmitting process in terms of a trade-off between the energy consumption and the transmission performance.
+For instance, on optimal neighbor discovery, PWEND~\cite{DBLP:journals/adhoc/ChenQLLWYL20} and Pharos~\cite{DBLP:conf/secon/Zhu00L19} adopted time model for neighbor discovery and investigated the most energy efficient way and the least discovery latency, respectively. Then for a given energy budget, how to optimizing the number of discovered peers was investigated in ~\cite{DBLP:journals/tmc/LoretiB20}, what is the best achievable discovery latency was addressed by ~\cite{DBLP:conf/sigcomm/KindtC19}.
+As for optimal data forwarding,
+~\cite{DBLP:journals/tvt/ZhouLZXF17} proposed an efficient time-aware data forwarding strategy(TCCB) for OMNs, based on temporal social contact patterns. The model performed a close delivery ratio to Wpidemic but with significantly reduced delivery cost.
+~\cite{DBLP:journals/tvt/LiuWXWLY17} introduced a centralized heuristic algorithm which aimed to discover a tree for multicasting, with resource constrained(i.e. the delay-constrained least-const) in MONs.
+both centralized and decentralized single-copy message forwarding algorithms were proposed in~\cite{DBLP:journals/tsipn/ShaghaghianC15}, which aimed to minimize the expected latencies from any node in the Opportunistic DTNs.
+All of the above works just consider one part of the message transmission in OppNets,
 ~\cite{DBLP:journals/tcss/WuDH18} mathematically characterized
 message transmission of the selfish and altruistic cases as an optimal control problem,
 whose controlling parameters were chosen according
