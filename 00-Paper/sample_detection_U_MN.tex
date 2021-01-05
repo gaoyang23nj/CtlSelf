@@ -1,5 +1,5 @@
 \section{Optimal Detection}
-\label{opt_detect}
+\label{sec:opt_detect}
 \subsection{Problem Formulation}
 Assume that the detection can be conducted.
 The detection rate is $U(t)$, $0 \le U(t) \le U_{m}$.
@@ -59,29 +59,32 @@ $I(t)$ and $D(t)$ is the state functions.
 $U(t)$ is the controllable variable, $0 \le U(t)\ \le U_{m}$.
 
 \subsection{Optimal Control by Pontryagin's Maximal Principle}
-Now we utilize the Pontryagin's maximal principle to find the optimal $U(t)$, which will minimize the total cost.
+Now we utilize the Pontryagin's maximal principle~\cite{DBLP:journals/tcss/WuDH18}
+to find the optimal $U(t)$, which will minimize the total cost.
 First, the Hamilton function is
 \begin{small}
 \begin{equation}
 \nonumber
 \begin{aligned}
-H =& (1-\alpha) D + \alpha U + \lambda_{1} (\lambda (N-I) - \rho I) \\
-& + \lambda_{2} (\rho I  - \lambda D - \frac{D}{N} U) \\
+H =& (1-\alpha) D + \alpha U + \lambda_{I} (\lambda (N-I) - \rho I) \\
+& + \lambda_{D} (\rho I  - \lambda D - \frac{D}{N} U) \\
 %=& (1-\alpha) M + \alpha U + \lambda_{1} (\beta (N-I) - \rho I) + \lambda_{2} \rho I\\
 %& - \beta \lambda_{2} M - \lambda_{2} \frac{1}{N} U M \\
-=& (1-\alpha) D + \lambda_{1} (\lambda (N-I) - \rho I) \\
-& + \lambda_{2} (\rho I  - \lambda D) + ( \alpha - \lambda_{2} \frac{D}{N}) U.
+=& (1-\alpha) D + \lambda_{I} (\lambda (N-I) - \rho I) \\
+& + \lambda_{D} (\rho I  - \lambda D) + ( \alpha - \lambda_{D} \frac{D}{N}) U.
 \end{aligned}
 \end{equation}
 \end{small}
-Note that $\lambda_{1}$ and $\lambda_{2}$ denote two co-state functions.
-Without the final constraint, the terminal condition is $\lambda_{2}(T) = 0$ and $\lambda_{3}(T) = 0$.
+Note that $\lambda_{I}$ and $\lambda_{D}$ denote two co-state functions.
+Without the final constraint, the terminal condition is 
+$\lambda_{I}(T) = 0$ and $\lambda_{D}(T) = 0$.
 Then the adjoint function is
 \begin{small}
 \begin{equation}
 \nonumber
 \begin{aligned}
-\dot{\lambda_{2}} &= - \frac{ \partial H}{ \partial D} = \lambda_{2} (\lambda + \frac{U}{N} ) - (1-\alpha).
+\dot{\lambda_{D}} = - \frac{ \partial H}{ \partial D} 
+= \lambda_{D} (\lambda + \frac{U}{N} ) - (1-\alpha).
 \end{aligned}
 \end{equation}
 \end{small}
@@ -94,15 +97,15 @@ Thus
 U^{*}(t) =
 \left\{
 \begin{aligned}
-&0,      & \text{if }  \alpha - \lambda_{2} \frac{D}{N} \ge 0 \\
-&U_{m},        & \text{if } \alpha - \lambda_{2} \frac{D}{N} < 0
+&0,      & \text{if }  \alpha - \lambda_{D} \frac{D}{N} \ge 0 \\
+&U_{m},        & \text{if } \alpha - \lambda_{D} \frac{D}{N} < 0
 \end{aligned}
 \right.
 \end{equation}
 \end{small}
 
 In summary, we have the ODE functions $\dot{D}$, $\dot{\lambda_{2}}$,
-the initial condition $D(0)=0$ and the boundary condition $\lambda_{2}(T)=0$,
+the initial condition $D(0)=0$ and the boundary condition $\lambda_{D}(T)=0$,
 Thus the problem is to solve a BVP problem,
 which is
 \begin{small}
@@ -111,13 +114,11 @@ which is
 \label{eq:bvp}
 \begin{aligned}
 \dot{D} &= - (\lambda + \frac{U^{*}}{N}) D + \rho I,\\
-\dot{\lambda_{2}} &= - \frac{ \partial H}{ \partial D} = 
-(\lambda + \frac{U^{*}}{N} ) \lambda_{2} - (1-\alpha),\\
-D(0) &= 0,\\
-\lambda_{2}(T) &= 0.
+\dot{\lambda_{2}} &= (\lambda + \frac{U^{*}}{N} ) \lambda_{D} - (1-\alpha),\\
 \end{aligned}
 \end{equation}
 \end{small}
+where $D(0) = 0$ and $\lambda_{D}(T) = 0$.
 We can solve the BVP problem with the shooting method by the bvpSolve package of R.
 %footnote
 Then we analyze the properties of the optimal control variable.

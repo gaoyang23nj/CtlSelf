@@ -132,7 +132,7 @@ lines(x, L, type = "l", lwd = 2, col = "green")
 
 title("state")
 
-legend(20,50,c("M(t)", "L(t)", "1/N*L*M"), lwd=c(2,2,2), col=c("red","green","black"), y.intersp=1.5)
+legend(20, 50,c("M(t)", "L(t)", "1/N*L*M"), lwd=c(2,2,2), col=c("red","green","black"), y.intersp=1.5)
 
 # 影响U(t)切换的界限
 criteria <- 1/N*M*L

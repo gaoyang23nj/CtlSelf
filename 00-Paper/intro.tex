@@ -1,11 +1,31 @@
 \section{Introduction}
 \label{sec:intro}
-Our main contributions are as follows:
+The main contributions are as follows:
 
-1)
+\begin{itemize}
+\item {we formulate the ordinary differential equation model (ODE)
+to capture and analytically evaluate the change of network state
+in OppNets without detection and with fully detection.}
+%\item {we propose a ODE model with continuous strategy
+%to model the periodic detection in the case of fully detection.}
+\item {we propose an optimal solution of selfish node detection
+based on the Pontryagin's maximum principle
+to achieve the balance between the detection cost 
+and the wasted reward of selfish behaviors.
+}
+\item {we conduct experiments to evaluate 
+the effectiveness of the proposed model
+and the optimal selfish detection solution in terms of the total cost,
+the wasted reward and the change of network state.
+}
+\end{itemize}
 
-2)
-
-3)
-
-Section.
+The rest of this paper is organized as follows.
+The literature is reviewed in Section~\ref{sec:related}.
+We formulate the problem in Section~\ref{sec:preli}.
+The change of network state without detection and with fully detection
+is investigated in Section~\ref{sec:ode_model}.
+The optimal solution of the selfish detection in OppNets
+is presented in Section~\ref{sec:opt_detect},
+and evaluated in Section~\ref{sec:pe}.
+The paper concludes in Section~\ref{sec:conclude}. 
