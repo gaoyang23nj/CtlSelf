@@ -1,24 +1,30 @@
 \begin{abstract}
-Selfish node detection in the opportunistic networks offers an effective means
-to mitigate the routing performance degradation,
-but leads to large cost due to the detection behaviors.
-Most existing effort in the literature focuses on the detection methods,
-which is based on the traffic analysis and the watchdog cooperations.
-However, the detection behaviors bring about
-the detection cost, e.g. energy, bandwidth, revenue,
-as well as the decrement of selfish nodes.
-In this paper, we investigate the message dissemination
-without detection and with fully detection,
-i.e. the expected number of nodes in different states with time.  
-Specifically, we construct the ordinary differential equation (ODE)
-to approximatively model the periodic detection behavior,
-and propose the optimal solution of selfish detection
-base on the Pontryagin's maximum principle.
+Selfish node detection offers an effective means
+to mitigate the routing performance degradation
+caused by selfish behaviors in Opportunistic Networks (OppNets),
+but leads to the extra network overload and computation cost.
+%due to the detection behaviors.
+Most existing effort in the literature focuses on 
+exploring the detection methods
+based on the traffic analysis or the cooperations among nodes.
+%However, the detection brings about
+%the detection cost, e.g. energy, bandwidth, revenue,
+%as well as the decrement of selfish nodes.
+In this paper, we investigate the state transition of nodes
+in the message dissemination without detection.
+Specifically, the Ordinary Differential Equation (ODE) is constructed 
+to approximatively model the periodic detection
+with complete detection requirement.
+Then we propose the optimal detection solution
+with the Pontryagin's maximum principle, 
+and mathematically deduce the right detection time 
+%the moment of triggering detection on/off
+during the message lifetime.
 The model soundness is verified statistically
 and the analysis accuracy is evaluated via extensive simulations.
 The experiments also show that our solution can
-degrade the combinational cost of the wasted reward and the detection,
-and approaches to the minimal cost.
+achieve the tradeoff between the reward and the detection cost.
+%reduce the combinational cost of the wasted reward and the detection.
 %based on RWP trace and Shanghai taxi trace.
 %Extensive simulations show that
 %our scheme outperforms
