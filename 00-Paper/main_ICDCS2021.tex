@@ -1,0 +1,70 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{authblk}
+\usepackage{amsthm}
+\newtheorem{lem}{Lemma}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Analytical Optimal Solution of Selfish Node Detection with $2$-hop Constraints in OppNets: A Pontryagin's Maximum Principle Approach
+}
+\author[1,2,3]{Yang Gao}
+\author[1,2,3]{Jun Tao}
+\author[1,2]{Zuyan Wang}
+\author[1,3]{Wenqiang Li}
+
+\affil[1]{School of Cyber Sci. \& Engr., Southeast University, Nanjing, China}
+\affil[2]{Key Lab of CNII, MOE, Southeast University, Nanjing, China}
+\affil[3]{Jiangsu Provincial Key Laboratory of Computer Network Technology, Southeast University, Nanjing, China \protect\\
+Email: \{yanggao, juntao, zuyan94, wqli\}@seu.edu.cn}
+
+%\author{\IEEEauthorblockN{Yang Gao}
+%\IEEEauthorblockA{\textit{Southeast University} \\
+%Nanjing, China \\
+%yanggao@seu.edu.cn}
+%\and
+%\IEEEauthorblockN{Jun Tao\thanks{Corresponding author: Jun Tao.}}
+%\IEEEauthorblockA{\textit{Southeast University} \\
+%Nanjing, China \\
+%juntao@seu.edu.cn}
+%\and
+%\IEEEauthorblockN{Zuyan Wang}
+%\IEEEauthorblockA{\textit{Southeast University} \\
+%Nanjing, China \\
+%zuyan94@seu.edu.cn}
+%\and
+%\IEEEauthorblockN{Wenqiang Li}
+%\IEEEauthorblockA{\textit{Southeast University} \\
+%Nanjing, China \\
+%wqli@seu.edu.cn}
+%}
+
+\maketitle
+
+\input{abstract.tex}
+
+\begin{IEEEkeywords}
+Selfish Node Detection, Ordinary Differential Equation,
+Pontryagin's maximal principle
+\end{IEEEkeywords}
+
+\input{intro.tex}
+\input{related.tex}
+\input{preli.tex}
+\input{ODEmodel.tex}
+\input{sample_detection_U_MN.tex}
+\input{pe.tex}
+\input{conclude.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{reference}
+
+\end{document}
