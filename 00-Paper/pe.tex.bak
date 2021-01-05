@@ -33,12 +33,16 @@ repeating 50 times.
 \end{figure}
 Fig.~\ref{fig:twohop_predict_wod} shows that the change of the states
 in the experiments conforms to the solved solutions (\ref{eq:IDR_wo_solu}),
-in which $D(t)$, $I(t)$ and $R(t)$ represent the mean values
+in which  $D(t)$, $I(t)$ and $R(t)$ are the mean values
 at the specific time $t$ of $20$ simulations.
-According to Equation~\ref{eq:IDR_wo_solu}, 
-we can know that the analytical result about total number of $R(t)$ is in a monotone decreasing
-situation with the growing $T$. 
-The magenta line in Fig.~\ref{fig:twohop_predict_wod} proves this conclusion.
+We can see from the figure that the $R,I,D$ with
+The change of the states
+in the experiments conforms to
+the solved solutions.
+
+[*** add $R(t)$ ***]
+[*** add J P p ***]
+
 \subsection{Efficacy of the approximate method}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_with_fully_detection.eps}
