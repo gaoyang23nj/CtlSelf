@@ -1,19 +1,33 @@
 \section{Introduction}
 \label{sec:intro}
+Exploiting mobile nodes to transmit message in
+opportunistic networks(OppNets) has been attracting
+increasing research attentions
+\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
+DBLP:conf/infocom/LuSP16,
+DBLP:conf/mobicom/RadenkovicH17,
+DBLP:conf/infocom/SakaiSK19,
+DBLP:journals/comsur/JedariXN18,
+DBLP:journals/tmc/LoretiB20}.
+With a widespread use and availability of
+mobile communication devices, numerous applications
+emerge based on message transmission in OppNets, especially in mobile social networks(OMSNs).
+Opportunistic computing utilize the shared resources
+in  OMSNs to provide a platform for the execution of
+distributed computing tasks,
+
 The main contributions are as follows:
 
 \begin{itemize}
 \item {we formulate the ordinary differential equation model (ODE)
 to capture and analytically evaluate the change of network state
 in OppNets without detection and with fully detection.}
-%\item {we propose a ODE model with continuous strategy
-%to model the periodic detection in the case of fully detection.}
 \item {we propose an optimal solution of selfish node detection
 based on the Pontryagin's maximum principle
-to achieve the balance between the detection cost 
+to achieve the balance between the detection cost
 and the wasted reward of selfish behaviors.
 }
-\item {we conduct experiments to evaluate 
+\item {we conduct experiments to evaluate
 the effectiveness of the proposed model
 and the optimal selfish detection solution in terms of the total cost,
 the wasted reward and the change of network state.
@@ -28,4 +42,4 @@ is investigated in Section~\ref{sec:ode_model}.
 The optimal solution of the selfish detection in OppNets
 is presented in Section~\ref{sec:opt_detect},
 and evaluated in Section~\ref{sec:pe}.
-The paper concludes in Section~\ref{sec:conclude}. 
+The paper concludes in Section~\ref{sec:conclude}.
