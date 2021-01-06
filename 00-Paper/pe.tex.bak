@@ -44,18 +44,20 @@ Fig.~\ref{fig:twohop_predict_wod} shows the comparison between the simulation an
 in which $D(t)$, $I(t)$ and $R(t)$ represent the mean values
 of simulations result, 
 respectively.
-The dotted lines in Fig.~\ref{fig:twohop_predict_wod} represent the analytical results.
+The dotted lines in Fig.~\ref{fig:twohop_predict_wod} represent the analytical results of $R(t)$.
 According to Equation~(\ref{eq:IDR_wo_solu}),
 we can know that the analytical results about total number of $R(t)$ is in a monotone decreasing 
-situation with the growing $T$.
+situation when the growing $T$. 
 The magenta line in Fig.~\ref{fig:twohop_predict_wod} proves this conclusion.
-This is because the selfishness of node  
-the change of the states
+This is because the selfishness of nodes will aggravate the state transition of nodes. 
+The infected 
 in the experiments conforms to the solved solutions (\ref{eq:IDR_wo_solu}),
 As can be seen, 
 the analytical results match
-the simulation results reasonably, which validates the proposed
+the simulation results reasonably, 
+which validates the proposed
 analytical model.
+
 \subsection{Efficacy of the approximate method}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_with_fully_detection.eps}

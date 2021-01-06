@@ -29,8 +29,7 @@ repeating 50 times.
 \label{subsec:pe_valid}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_without_detection.eps}
-  \caption{$I(t)$, $D(t)$ and $R(t)$ with time $t$ computed from prediction and simulations
-  when $\lambda = 0.004$, $\rho = 0.01$, $N=100$ and $T=2,500$.}
+  \caption{Comparison of the theoretical and simulation results of the proposed ODE model in  case $1$.}
   \label{fig:twohop_predict_wod}
 \end{figure}
 As shown in Sections~\ref{sec:ode_model} and~\ref{sec:opt_detect},
@@ -40,27 +39,31 @@ It is critical to verity the accurate of the proposed model.
 Therefore, 
 in the first experiment,
 we compare the the simulation and the analytical results to check the accuracy of models.
-Fig.~\ref{fig:twohop_predict_wod} shows the comparison between the simulation and the analytical result in Case $1$, 
-in which $D(t)$, $I(t)$ and $R(t)$ represent the mean values
-of simulations result, 
-respectively.
-The dotted lines in Fig.~\ref{fig:twohop_predict_wod} represent the analytical results.
-According to Equation~(\ref{eq:IDR_wo_solu}),
+Fig.~\ref{fig:twohop_predict_wod} shows 
+the comparison between the simulation and the analytical result in Case $1$, 
+in which $D(t)$, $I(t)$ and $R(t)$ with time $t$ are computed from prediction and simulations
+when $\lambda = 0.004$, $\rho = 0.01$, $N=100$ and $T=2,500$,
+and the dotted lines in Fig.~\ref{fig:twohop_predict_wod} represent the analytical results.
+As can be seen,
+the analytical results match the simulation results reasonably,
+which validates the proposed analytical model.
+
+The result in Fig.~\ref{fig:twohop_predict_full_d} shows that 
+the accuracy of the proposed ODE models in Case $2$.
+In this figure,
+$I(t)$, $D(t)$ and $R(t)$ with time $t$  are computed from prediction and simulations 
+when $\lambda = 0.004$, $\rho = 0.011$, $N=100$, $T_{m} = 1$ and $T=2,500$.
+According to Equation~(\ref{eq:IDR_full_solu}),
 we can know that the analytical results about total number of $R(t)$ is in a monotone decreasing 
 situation when the growing $T$. 
-The magenta line in Fig.~\ref{fig:twohop_predict_wod} proves this conclusion.
-This is because the selfishness of nodes will aggravate the state transition of nodes. 
+The magenta line in Fig.~\ref{fig:twohop_predict_full_d} proves this conclusion.
+This is because the selfishness of nodes will aggravate the state transition of nodes.
+Fig~\ref{fig:twohop_predict_full_d} verifies the accuracy of the proposed ODE model again.
 
-in the experiments conforms to the solved solutions (\ref{eq:IDR_wo_solu}),
-As can be seen, 
-the analytical results match
-the simulation results reasonably, which validates the proposed
-analytical model.
 \subsection{Efficacy of the approximate method}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_with_fully_detection.eps}
-  \caption{$I(t)$, $D(t)$ and $R(t)$ with time computed from prediction and simulations when $\lambda = 0.004$, $\rho = 0.011$, $N=100$,
-  $T_{m} = 1$ and $T=2,500$.}
+  \caption{Comparison of the theoretical an simulation results or the proposed ODE model in case $2$.}
   \label{fig:twohop_predict_full_d}
 \end{figure}
 Fig.~\ref{fig:twohop_predict_full_d} shows (\ref{eq:IDR_full}).
