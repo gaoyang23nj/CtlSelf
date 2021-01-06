@@ -58,7 +58,7 @@ Similar with the previous section,
 $I(t)$ and $D(t)$ is the state functions.
 $U(t)$ is the controllable variable, $0 \le U(t)\ \le U_{m}$.
 
-\subsection{Optimal Control by Pontryagin's Maximal Principle}
+\subsection{Optimal Control by Pontryagin's Maximum Principle}
 Now we utilize the Pontryagin's maximal principle~\cite{DBLP:journals/tcss/WuDH18}
 to find the optimal $U(t)$, which will minimize the total cost.
 First, the Hamilton function is
@@ -76,14 +76,14 @@ H =& (1-\alpha) D + \alpha U + \lambda_{I} (\lambda (N-I) - \rho I) \\
 \end{equation}
 \end{small}
 Note that $\lambda_{I}$ and $\lambda_{D}$ denote two co-state functions.
-Without the final constraint, the terminal condition is 
+Without the final constraint, the terminal condition is
 $\lambda_{I}(T) = 0$ and $\lambda_{D}(T) = 0$.
 Then the adjoint function is
 \begin{small}
 \begin{equation}
 \nonumber
 \begin{aligned}
-\dot{\lambda_{D}} = - \frac{ \partial H}{ \partial D} 
+\dot{\lambda_{D}} = - \frac{ \partial H}{ \partial D}
 = \lambda_{D} (\lambda + \frac{U}{N} ) - (1-\alpha).
 \end{aligned}
 \end{equation}

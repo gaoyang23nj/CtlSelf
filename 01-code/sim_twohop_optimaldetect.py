@@ -1,10 +1,18 @@
 # [Read me]
-# 所有(t0,t1)情况 + optimal solution的遍历数据
-# 输出到 '********_uniform_detect_M_N_U.tmp'
+# 1.指定切换时间(t0,t1)后 状态变化的数据 保存顺序为
+# time: x
+# sim: r, i, d
+# predict: predict_r, predict_i, predict_d
+# 输出图片 : twohop_optimal_detection.eps
+# 输出文件 : optimal_detection_data.csv
+
+# 计算得到的最优解 102.1 452.3
 
 import datetime
 import numpy as np
+import matplotlib.pyplot as plt
 
+output_data_filename = 'optimal_detection_data.csv'
 para_N = 100
 para_total_time = 500
 # 指数生成
@@ -226,7 +234,7 @@ class Sim(object):
         self.list_nextContact.insert(loc, (tmp_next_time, event_selfish, i))
 
 
-def try_10_times(t0, t1, run_times):
+def try_10_times(t0, t1, run_times, is_plot):
     total_time = para_total_time
     # 各种状态
     multi_times_r = np.zeros((run_times, total_time))
@@ -265,59 +273,37 @@ def try_10_times(t0, t1, run_times):
     new_cost = cost_of_selfish/100*0.5 + cost_of_detection * 0.5
     print('new_cost:{}'.format(new_cost))
     print('\n')
+
+    # if is_plot:
+    _ = plt.plot(x, r, label="r", color='green', linestyle='-')
+    _ = plt.plot(x, i, label="i", color='blue', linestyle='-')
+    _ = plt.plot(x, d, label="d", color='red', linestyle='-')
+
+    # predict data is provided by R 'analyse_twohop_MN.R' and 'opt_solve.csv'
+
+    # store data
+    # time:x
+    # sim: r, i, d
+    data = np.vstack((x, r, i, d))
+    data = data.transpose()
+    np.savetxt(output_data_filename, data, delimiter=',')
+
+    _ = plt.xlabel('time')
+    _ = plt.ylabel('R, I, D')
+    plt.legend()
+    # Show the plot
+    plt.show()
     return cost_of_selfish, cost_of_detection, total_cost, new_cost
-
-
-def draw_all_combine(total_time, delta):
-    list_t0_t1 = []
-    # total_time+1 就能遍历到最后一个
-    for i in range(0, total_time+1, delta):
-        for j in range(i+delta, total_time+1, delta):
-            list_t0_t1.append((i, j))
-    print(list_t0_t1)
-    # 保存结果
-    res = []
-    for (t0, t1) in list_t0_t1:
-        c1, c2, tc, nc = try_10_times(t0, t1, 20)
-        ele = (t0, t1, c1, c2, tc, nc, total_time, delta)
-        res.append(ele)
-    return res
-
-
-def print_file(res, short_time):
-    file_object = open('result_'+short_time+'_uniform_detect_M_N_U.tmp', 'a+', encoding="utf-8")
-    for ele in res:
-        tmp_string = ''
-        for i in range(len(ele)):
-            tmp_string = tmp_string + str(ele[i])
-            if i != len(ele)-1:
-                tmp_string = tmp_string + ','
-        file_object.write(tmp_string + '\n')
-    file_object.close()
 
 
 if __name__ == "__main__":
     t1 = datetime.datetime.now()
-    delta = 10
-    # t0-t1遍历结果
-    res = draw_all_combine(para_total_time, delta)
 
-    # try_once(0, 5000, True)
-    # 优化结果
-    o_t0 = 102.1
-    o_t1 = 452.3
-    c1, c2, tc, nc = try_10_times(o_t0, o_t1, 20)
-    ele = (o_t0, o_t1, c1, c2, tc, nc, para_total_time, 0)
-    res.append(ele)
+    # try_once(True)
 
-    short_time = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    print_file(res, short_time+'_time_seq')
+    # # 优化结果
+    try_10_times(102.1, 452.3, 20, True)
 
-    def take5(elem):
-        return elem[4]
-
-    res.sort(key=take5)
-    print_file(res, short_time+'_cost_seq')
     t2 = datetime.datetime.now()
     print(t2-t1)
 
