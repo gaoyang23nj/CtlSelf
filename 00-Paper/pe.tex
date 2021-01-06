@@ -1,29 +1,31 @@
 \section{Performance Evaluation}
 \label{sec:pe}
-We consider a $500 \times 500 m^2$ sparse sensing field with
-$50-100$ relay nodes.
+We consider a $5000 \times 5000 m^2$ sparse sensing field with
+$100$ relay nodes.
 The Poisson-contact
 mobility model is quasi-synthetic,
-in which the parameter $\lambda$ is set to ?.
-The speed of nodes is randomly selected in a uniform distribution changing from ? to ? m/s,
-and the communication range of
-these nodes is set to be ? m.
-The parameter $\alpha$ is limited, i.e.,
+in which the parameter $\lambda$ is set to $0.004$.
+The source node is fixed at the center of the network scenario. 
+The speed of nodes is randomly selected in a uniform distribution 
+changing from 4 to 10 m/s,
+and the communication range of these nodes is set to be $20$$m$.
+The parameter $\alpha$ is limited, 
+i.e.,
 $\alpha \in [0, 1]$.
-we consider two cases in the simulations.
-In the first case (Case 1),
-we set ?.
-in Case 2,
-the contact rate
-is ?.
+We consider two cases in the simulations.
+In the first case (Section~\ref{subsec:wo_detc}),
+we set $U(t)=0$,
+which means there is no selfish detection. 
+In the second case (Section~\ref{subsec:full_detc}),
+we adopt the selfish detection method and keep detecting during whole lifetime of network.
 In each simulation,
 $M$ messages are created,
-whose maximal lifetime $T_m$ increases from $0$ to ? $s$.
+whose maximal lifetime $T_m$ increases from $0$$s$ to $2000$$s$.
 Note that,
 all statistical results of our scheme are obtained by
 repeating 50 times.
 
-\subsection{Efficacy of the ODE model}
+\subsection{Accuracy Analysis Based on Simulations}
 \label{subsec:pe_valid}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_without_detection.eps}
@@ -31,14 +33,29 @@ repeating 50 times.
   when $\lambda = 0.004$, $\rho = 0.01$, $N=100$ and $T=2,500$.}
   \label{fig:twohop_predict_wod}
 \end{figure}
-Fig.~\ref{fig:twohop_predict_wod} shows that the change of the states
-in the experiments conforms to the solved solutions (\ref{eq:IDR_wo_solu}),
+As shown in Sections~\ref{sec:ode_model} and~\ref{sec:opt_detect},
+we mathematically model the state transition of nodes by the ODEs,
+based on which we analyze the optimal control through the Pontryagin's Maximum Principle.
+It is critical to verity the accurate of the proposed model.
+Therefore, 
+in the first experiment,
+we compare the the simulation and the analytical results to check the accuracy of models.
+Fig.~\ref{fig:twohop_predict_wod} shows the comparison between the simulation and the analytical result in Case $1$, 
 in which $D(t)$, $I(t)$ and $R(t)$ represent the mean values
-at the specific time $t$ of $20$ simulations.
-According to Equation~\ref{eq:IDR_wo_solu}, 
-we can know that the analytical result about total number of $R(t)$ is in a monotone decreasing
-situation with the growing $T$. 
+of simulations result, 
+respectively.
+The dotted lines in Fig.~\ref{fig:twohop_predict_wod} represent the analytical results.
+According to Equation~(\ref{eq:IDR_wo_solu}),
+we can know that the analytical results about total number of $R(t)$ is in a monotone decreasing 
+situation when the growing $T$. 
 The magenta line in Fig.~\ref{fig:twohop_predict_wod} proves this conclusion.
+This is because the selfishness of nodes will aggravate the state transition of nodes. 
+
+in the experiments conforms to the solved solutions (\ref{eq:IDR_wo_solu}),
+As can be seen, 
+the analytical results match
+the simulation results reasonably, which validates the proposed
+analytical model.
 \subsection{Efficacy of the approximate method}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_with_fully_detection.eps}
