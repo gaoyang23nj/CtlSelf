@@ -1,21 +1,56 @@
 \section{Introduction}
 \label{sec:intro}
 Exploiting mobile nodes to transmit message in
-opportunistic networks(OppNets) has been attracting
+OppNets has been attracting
 increasing research attentions
 \cite{DBLP:conf/sigcomm/SouzaMSMCC16,
 DBLP:conf/infocom/LuSP16,
 DBLP:conf/mobicom/RadenkovicH17,
-DBLP:conf/infocom/SakaiSK19,
 DBLP:journals/comsur/JedariXN18,
 DBLP:journals/tmc/LoretiB20}.
 With a widespread use and availability of
 mobile communication devices, numerous applications
-emerge based on message transmission in OppNets, especially 
-in mobile social networks (OMSNs).
-Opportunistic computing utilize the shared resources
-in  OMSNs to provide a platform for the execution of
-distributed computing tasks,
+emerge based on message transmission in OppNets,
+especially in mobile social networks (OMSNs).
+\cite{DBLP:journals/tsc/KhalidKKZ14} builded a
+cloud-based recommendation system OmniSuggest 
+based on OMSNs. In this project, user activities,
+mobility patterns are tracked to provide 
+The opportunistic computing technology utilize
+the shared resources of OMSNs to
+provide optimal venue recommendations.
+More examples can be found in mobile data offloading,
+such as~\cite{DBLP:journals/tmc/HanHKMSS12,
+DBLP:journals/tmc/LiQJHW014}.
+
+Traditional message dissemination approaches
+heavily rely on voluntary cooperation between
+mobile nodes, which excessively consumes the
+limited energy supply and lead to massive useless
+message copies due to the selfish behaviour.
+Adopting selfish node detection mechanisms
+to avoid selfish node involved in data forwarding,
+reduces and balances the communication loads
+of nodes (and thus their energy consumptions).
+However, selfish node detection leads to network
+management cost due to the detecting expense, and
+introduce extra detection traffic,
+degrading the overall performance of OppNets.
+
+Much research effort on selfish node detection
+exists in the literature.
+
+
+
+
+%With a widespread use and availability of
+%mobile communication devices, numerous applications
+%emerge based on message transmission in OppNets,
+%especially in mobile social networks (OMSNs).
+%The opportunistic computing technology utilize
+%the shared resources of OMSNs to
+%provide a platform for the execution
+%of distributed computing tasks,
 
 The main contributions are as follows:
 
@@ -29,7 +64,7 @@ to achieve the tradeoff between the detection cost
 and the reward of selfish behaviors.}
 \item {we conduct experiments to evaluate
 the effectiveness of the proposed model
-and the optimal selfish detection solution 
+and the optimal selfish detection solution
 in terms of the total cost, the wasted reward and the node state transition.}
 \end{itemize}
 
