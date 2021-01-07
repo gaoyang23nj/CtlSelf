@@ -10,9 +10,12 @@ Then, the ODEs can be reformulated as
 \label{eq:SIM_t}
 %\nonumber
 \begin{aligned}
-\frac{d I(t)}{d t} &= \lambda (N-I(t)) - \rho I(t), \\
-\frac{d D(t)}{d t} &= \rho I(t)  - \lambda D(t) - \frac{D(t)}{N} U(t),\\
-\frac{d R(t)}{d t} &= - \beta (N-I(t)-D(t)) + \frac{D(t)}{N} U(t).
+\frac{\mathrm{d} I(t)}{\mathrm{d} t} &= 
+\lambda (N-I(t)) - \rho I(t), \\
+\frac{\mathrm{d} D(t)}{\mathrm{d} t} &= 
+\rho I(t)  - \lambda D(t) - \frac{D(t)}{N} U(t),\\
+\frac{\mathrm{d} R(t)}{\mathrm{d} t} &= 
+- \beta (N-I(t)-D(t)) + \frac{D(t)}{N} U(t).
 \end{aligned}
 \end{equation}
 \end{small}
@@ -110,7 +113,6 @@ Thus the problem is to solve a BVP problem,
 which is
 \begin{small}
 \begin{equation}
-%\nonumber
 \label{eq:bvp}
 \begin{aligned}
 \dot{D} &= - (\lambda + \frac{U^{*}}{N}) D + \rho I,\\
@@ -122,6 +124,31 @@ where $D(0) = 0$ and $\lambda_{D}(T) = 0$.
 We can solve the BVP problem with the shooting method by the bvpSolve package of R.
 %footnote
 Then we analyze the properties of the optimal control variable.
+\begin{algorithm}
+\caption{Optimal Selfish Node Detection}
+\label{alg:detection}
+\begin{small}
+\begin{algorithmic}[1]
+\REQUIRE $T_{m}$, ${U}_{m}$, $\lambda$, $\rho$, $T$
+\STATE {time $t$ $\leftarrow$ $0$}
+\STATE {compute the solution of (\ref{eq:bvp}) 
+as the switch on duration $\mathcal{T}$}
+\STATE {conduct the detection each $T_{m}$ from $\tau_{0}$ to $\tau_{1}$}
+\WHILE {$t$}
+    \IF {contact $n_{i}$ without message}
+        \STATE {replicate $m$ to $n_{i}$}
+        \STATE {record $t$ as $\tau_{0}$ in the table}
+    \ENDIF
+    \IF {$t$ $\in$ $\mathcal{T}$}
+        \STATE {conduct the detection about the randomly selected node $n_{j}$}
+        \STATE {change the node state of $n_{j}$}
+    \ENDIF
+\ENDWHILE
+\STATE {pay the reward according to the contribution time of each node}
+\end{algorithmic}
+\end{small}
+\end{algorithm}
+
 %BVP Problem: solution exist and unique
 %BVP解的存在和唯一性定理
 %\begin{lem}
