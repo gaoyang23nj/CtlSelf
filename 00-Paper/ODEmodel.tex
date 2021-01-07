@@ -29,7 +29,7 @@ Additionally, the rate of change from state $I$ to state $D$ is $\rho I(t)$.
 We can obtain the derivative of $I(t)$ with respect to time $t$,
 $\frac{\mathrm{d} I(t)}{\mathrm{d} t} = \lambda (N-I(t)) - \rho I(t)$.
 Similar to $\frac{\mathrm{d} I(t)}{\mathrm{d} t}$,
-we can get the derivative of $D(t)$ 
+we can get the derivative of $D(t)$
 and the derivative of $R(t)$ respectively,
 i.e., $\frac{\mathrm{d} D(t)}{\mathrm{d} t}$ and
 $\frac{\mathrm{d} R(t)}{\mathrm{d} t}$.
@@ -168,28 +168,29 @@ p = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}
 \end{figure}
 In the case with complete detection,
 $src$ conducts the selfish node detection in the whole message lifetime.
-The detections are conducted at 
+The detections are conducted at
 time {$T_{m}$, $2 T_{m}$, $\cdots$, $k T_{m}$},
 where $k T_{m} \le T < (k+1) T_{m}$.
-In every detection, a randomly selected node $n_{i}$ 
+In every detection, a randomly selected node $n_{i}$
 is checked by $src$ whether $n_{i}$ is a selfish node.
-We can find that the decrement of selfish node number 
-only occurs at the instant $iT_{m}$ 
+We can find that the decrement of selfish node number
+only occurs at the instant $iT_{m}$
 in the case with complete detection.
 
 In order to simplify the model,
-we exploit a continuous manner to 
+we exploit a continuous manner to
 describe this case with complete detection.
 Considering that the checked relay node
 is randomly selected from the $N$ node set,
-we calculate the probability of selecting a selfish node 
+we calculate the probability of selecting a selfish node
 as $\frac{D(t)}{N}$.
 Since the detection rate is constrained by $U(t)$,
 we let $\frac{D(t)}{N}U(t)$ denote
 the change rate from state $D$ to state $R$ caused by detections.
-Thus the state transition of the fully detection case 
+Thus the state transition of the fully detection case
 is constructed as Fig.~\ref{fig:ss_dt}.
-The ODE model in (\ref{eq:IDR_wo}) will be redefined as
+The approximate model of the state transition in the case with complete detection
+will be constructed as
 \begin{small}
 \begin{equation}
 \label{eq:IDR_full}
@@ -200,7 +201,7 @@ The ODE model in (\ref{eq:IDR_wo}) will be redefined as
 \end{aligned}
 \end{equation}
 \end{small}
-for the case with complete detection.
+based on the model in the case without detection (\ref{eq:IDR_wo}).
 Here $U(t) = U_{m}$, $\forall t$, $0 \le t \le T$.
 The initial state is that $I(0)=D(0)=0$ and $R(0)=N$.
 So the solution of $I(t)$, which does not change from $(\ref{eq:IDR_wo_solu})$,
@@ -215,8 +216,8 @@ we can derive that
 =& C_{2D} e^{\int -(\lambda + \frac{U_{m}}{N}) dt}
 + e^{\int -(\lambda + \frac{U_{m}}{N}) dt} \int \rho I(t) e^{\int (\lambda + \frac{U_{m}}{N}) dt} dt \\
 =& C_{2D} e^{-(\lambda + \frac{U_{m}}{N})t}
-- \frac{ \rho \lambda N }{ \lambda + \rho } \frac{1}{\frac{U_{m}}{N} - \rho} e^{-(\lambda + \rho)t}
-+ \frac{ \rho \lambda N }{ \lambda + \rho } \frac{1}{\lambda + \frac{U_{m}}{N}}.
+- \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}
++ \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }.
 \end{aligned}
 \end{equation}
 \end{small}
@@ -250,11 +251,11 @@ We can find that $I(t) \rightarrow \frac{ \lambda N }{ \lambda + \rho }$,
 $D(t) \rightarrow \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }$,
 and $R(t) \rightarrow  N - \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)$
 when $t \rightarrow +\infty$ according to (\ref{eq:IDR_full_solu}).
-Here $R(+\infty) \neq 0$ in the steady state 
+Here $R(+\infty) \neq 0$ in the steady state
 is caused by the complete selfish detection.
-Based on the formulation (\ref{eq:IDR_full}) 
+Based on the approximate model (\ref{eq:IDR_full})
 and the corresponding solutions (\ref{eq:IDR_full_solu}),
-the estimation of the total cost $\hat{J}$ in (\ref{eq:obj})
+the estimation of the total cost $\hat{J}$
 can be computed as
 \begin{small}
 \begin{equation}
@@ -271,32 +272,36 @@ can be computed as
 \end{equation}
 \end{small}
 The reason why (\ref{eq:IDR_full_J}) is the estimation of the cost
-is that
-the decrement of $D(t)$ actually occurs in the end of the detection period.
+is that the decrement of $D(t)$ actually occurs in the end of the detection cycle.
 However, the change rate of $D(t)$ in (\ref{eq:IDR_full})
 is denoted by $\frac{D(t)}{N}U(t)$ in the above analysis.
 So there exists a deviation between the true cost $J$ and the estimated cost $\hat{J}$
-in the case with fully detection.
+in the case with complete detection.
 \begin{lem}
-Let $D(t)$
 When $t \rightarrow +\infty$, $T_{m} \ll T$,
-a deviation between $D(t)$ (\ref{eq:IDR_full_solu})
-and the real world scenario is limited.
+a deviation between $D(t)$ in the approximate model (\ref{eq:IDR_full_solu})
+and in the real scenario is limited.
 \end{lem}
 
 \begin{proof}
-At first we discuss the real world scenario.
+At first we discuss the real scenario of the complete detection case.
 Without loss of generality,
-assume that $(0, T)$ can be divided into $k$ periods
+assume that $(0, T)$ can be divided into $k$ detection cycles
 and a following duration $t_{k+1}$.
-Here the $i$-th period is denoted by $(t_{i-1}, t_{i}]$,
+Here the $i$-th detection cycle is denoted by $(t_{i-1}, t_{i}]$,
 where $t_{i} - t_{i-1} = T_{m}$ and $t_{k+1} < T_{m}$.
+In every detection cycle,
 $D(t)$ increases from $D(t_{i-1})$ to $D(t_{i}^{-})$
-in the period $(t_{0}, t_{1}^{-})$.
-Since the detection occurs at $t_{i}$,
+in $(t_{0}, t_{1}^{-})$.
+Since the detection occurs at the instant $t_{i}$,
 $D(t_{i}^{+}) = \frac{N-1}{N}D(t_{i}^{-})$.
-Thus when $t \rightarrow +\infty$,
-we can obtain from (\ref{eq:D_formula}) that
+From (\ref{eq:IDR_wo_solu}) we can find that $D(t)$ increases with time in the case
+and approaches to the stable state in the case without detection.
+In the case with complete detection,
+when $t \rightarrow +\infty$,
+$D(t)$ also approaches to the stable state,
+where $D(t_{i-1}^{+}) = D(t_{i}^{+})$.
+We can obtain that
 \begin{small}
 \begin{equation}
 \nonumber
@@ -306,10 +311,11 @@ D(t_{i-1}^{+}) = & C_{i} e^{-\lambda t_{i-1}^{+}}
 + \frac{\rho N}{\lambda+\rho}, \\
 D(t_{i}^{-}) = & C_{i} e^{-\lambda t_{i}^{+}}
 + \frac{\lambda N}{\lambda + \rho} e^{-(\lambda+\rho)t_{i}^{+}}
-+ \frac{\rho N}{\lambda+\rho}. \\
++ \frac{\rho N}{\lambda+\rho},
 \end{aligned}
 \end{equation}
 \end{small}
+in $(t_{i-1}, t_{i})$ based on (\ref{eq:D_formula}).
 Then, when $i \rightarrow +\infty$,
 \begin{small}
 \begin{equation}
@@ -321,7 +327,7 @@ D(t_{i}^{+}) =& \frac{N-1}{N} D(t_{i}^{-}) \\
 \end{aligned}
 \end{equation}
 \end{small}
-Thus considering that $D(t_{i-1}^{+}) = D(t_{i}^{+})$, we can get that
+Considering that $D(t_{i-1}^{+}) = D(t_{i}^{+})$, we can get that
 \begin{small}
 \begin{equation}
 \nonumber
@@ -339,23 +345,24 @@ According to (\ref{eq:IDR_full_solu}),
 $D(+\infty) = \frac{\rho \lambda N}
 {(\lambda + \rho)(\lambda + \frac{U_{m}}{N})}$.
 Since these limitations are the limited values related to
-$\rho$, $\lambda$, $N$, $U_{m}$.
-The deviation is limited.
+$\rho$, $\lambda$, $N$ and $U_{m}$,
+the deviation of $D(t)$ between in the approximate model and in the real scenario is limited.
 \end{proof}
 
 \begin{lem}
+Let $J$ denote the cost in the complete detection case.
 In the case with fully detection,
 $|J - \hat{J}|$ is less than $(1-\alpha) T N$.
 \end{lem}
 \begin{proof}
-Considering that $U(t)= \hat{U(t)} = U_{m}$,
-we can derive that $\int_{0}^{T} U(t) dt = T U_{m}
-= \int_{0}^{T} \hat{U(t)} dt $.
+Considering that $U(t) = \hat{U}(t) = U_{m}$,
+we can derive that $\int_{0}^{T} U(t) dt = T U_{m} = \int_{0}^{T} \hat{U}(t) dt $.
+And the deviation between the estimated cost and the true cost
 \begin{small}
 \begin{equation}
 \label{eq:delta_J}
 \begin{aligned}
-|J - \hat{J}| = & | \int_{0}^{T} (1-\alpha)D(t) dt - \int_{0}^{T} (1-\alpha) \hat{D(t)} dt | \\
+|J - \hat{J}| = & \left| \int_{0}^{T} (1-\alpha)D(t) dt - \int_{0}^{T} (1-\alpha) \hat{D(t)} dt \right| \\
 \le & (1-\alpha) \int_{0}^{T} |(D(t)-\hat{D(t)})| dt \\
 \le & (1-\alpha) T N
 \end{aligned}
@@ -371,23 +378,22 @@ We also can compute the approximate total reward is
 \nonumber
 \begin{aligned}
 \hat{P} &= \beta \int_{0}^{T} I(t) + D(t) dt, \\
+& = \frac{\beta \rho \lambda N T}{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }
+- \frac{\beta \rho \lambda N}{ {(\lambda + \frac{U_{m}}{N})}^{2} (\frac{U_{m}}{N} - \rho)}
+(e^{-(\lambda + \frac{U_{m}}{N})T} - 1 ) \\
+&+ \frac{\beta \rho \lambda N }{ {(\lambda + \rho)}^{2} (\frac{U_{m}}{N} - \rho) }
+(e^{-(\lambda + \rho)T} - 1 ) 
++ \frac{ \lambda N }{ (\lambda + \rho)^2 } (e^{-(\lambda + \rho)T} - 1 ) \\
+& + \frac{ \beta \lambda N T }{ \lambda + \rho }
 \end{aligned}
 \end{equation}
 \end{small}
-
-The utilization ratio of the reward is that
-\begin{small}
-\begin{equation}
-\nonumber
-\begin{aligned}
-\hat{p} = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}
-\end{aligned}
-\end{equation}
-\end{small}
-
-Here we find that p\% reward is wasted in the selfish node.
-Although the wasted reward is reduced because of the detection,
-the additional cost,
-which is caused by the detection behavior,
-i.e., energy, bandwidth and wireless communication charge.
-is introduced.
+Similarly, the utilization ratio of reward also can be obtained
+$\hat{p} = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}$.
+From (\ref{eq:IDR_full_solu}) to (\ref{eq:IDR_wo_solu}),
+we find $I(t)$ does not change but $D(t)$ decreases.
+Thus this complete detection case can reduce the selfish behaviors
+with the additional cost of the selfish node detections,
+e.g., energy, bandwidth and wireless communication fee.
+Thus we try to achieve the tradeoff between the paid reward and the detection cost
+via the optimal solution.
