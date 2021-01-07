@@ -20,7 +20,7 @@ In the second case (Section~\ref{subsec:full_detc}),
 we adopt the selfish detection method and keep detecting during whole lifetime of network.
 In each simulation,
 $M$ messages are created,
-whose maximal lifetime $T_m$ increases from $0$$s$ to $2000$$s$.
+whose maximal lifetime $T$ increases from $0$$s$ to $2000$$s$.
 Note that,
 all statistical results of our scheme are obtained by
 repeating 50 times.
@@ -57,7 +57,7 @@ According to Equation~(\ref{eq:IDR_full_solu}),
 we can know that the analytical results about total number of $D(t)$ is in a monotone increasing
 situation when the growing $T$.
 The blue line in Fig.~\ref{fig:twohop_predict_full_d} proves this conclusion.
-However, 
+However,
 the number of selfish number reduce to $20$ when comparing with Fig.~\ref{fig:twohop_predict_wod}.
 This is because adopting detection methods will mitigate the selfish behaviour of nodes.
 Fig~\ref{fig:twohop_predict_full_d} verifies the accuracy of the proposed ODE model again.
@@ -70,26 +70,26 @@ Fig~\ref{fig:twohop_predict_full_d} verifies the accuracy of the proposed ODE mo
 \end{figure}
 In the second experiment,
 we analysis efficacy of the approximate method.
-Fig.~\ref{fig:pe_opt_state_time} shows the state transition of nodes with time $T$,
+Fig.~\ref{fig:pe_opt_state_time} shows the state transition of nodes with the message¡¯s maximal lifetime $T$,
 in which $M(t)$ represent ,
-$I(t)$ represent ,
-$S(t)$ represent and $\lambda_2$ represent.
+$I(t)$ represent ?,
+$S(t)$ represent ? and $\lambda_2$ represent ?.
 As we can see,
-the value of $M(t)$ and the value of $\lambda_2$ decrease 
-with $T$. 
+the value of $M(t)$ and the value of $\lambda_2$ decrease
+with $T$.
 In contrast,
 both $S(t)$ and $I(t)$ have growing trend with increasing $T$.
 This verify the sate transition is balanced.
 
 Fig.~\ref{fig:pe_opt_control_Ut} shows the control variable $U(t)$ with increasing time.
-From this figure, 
+From this figure,
 we can easily obtain the optimal control policy to
-minimize the $J$. 
-For example, 
-when $T$ equals to $100$, 
-the complete detection is open.
+minimize the $J$.
+For example,
+when $T$ equals to $100$,
+the complete detection is on an `on state'.
 When time equals to $450$,
-the network will switch from an `on state' to an `off state'.
+the network will switch from the `on state' to an `off state'.
 \subsection{Optimal solution of selfish detection}
 \begin{figure}
   \centering
@@ -110,5 +110,17 @@ the network will switch from an `on state' to an `off state'.
      \label{fig:pe_diff_choices}
 \end{figure}
 
-In the third experiment,
+Lemma~\ref{lem_1} introduce that the parameter $t_0$ and $t_1$ ?.
+Therefore, 
+in the third experiment,
 we analysis the impact of different $t_0$ and $t_1$.
+As shown in Fig.~\ref{fig:pe_diff_choices},
+the total cost is calculated by adjusting $t_0$ and $t_1$ form $0$ to $400$ and from $0$ to $500$,
+respectively.
+We can observe that the total cost of system has a minimal value. 
+For example, 
+when $t_0=80$ and $t_1=430$,
+the cost is $?$.
+It is clear that the optimal cost can guide the design of OppNets,
+where the selfish nodes exist. 
+ 
