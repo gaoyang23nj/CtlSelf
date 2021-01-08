@@ -1,71 +1,109 @@
 \section{Introduction}
 \label{sec:intro}
 Opportunistic networks (OppNets)
-have been proposed in the recent years,
-and are usually exploited to provide the network/communication service
-in the remote areas
-or the emergency situations.
+have been attracting the research attentions in the recent years,
+which are usually exploited to 
+provide the communication service
+as the valid complement of the cellular network,
+especially in the remote areas
+and in the emergency situations~\cite{DBLP:journals/tsc/KhalidKKZ14,
+DBLP:journals/tmc/ChatzopoulosAKH18,
+DBLP:journals/tmc/HanHKMSS12,
+DBLP:journals/tmc/LiQJHW014}.
 %describe the scenario,
 %where the communication link may be
 %established with contact opportunities
 %among mobile nodes.
-At present, with a widespread use and
-availability of mobile communication devices,
-OppNets presents very broad development prospect,
-and numerous applications rely on it prospered.
-\cite{DBLP:journals/tsc/KhalidKKZ14} builded a
-cloud-based recommendation system OmniSuggest
-based on opportunistic mobile social network.
-In this project, user activities,
-mobility patterns are tracked to
-generate optimal venue recommendations.
-The opportunistic computing technology utilize
-the shared resources of OppNets to
-provide a platform for the execution
-of distributed computing tasks~\cite{DBLP:journals/tmc/ChatzopoulosAKH18}.
-More examples can be found in mobile data offloading,
-such as~\cite{DBLP:journals/tmc/HanHKMSS12,
-DBLP:journals/tmc/LiQJHW014}.
+With the popularity of mobile communication devices,
+various OppNet-based 
+applications~\cite{DBLP:journals/tsc/KhalidKKZ14,
+DBLP:journals/tmc/ChatzopoulosAKH18} are designed and deployed
+in the academia and industry
+besides the traditional advertisement and communication application.
+%At present, with a widespread use and
+%availability of mobile communication devices,
+%OppNets presents very broad development prospect,
+%and numerous applications rely on it prospered.
+% consider?
+\cite{DBLP:journals/tsc/KhalidKKZ14} presented 
+a venue recommendation platform OmniSuggest based on OppNets,
+which exploited the mobility pattern 
+to achieve the optimal recommendations.
+%where where mobility patterns of users are tracked.
+%to generate optimal venue recommendations.
+%In this project, user activities,
+Inspired by the message forwarding in OppNets,
+the computation offloading framework,
+which integrates the incentive scheme and the reputation mechanism,
+was proposed to reduce the execution time and energy consumption
+in the scenarios without cellular infrastructures~\cite{DBLP:journals/tmc/ChatzopoulosAKH18}.
+%can also be utilized to construct
+%a platform to offload the heavy tasks
+%a distributed computing task platform
+%The opportunistic computing technology utilize
+%the shared resources of OppNets to
+%provide a platform for the execution
+%of distributed computing tasks~\cite{DBLP:journals/tmc/ChatzopoulosAKH18}.
+%More examples can be found in mobile data offloading,
+%such as~\cite{DBLP:journals/tmc/HanHKMSS12,
+%DBLP:journals/tmc/LiQJHW014}.
 
-Exploiting mobile nodes to transmit message in
-OppNets has been attracting
-increasing research attentions
-\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
+Much research effort on the routing schemes 
+exist in the literature,
+where the message dissemination performance 
+dominates the applications of
+OppNets~\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
 DBLP:conf/mobicom/RadenkovicH17,
 DBLP:journals/comsur/JedariXN18,
 DBLP:journals/tmc/LoretiB20}.
-Traditional message dissemination approaches
-heavily rely on voluntary cooperation between
-mobile nodes, which excessively consumes the
-limited energy supply and lead to massive useless
-message copies due to the selfish behavior.
-Adopting selfish node detection mechanisms
-to avoid selfish nodes involved in data forwarding,
-reduces and balances the communication loads
-of nodes (and thus their energy consumptions).
+%Exploiting mobile nodes to transmit message in
+%OppNets has been attracting
+%increasing research attentions
+%\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
+%DBLP:conf/mobicom/RadenkovicH17,
+%DBLP:journals/comsur/JedariXN18,
+%DBLP:journals/tmc/LoretiB20}.
+However, the selfish behavior is also 
+the bottleneck of the routing performance besides the routing methods,
+especially considering that
+the message carrying service will occupy 
+the limited energy and memory of the.
+Thus how to suppress the selfish behaviors
+becomes another critical issue in OppNets.
+%Traditional message dissemination approaches
+%heavily rely on voluntary cooperation between
+%mobile nodes, which excessively consumes the
+%limited energy supply and lead to massive useless
+%message copies due to the selfish behavior.
+%%Adopting selfish node detection mechanisms
+%%to avoid selfish nodes involved in data forwarding,
+%%reduces and balances the communication loads
+%%of nodes (and thus their energy consumptions).
 %However, selfish node detection leads to network
 %management cost due to the detecting expense, and
 %introduce extra detection traffic,
 %degrading the overall performance of OppNets.
 
-Much research effort on selfish node detection
-exists in the literature. The state-of-the-art
-detection schemes can be divided into two categories
+A valid methodology to mitigate the selfish behaviors 
+is conducting the selfish node detection.
+%Much research effort on selfish node detection
+%exists in the literature.
+The state-of-the-art detection schemes 
+can be divided into two categories
 in light of their aims:
 watchdog systems~\cite{DBLP:conf/mobicom/MartiGLB00,
 DBLP:journals/tmc/Hernandez-Orallo15,
 DBLP:journals/tie/DiasRXM15,
 DBLP:journals/fgcs/JedariXCDTA19}
-and social trust-based communications
-~\cite{DBLP:journals/tpds/ZhuDGDC14,
+and social trust-based communications~\cite{DBLP:journals/tpds/ZhuDGDC14,
 DBLP:journals/tdsc/ChoC18,
 DBLP:journals/tmc/ChoiSLW12}.
 The former intends to detect selfish behavior
 by analyzing the traffic received
-from their encountered nodes
+from their contacted nodes,
 while the latter establishes social trust relationships
 to select trusted and secured relay nodes.
-Most of the state-of-the-art work,
+Most of these works,
 either watchdog system methods
 or social trust-based communicating approaches,
 are micro-perspective studies,
