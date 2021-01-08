@@ -231,18 +231,22 @@ I(t) =& \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}),\\
 D(t) =& \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }
 + \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}
 e^{-(\lambda + \frac{U_{m}}{N})t}\\
-& - \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } 
+& - \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) }
 e^{-(\lambda + \rho)t},\\
-R(t) =& N - \frac{ \lambda N }{ \lambda + \rho } 
+R(t) =& N - \frac{ \lambda N }{ \lambda + \rho }
 \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)
 + \frac{ \lambda U_{m} }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}\\
 & - \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}.
 \end{aligned}
 \end{equation}
 \end{small}
-We can find that $I(t) \rightarrow \frac{ \lambda N }{ \lambda + \rho }$,
-$D(t) \rightarrow \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }$,
-and $R(t) \rightarrow  N - \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)$
+We can find that $I(t) \rightarrow 
+\frac{ \lambda N }{ \lambda + \rho }$,
+$D(t) \rightarrow \frac{ \rho \lambda N }
+{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }$,
+and $R(t) \rightarrow  
+N - \frac{ \lambda N }{ \lambda + \rho } 
+\left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)$
 when $t \rightarrow +\infty$ according to (\ref{eq:IDR_full_solu}).
 Here $R(+\infty) \neq 0$ in the steady state
 is caused by the complete selfish detection.
@@ -270,7 +274,7 @@ However, the change rate of $D(t)$ in (\ref{eq:IDR_full})
 is denoted by $\frac{D(t)}{N}U(t)$ in the above analysis.
 So there exists a deviation between the true cost $J$ and
 the estimated cost $\hat{J}$ in the case with complete detection.
-\begin{lem}\label{lem_1}
+\begin{lem}\label{lem:Dstable}
 When $t \rightarrow +\infty$, $T_{m} \ll T$,
 a deviation between $D(t)$ in the approximate model (\ref{eq:IDR_full_solu})
 and in the real scenario is limited.
@@ -341,7 +345,7 @@ $\rho$, $\lambda$, $N$ and $U_{m}$,
 the deviation of $D(t)$ between in the approximate model and in the real scenario is limited.
 \end{proof}
 
-\begin{lem}
+\begin{lem}\label{lem:Jnear}
 Let $J$ denote the cost in the complete detection case.
 In the case with fully detection,
 $|J - \hat{J}|$ is less than $(1-\alpha) T N$.
@@ -387,6 +391,6 @@ we find $I(t)$ does not change but $D(t)$ decreases.
 Thus this complete detection case can reduce the selfish behaviors
 with the additional cost of the selfish node detections,
 e.g., energy, bandwidth and wireless communication fee.
-Thus we try to achieve the tradeoff between the paid reward 
+Thus we try to achieve the tradeoff between the paid reward
 and the detection cost
 via the optimal solution.
