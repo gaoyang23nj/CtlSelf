@@ -222,16 +222,6 @@ we can derive that
 \end{equation}
 \end{small}
 Since $D(0) = 0$ and $I(t) + D(t) + R(t) = N$,
-%\begin{small}
-%\begin{equation}
-%\nonumber
-%\begin{aligned}
-%D(t) =& \frac{ \rho \lambda N }{ \lambda + \rho } \frac{1}{\lambda + \frac{U_{m}}{N}}
-%- \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}\\
-%& - \frac{ \rho \lambda N }{ \lambda + \rho } \frac{1}{\frac{U_{m}}{N} - \rho} e^{-(\lambda + \rho)t}
-%\end{aligned}
-%\end{equation}
-%\end{small}
 the solution of (\ref{eq:IDR_full}) can be calculated as
 \begin{small}
 \begin{equation}
@@ -239,9 +229,12 @@ the solution of (\ref{eq:IDR_full}) can be calculated as
 \begin{aligned}
 I(t) =& \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}),\\
 D(t) =& \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }
-+ \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}\\
-& - \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t},\\
-R(t) =& N - \frac{ \lambda N }{ \lambda + \rho } \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)
++ \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}
+e^{-(\lambda + \frac{U_{m}}{N})t}\\
+& - \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } 
+e^{-(\lambda + \rho)t},\\
+R(t) =& N - \frac{ \lambda N }{ \lambda + \rho } 
+\left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)
 + \frac{ \lambda U_{m} }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}\\
 & - \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}.
 \end{aligned}
@@ -275,20 +268,13 @@ The reason why (\ref{eq:IDR_full_J}) is the estimation of the cost
 is that the decrement of $D(t)$ actually occurs in the end of the detection cycle.
 However, the change rate of $D(t)$ in (\ref{eq:IDR_full})
 is denoted by $\frac{D(t)}{N}U(t)$ in the above analysis.
-So there exists a deviation between the true cost $J$ and the estimated cost $\hat{J}$
-<<<<<<< HEAD
-in the case with fully detection.
+So there exists a deviation between the true cost $J$ and
+the estimated cost $\hat{J}$ in the case with complete detection.
 \begin{lem}\label{lem_1}
-Let $D(t)$
-=======
-in the case with complete detection.
-\begin{lem}
->>>>>>> 5df34e4a02464f9c5ee16f8b228c71d6cc464e41
 When $t \rightarrow +\infty$, $T_{m} \ll T$,
 a deviation between $D(t)$ in the approximate model (\ref{eq:IDR_full_solu})
 and in the real scenario is limited.
 \end{lem}
-
 \begin{proof}
 At first we discuss the real scenario of the complete detection case.
 Without loss of generality,
@@ -388,7 +374,7 @@ We also can compute the approximate total reward is
 - \frac{\beta \rho \lambda N}{ {(\lambda + \frac{U_{m}}{N})}^{2} (\frac{U_{m}}{N} - \rho)}
 (e^{-(\lambda + \frac{U_{m}}{N})T} - 1 ) \\
 &+ \frac{\beta \rho \lambda N }{ {(\lambda + \rho)}^{2} (\frac{U_{m}}{N} - \rho) }
-(e^{-(\lambda + \rho)T} - 1 ) 
+(e^{-(\lambda + \rho)T} - 1 )
 + \frac{ \lambda N }{ (\lambda + \rho)^2 } (e^{-(\lambda + \rho)T} - 1 ) \\
 & + \frac{ \beta \lambda N T }{ \lambda + \rho }
 \end{aligned}
@@ -401,5 +387,6 @@ we find $I(t)$ does not change but $D(t)$ decreases.
 Thus this complete detection case can reduce the selfish behaviors
 with the additional cost of the selfish node detections,
 e.g., energy, bandwidth and wireless communication fee.
-Thus we try to achieve the tradeoff between the paid reward and the detection cost
+Thus we try to achieve the tradeoff between the paid reward 
+and the detection cost
 via the optimal solution.

@@ -10,9 +10,12 @@ Then, the ODEs can be reformulated as
 \label{eq:SIM_t}
 %\nonumber
 \begin{aligned}
-\frac{d I(t)}{d t} &= \lambda (N-I(t)) - \rho I(t), \\
-\frac{d D(t)}{d t} &= \rho I(t)  - \lambda D(t) - \frac{D(t)}{N} U(t),\\
-\frac{d R(t)}{d t} &= - \beta (N-I(t)-D(t)) + \frac{D(t)}{N} U(t).
+\frac{\mathrm{d} I(t)}{\mathrm{d} t} &=
+\lambda (N-I(t)) - \rho I(t), \\
+\frac{\mathrm{d} D(t)}{\mathrm{d} t} &=
+\rho I(t)  - \lambda D(t) - \frac{D(t)}{N} U(t),\\
+\frac{\mathrm{d} R(t)}{\mathrm{d} t} &=
+- \beta (N-I(t)-D(t)) + \frac{D(t)}{N} U(t).
 \end{aligned}
 \end{equation}
 \end{small}
@@ -110,7 +113,6 @@ Thus the problem is to solve a BVP problem,
 which is
 \begin{small}
 \begin{equation}
-%\nonumber
 \label{eq:bvp}
 \begin{aligned}
 \dot{D} &= - (\lambda + \frac{U^{*}}{N}) D + \rho I,\\
@@ -120,10 +122,46 @@ which is
 \end{small}
 where $D(0) = 0$ and $\lambda_{D}(T) = 0$.
 We can solve the BVP problem with the shooting method by the bvpSolve package of R.
+The whole algorithm are shown in Alg.~\ref{alg:opt_detection},
+where $\delta t$ presents the time granularity.
+The message replication time $\tau_{0}$ and the state switching time are recorded by $src$.
+So the reward can also be computed by $src$.
 %footnote
 Then we analyze the properties of the optimal control variable.
+\begin{algorithm}
+\caption{Optimal Selfish Node Detection}
+\label{alg:opt_detection}
+\begin{small}
+\begin{algorithmic}[1]
+\REQUIRE $T_{m}$, ${U}_{m}$, $\lambda$, $\rho$, $T$
+\STATE {time $t$ $\leftarrow$ $0$}
+\STATE {compute the solution of (\ref{eq:bvp})
+as the switch-on duration $\mathcal{T}$}
+\WHILE {$t \le T$}
+    \IF {contact $n_{i}$ without message}
+        \STATE {replicate $m$ to $n_{i}$}
+        \STATE {state of $n_{i}$ changes to $I$}
+        \STATE {record $t$ as $\tau_{0}$}
+    \ENDIF
+    \IF {$t$ $\in$ $\mathcal{T}$}
+        \STATE {select a relay node $n_{j}$ randomly}
+        \STATE {conduct the detection of $n_{j}$}
+            \IF {$n_{j}$ is detected as a selfish node}
+                \STATE {state of $n_{j}$ changes to $R$}
+                \STATE {record $t$ as the state switch time}
+            \ENDIF
+    \ENDIF
+    \STATE {$t \leftarrow t + \delta t$}
+\ENDWHILE
+\FOR {$n_{i}$, $1 \le i \le N$}
+    \STATE {pay the reward to $n_{i}$ based on the time of staying state $I$}
+\ENDFOR
+\end{algorithmic}
+\end{small}
+\end{algorithm}
+
 %BVP Problem: solution exist and unique
-%BVP解的存在和唯一性定理
+%BVP?aμ?′??úoí?¨ò?D??¨àí
 %\begin{lem}
 %There exists a unique solution of (\ref{eq:bvp}).
 %\end{lem}
@@ -231,4 +269,3 @@ which means that $\alpha \ge \frac{\rho}{\beta(\beta+\rho)+\rho} = \alpha_{th}$.
 Then $W(t) \le \alpha N$, when $0 \le t \le T$.
 Therefore the optimal control $U^{*}(t) \equiv 0$, when $0 \le t \le T$.
 \end{proof}
-
