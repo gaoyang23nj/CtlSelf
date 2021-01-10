@@ -1,8 +1,8 @@
 \section{Related Work}
 \label{sec:related}
-OppNets, which face two challenges, 
+OppNets, which face two challenges,
 i.e., energy efficiency and network management cost minimization
-are expected to accommodate participants 
+are expected to accommodate participants
 with low-delay and cost-effective services.
 Therefore, many research works targeted to address these issues.
 
@@ -92,6 +92,58 @@ a context-aware self-adaptive routing protocol
 that is able to adapt to different scenarios.
 
 \subsection{Optimizations of OppNets}
+Due to the openness of
+the wireless communication and the limitations of the
+`store-carry-forward' paradigm,
+the performance of data delivery in OppNets may be reduced
+by abnormal behaviors.
+For example,
+the selfish behavior will highly degrade
+the efficiency of data offloading
+and the malicious behaviors
+will disrupt the
+normal communications between the nodes and the network
+throughput severely~\cite{DBLP:journals/comsur/JedariXN18}.
+It is critical to
+identify the abnormal node behaviors from
+network accurately and promote these nodes to
+participation in collaboration and resource sharing.
+
+Observing the importance of selfish behaviour detection
+schemes for the OppNets,
+a lot of efforts were
+put into its design~\cite{DBLP:journals/fgcs/JedariXCDTA19, Zhou2015Incentive, Chen2014Dynamic, DBLP:journals/tdsc/ChoC18, Wang2016A}.
+In~\cite{DBLP:journals/fgcs/JedariXCDTA19},
+a general altruism model,
+called SoWatch,
+was utilized to 
+distinguish individually selfish behaviour and socially selfish behaviour.
+It also showed that the individual and social preferences of selfish nodes
+may mitigate the cooperation in data relaying.
+An incentive-driven and fresh-ness-aware pub/sub content dissemination scheme
+was proposed in~\cite{Zhou2015Incentive},
+with the objective of maximizing the utility of the content inventory stored in node's buffer.
+\cite{Chen2014Dynamic} proposed a dynamic trust management protocol,
+in which `healthiness' and
+`unselfishness' are considered as two social trust metrics. 
+A more comprehensive set of performance metrics to characterize QoS in the OppNets
+was investigated in~\cite{DBLP:journals/tdsc/ChoC18}.
+To guaranty the security requirements of the OppNets,
+a credit-based
+rewarding scheme was proposed in~\cite{Wang2016A}.
+
+On the other hand, 
+the protection and defense mechanisms for malicious behaviors have
+been demanded by the OppNets.
+To deal with the blackhole and greyhole attacks
+in DTN,
+\cite{Pham2016Detecting} proposed a statistical-based detection scheme and
+demonstrated its high accuracy. 
+A compositional secured routing algorithm for the DTNs
+was proposed in~\cite{Saha2018Design},
+where the information list of malicious nodes was delivered by the trusted nodes.
+
+
 Optimization schemes of OppNets can be classified into
 several types, the most typical one tries to formulate
 the transmitting process in terms of a trade-off between
@@ -148,6 +200,7 @@ An optimal traffic offloading scheme through
 data partition, which generated forwarding paths
 with possible heterogeneous data chunks,
 was presented in~\cite{DBLP:conf/icc/WangW18}.
+\cite{Sacha2016Stalk}
 
 Few these existing works focus on
 optimal control policy, while we introduce it
