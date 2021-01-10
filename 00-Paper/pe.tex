@@ -8,7 +8,7 @@ excluding $src$,
 which means that $N=100$.
 The Poisson-contact mobility model is synthetic,
 %quasi-synthetic,
-%in which 
+%in which
 where the parameter $\lambda$ is set to
 $4 \times 10^{-3}$ $s^{-1}$.
 The source node is fixed at the center of the network scenario.
@@ -141,7 +141,7 @@ which is the state function
 in the optimal solution to minimize the cost $J$.
 Here $\lambda_{D}(t)$ is the co-state function,
 which is introduced to obtain this optimal solution.
-Since the close-form solution of $I(t)$ 
+Since the close-form solution of $I(t)$
 is not effected by the detections,
 which is similar to Section.~\ref{subsec:pe_valid},
 we can get $R(t)$ according to $N=R(t)+I(t)+D(t)$.
@@ -153,9 +153,8 @@ Fig.~\ref{fig:pe_opt_control_Ut} shows the optimal policy
 of the selfish node detections,
 when $\alpha = 0.9$ and $T=500$ $s$.
 As discussed in Lemma.~\ref{lem:Ut0},
-the detection is off at the start 
+the detection always is off at the start
 and the end of the message lifetime.
-[***ts tt***].
 We can find that the optimal control
 is `off-on-off' function.
 In the `on' state of $U^{*}(t)$,
@@ -163,16 +162,18 @@ $src$ will conduct the self node detection
 with the minimum cycle $T_{m}$.
 But no detection will be conducted
 in the `off' state of $U^{*}(t)$.
-Thus the switching time $t_{s}$ and $t_{t}$,
+Thus the switching time $t_{on}$ and $t_{off}$,
 around $102$ $s$ and $452$ $s$,
 dominate the cost $J$ in the whole simulation.
 Combining with Fig.~\ref{fig:pe_opt_state_time},
 we can also find that $D(t)$ and $\lambda_{D}(t)$
-is not smooth at the switching time.
-
-[*** new line ***].
-When $\alpha=$ is higher than $\alpha_{th}$
-the optimal control policy $U^{*}(t) = 0$, $\forall t$,
+is not also smooth at the switching time.
+Besides the optimal policy when $\alpha=0.9$,
+Fig.~\ref{lem:Ut0} also shows the optimal policy 
+when $\alpha=0.995$.
+Since $0.995$ is higher than $\alpha_{th} =
+\frac{\rho}{\lambda(\lambda+\rho)+\rho} \approx 0.9946$.
+we can drive that $U^{*}(t) = 0$, $\forall t$,
 which is correspond to Lemma.~\ref{lem:alpha}.
 %In the second experiment,
 %we analysis efficacy of the approximate method.
@@ -223,13 +224,13 @@ with different switching time $t_{s}$ and $t_{t}$,
 when $\alpha=0.9$ and $T=500$ $s$.
 Here the combination $(t_{s}, t_{t})$
 is greedily set from $(0, 0)$ to $(500, 500)$
-Here $(t_{s}, t_{t}) = (0, 500)$ 
+Here $(t_{s}, t_{t}) = (0, 500)$
 indicates the case with the complete detection.
 And $t_{s} = t_{t}$ represents the case without detection.
 in the stepwise of $10$ $s$.
 For each specific combination $(t_{s}, t_{t})$,
 the cost $J$ is approximately calculate
-with $J \approx \sum_{t} (1-\alpha)D(t) + \alpha U(t)$ 
+with $J \approx \sum_{t} (1-\alpha)D(t) + \alpha U(t)$
 and the time granularity of $0.1$ $s$
 during $20$ times simulations.
 We can find that $J$ ranges around from $1,400$ to $1,600$.

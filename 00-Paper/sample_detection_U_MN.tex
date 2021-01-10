@@ -124,10 +124,10 @@ where $D(0) = 0$ and $\lambda_{D}(T) = 0$.
 We can solve the BVP problem with the shooting method by the bvpSolve package of R.
 The whole algorithm are shown in Alg.~\ref{alg:opt_detection},
 where $\delta t$ presents the time granularity.
-The message replication time $\tau_{0}$ and the state switching time are recorded by $src$.
+The message replication time and the state switching time are recorded by $src$.
 So the reward can also be computed by $src$.
 %footnote code link!!!
-Then we analyze the properties of the optimal control variable.
+Then we analyze the properties of the optimal control $U^{*}(t)$.
 \begin{algorithm}
 \caption{Optimal Selfish Node Detection}
 \label{alg:opt_detection}
@@ -140,21 +140,22 @@ as the switch-on duration $\mathcal{T}$}
 \WHILE {$t \le T$}
     \IF {contact $n_{i}$ without message}
         \STATE {replicate $m$ to $n_{i}$}
-        \STATE {state of $n_{i}$ changes to $I$}
-        \STATE {record $t$ as $\tau_{0}$}
+        \STATE {state of $n_{i}$ changes to state $I$}
+        \STATE {$src$ record $t$ as the message replication time}
     \ENDIF
     \IF {$t$ $\in$ $\mathcal{T}$}
         \STATE {select a relay node $n_{j}$ randomly}
-        \STATE {conduct the detection of $n_{j}$}
+        \STATE {$src$ conduct the selfish node detection to $n_{j}$}
             \IF {$n_{j}$ is detected as a selfish node}
-                \STATE {state of $n_{j}$ changes to $R$}
-                \STATE {record $t$ as the state switch time}
+                \STATE {state of $n_{j}$ changes to state $R$}
+                \STATE {$src$ record $t$ as the state switching time}
             \ENDIF
     \ENDIF
     \STATE {$t \leftarrow t + \delta t$}
 \ENDWHILE
 \FOR {$n_{i}$, $1 \le i \le N$}
-    \STATE {pay the reward to $n_{i}$ based on the time of staying state $I$}
+    \STATE {pay reward to $n_{i}$ based on 
+    the time of staying in state $I$}
 \ENDFOR
 \end{algorithmic}
 \end{small}
@@ -178,8 +179,8 @@ as the switch-on duration $\mathcal{T}$}
 %\end{proof}
 \begin{lem}\label{lem:Ut0}
 At the beginning and the end of the whole duration,
-the optimal control stop the selfish detection,
-which is $U(0)=U(T)=0$.
+the optimal control stop the selfish node detection,
+which means $U(0)=U(T)=0$.
 \end{lem}
 
 \begin{proof}
@@ -196,18 +197,21 @@ Based on (\ref{eq:opt_U}), the optimal $U(T)=0$.
 
 Based on the differential function $\dot{I}$,
 the equilibrium point of $I$ can be obtained from $\dot{I}=0$,
-which is $I^{*}=\frac{\beta N}{\beta+\rho}$.
-When $I(t)<I^{*}$, $I(t)$ will increase with $t$ and approach to $\frac{\beta N}{\beta+\rho}$.
+which is $I^{*}=\frac{\lambda N}{\lambda+\rho}$.
+When $I(t)<I^{*}$, $I(t)$ will increase 
+with $t$ and approach to $\frac{\lambda N}{\lambda+\rho}$.
 Meanwhile, in this paper $I(0)=0$ at the beginning of time.
+We also note that $I(t)$ will not be effected by
+any detection policies.
 
 Based on the differential function $\dot{D}$,
 the equilibrium point is obtained from $\dot{D}=0$,
 which is $M^{*}=\frac{\rho I}{\beta+\frac{1}{N}U}$.
 In the situation without detection,
-the equilibrium point is 
+the equilibrium point is
 $D^{*}=\frac{\rho I^{*}}{\beta}=\frac{\rho N}{\beta + \rho}$.
 In the situation with full detection,
-the equilibrium point is 
+the equilibrium point is
 $D^{*}=\frac{\rho I^{*}}{\beta + \frac{1}{N} U_{m}}
 =\frac{\rho}{\beta + \frac{1}{N} U_{m}} \frac{\beta N}{\beta+\rho}$.
 
@@ -227,14 +231,17 @@ Let $W(t) = \lambda_{D}(t)D(t)$.
 \label{eq:W_diff}
 \begin{aligned}
 W^{'}(t) =& D^{'}(t) \lambda_{D}(t) + D(t) \lambda_{D}^{'}(t)\\
-=& \left(\rho I(t)  - \beta D(t) 
+=& \left(\rho I(t)  - \lambda D(t)
 - \frac{D(t)}{N} U(t) \right)\lambda_{D}(t) \\
-&+ D(t) \left(\lambda_{D}(t) \left( \beta + \frac{U(t)}{N} \right) 
+&+ D(t) \left(\lambda_{D}(t) \left( \lambda + \frac{U(t)}{N} \right)
 - (1-\alpha) \right)\\
 =& \rho \lambda_{D}(t) I(t) - (1-\alpha)D(t).
 \end{aligned}
 \end{equation}
 \end{small}
+Based on (\ref{eq:opt_U}),
+we can find that the switching time $t$ is determined by
+whether $\lambda_{D}(t)D(t) \le \alpha N$.
 Since $D(0)=0$ and $\lambda_{D}(T)=0$,
 $W(0)=W(T)=0<\alpha N$.
 
@@ -247,38 +254,46 @@ Then $D(t^{*}) = \frac{\rho \lambda_{D}(t^{*}) I(t^{*})}{1-\alpha}$.
 %\nonumber
 \label{eq:W_t_star}
 \begin{aligned}
-W(t^{*}) &= \lambda_{D}(t^{*}) D(t^{*}) 
+W(t^{*}) &= \lambda_{D}(t^{*}) D(t^{*})
 = \frac{\rho I(t^{*}) \lambda_{D}(t^{*})^2}{1-\alpha}.
 \end{aligned}
 \end{equation}
 \end{small}
 
 According to $\dot{\lambda_{D}}$ in (\ref{eq:bvp}),
-the equilibrium point of $\lambda_{D}$ 
-is that $\lambda_{D}^{*} = \frac{1-\alpha}{\beta+\frac{U}{N}}$.
-Since $0 \le U \le U_{m}$, $0 < \frac{1-\alpha}{\beta+\frac{U_{m}}{N}} \le \lambda_{D}^{*} \le \frac{1-\alpha}{\beta}$.
+the equilibrium point of $\lambda_{D}$
+is that $\lambda_{D}^{*} = \frac{1-\alpha}{\lambda+\frac{U}{N}}$.
+Since $0 \le U \le U_{m}$, 
+$0 < \frac{1-\alpha}{\lambda+\frac{U_{m}}{N}} 
+\le \lambda_{D}^{*} \le \frac{1-\alpha}{\lambda}$.
 Note $\lambda_{D}(T)=0$.
 Based on the phase line in ODE for $\dot{\lambda_{D}}$,
-$\lambda_{D}(t)$ decreases with $t$ when 
+$\lambda_{D}(t)$ decreases with $t$ when
 $\lambda_{D}(t) < \lambda_{D}^{*}$.
-Conversely, $\lambda_{D}(t)$ increases with $t$ 
+Conversely, $\lambda_{D}(t)$ increases with $t$
 when $\lambda_{D}(t) > \lambda_{D}^{*}$.
-Thus $0 \le \lambda_{D}(t) \le \lambda_{D}^{*} \le \frac{1-\alpha}{\beta}$ when $0 \le t \le T$.
-Additionally, $0 \le I(t) \le \frac{\beta N}{\beta + \rho}$.
-From (\ref{eq:W_t_star}), we can derive that the upper boundary of $W(t)$, $W_{up}$, which is
+Thus $0 \le \lambda_{D}(t) \le \lambda_{D}^{*} 
+\le \frac{1-\alpha}{\lambda}$ when $0 \le t \le T$.
+Additionally, $0 \le I(t) \le \frac{\lambda N}{\lambda + \rho}$.
+From (\ref{eq:W_t_star}), we can derive that 
+the upper boundary of $W(t)$, $W_{up}$, which is
 \begin{small}
 \begin{equation}
 \nonumber
 \begin{aligned}
-W(t) \le W(t^{*}) \le \frac{\rho}{1-\alpha} \frac{\beta N}{\beta + \rho} (\frac{1-\alpha}{\beta})^2 = \frac{\rho N (1-\alpha)}{\beta(\beta+\rho)} = W_{up}.
+W(t) \le W(t^{*}) \le \frac{\rho}{1-\alpha} 
+\frac{\lambda N}{\lambda + \rho} (\frac{1-\alpha}{\lambda})^2 
+= \frac{\rho N (1-\alpha)}{\lambda(\lambda+\rho)} = W_{up}.
 \end{aligned}
 \end{equation}
 \end{small}
 
 Assume that $\alpha$ can satisfy that $W_{up} \le \alpha N$,
-which means that $\alpha \ge \frac{\rho}{\beta(\beta+\rho)+\rho} 
+which means that 
+$\alpha \ge 
+\frac{\rho}{\lambda(\lambda+\rho)+\rho}
 = \alpha_{th}$.
 Then $W(t) \le \alpha N$, when $0 \le t \le T$.
-Therefore the optimal control $U^{*}(t) \equiv 0$, 
+Therefore the optimal control $U^{*}(t) \equiv 0$,
 when $0 \le t \le T$ in this situation.
 \end{proof}

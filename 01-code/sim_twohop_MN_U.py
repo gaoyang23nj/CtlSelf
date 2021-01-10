@@ -14,6 +14,8 @@ para_rho = 0.011
 para_alpha = 0.9
 # 检查强度 每秒执行多少次检查
 para_Um = 1
+# per reward unit  = 0.1
+para_beta = 0.1
 
 para_time_granularity = 0.1
 
@@ -62,11 +64,13 @@ class Sim(object):
         self.res_detect_ability = []
         # 中间结果
         self.res_record = []
-        # 保存结果
-        self.time_index = np.arange(0, self.total_sim_time)
-        self.res_nr_nodes_no_message = np.ones(self.total_sim_time, dtype='int') * -1
-        self.res_nr_nodes_with_message = np.ones(self.total_sim_time, dtype='int') * -1
-        self.res_nr_nodes_selfish = np.ones(self.total_sim_time, dtype='int') * -1
+        # 保存结果 0.1->10 1个单位事件对应多少个granularity
+        self.per = int(1/para_time_granularity)
+        self.time_index = np.arange(0, self.total_sim_time*self.per)
+        self.res_nr_nodes_no_message = np.ones(self.total_sim_time*self.per, dtype='int') * -1
+        self.res_nr_nodes_with_message = np.ones(self.total_sim_time*self.per, dtype='int') * -1
+        self.res_nr_nodes_selfish = np.ones(self.total_sim_time*self.per, dtype='int') * -1
+        # 为了便于仿真统计 初始时刻的状态 需要记录一下
         (t, nr_h, nr_i, nr_m) = self.update_nr_nodes_record_with_time()
         self.res_nr_nodes_no_message[0] = nr_h
         self.res_nr_nodes_with_message[0] = nr_i
@@ -79,21 +83,30 @@ class Sim(object):
             self.run()
 
         # 整理结果
-        for i in range(1, self.total_sim_time):
+        # for i in range(1, self.total_sim_time):time
+        i = 1
+        time = 0 + para_time_granularity
+        while time <= self.total_sim_time:
             is_found = False
             for j in range(len(self.res_record)):
                 (t, nr_h, nr_i, nr_m) = self.res_record[j]
-                if t > i:
+                if t > time:
                     break
-                if t <= i:
+                # if t <= time:
+                # 对于之前的 可以不停的复制 直到停止
+                else:
                     is_found = True
                     self.res_nr_nodes_no_message[i] = nr_h
                     self.res_nr_nodes_with_message[i] = nr_i
                     self.res_nr_nodes_selfish[i] = nr_m
+            # 如果这个时间间隔没有新的事件发生 就是用之前的统计状态
             if not is_found:
                 self.res_nr_nodes_no_message[i] = self.res_nr_nodes_no_message[i - 1]
                 self.res_nr_nodes_with_message[i] = self.res_nr_nodes_with_message[i - 1]
                 self.res_nr_nodes_selfish[i] = self.res_nr_nodes_selfish[i - 1]
+            time = time + para_time_granularity
+            i = i+1
+
 
     @staticmethod
     def get_next_wd(pl):
@@ -101,10 +114,12 @@ class Sim(object):
         return res
 
     # cost 计算
-    def get_cost(self, granularity=1):
+    def get_cost(self, granularity=para_time_granularity):
         cost_from_sel = np.sum(self.res_nr_nodes_selfish) * granularity
-        cost_from_detect = len(self.res_detect_ability)
-        return cost_from_sel, cost_from_detect
+        # cost_from_detect = len(self.res_detect_ability)
+        cost_from_detect = self.t1 - self.t0
+        cost_from_rewardI = np.sum(self.res_nr_nodes_with_message) * granularity
+        return cost_from_sel, cost_from_detect, cost_from_rewardI
 
     # 损失 多少% 的 reward
     def get_sim_res(self):
@@ -229,19 +244,21 @@ class Sim(object):
 def try_10_times(t0, t1, run_times):
     total_time = para_total_time
     # 各种状态
-    multi_times_r = np.zeros((run_times, total_time))
-    multi_times_i = np.zeros((run_times, total_time))
-    multi_times_d = np.zeros((run_times, total_time))
+    per = int(1 / para_time_granularity)
+    multi_times_r = np.zeros((run_times, total_time*per))
+    multi_times_i = np.zeros((run_times, total_time*per))
+    multi_times_d = np.zeros((run_times, total_time*per))
     # percent of wasted reward
     multi_times_p = np.zeros(run_times)
     # cost from D(t); cost from U(t)
     multi_times_D = np.zeros(run_times)
     multi_times_U = np.zeros(run_times)
+    multi_times_I = np.zeros(run_times)
     for k in range(run_times):
         # print('*'*20, k)
         the = Sim(para_N, total_time, t0, t1)
         p, x, r, i, d = the.get_sim_res()
-        cost_of_selfish, cost_of_detection = the.get_cost()
+        cost_of_selfish, cost_of_detection, cost_of_rewardI = the.get_cost()
         # print('lost ({}) reward'.format(p))
         # print('cost_from_sel:{} cost_from_detect:{}'.format(cost1, cost2))
         multi_times_r[k, :] = r
@@ -250,36 +267,39 @@ def try_10_times(t0, t1, run_times):
         multi_times_p[k] = p
         multi_times_D[k] = cost_of_selfish
         multi_times_U[k] = cost_of_detection
-
+        multi_times_I[k] = cost_of_rewardI
     r = np.sum(multi_times_r, axis=0) / run_times
     i = np.sum(multi_times_i, axis=0) / run_times
     d = np.sum(multi_times_d, axis=0) / run_times
     cost_of_selfish = np.sum(multi_times_D) / run_times
     cost_of_detection = np.sum(multi_times_U) / run_times
+    cost_of_rewardI = np.sum(multi_times_I) / run_times
     p = np.sum(multi_times_p) / run_times
     print('*** avg *** t0:{} t1:{}'.format(t0, t1))
     print('lost ({}) reward'.format(p))
 
     total_cost = cost_of_selfish * (1-para_alpha) + cost_of_detection * para_alpha
     print('cost_from_sel:{} cost_from_detect:{} total_cost:{}'.format(cost_of_selfish, cost_of_detection, total_cost))
-    new_cost = cost_of_selfish/100*0.5 + cost_of_detection * 0.5
-    print('new_cost:{}'.format(new_cost))
+    # new_cost = cost_of_selfish/100*0.5 + cost_of_detection * 0.5
+    # print('new_cost:{}'.format(new_cost))
+    total_reward = (cost_of_rewardI + cost_of_selfish) * para_beta
+    print('total_reward:{}'.format(total_reward))
     print('\n')
-    return cost_of_selfish, cost_of_detection, total_cost, new_cost
+    return cost_of_selfish, cost_of_detection, cost_of_rewardI, total_cost, total_reward
 
 
 def draw_all_combine(total_time, delta):
     list_t0_t1 = []
     # total_time+1 就能遍历到最后一个
-    for i in range(0, total_time+1, delta):
-        for j in range(i+delta, total_time+1, delta):
+    for i in range(0, total_time+delta, delta):
+        for j in range(i, total_time+delta, delta):
             list_t0_t1.append((i, j))
     print(list_t0_t1)
     # 保存结果
     res = []
     for (t0, t1) in list_t0_t1:
-        c1, c2, tc, nc = try_10_times(t0, t1, 20)
-        ele = (t0, t1, c1, c2, tc, nc, total_time, delta)
+        c1, c2, c3, tc, tr = try_10_times(t0, t1, 20)
+        ele = (t0, t1, c1, c2, c3, tc, tr, total_time, delta)
         res.append(ele)
     return res
 
@@ -298,7 +318,7 @@ def print_file(res, short_time):
 
 if __name__ == "__main__":
     t1 = datetime.datetime.now()
-    delta = 10
+    delta = 20
     # t0-t1遍历结果
     res = draw_all_combine(para_total_time, delta)
 
@@ -306,17 +326,17 @@ if __name__ == "__main__":
     # 优化结果
     o_t0 = 102.1
     o_t1 = 452.3
-    c1, c2, tc, nc = try_10_times(o_t0, o_t1, 20)
-    ele = (o_t0, o_t1, c1, c2, tc, nc, para_total_time, 0)
+    c1, c2, c3, tc, tr = try_10_times(o_t0, o_t1, 20)
+    ele = (o_t0, o_t1, c1, c2, c3, tc, tr, para_total_time, 0)
     res.append(ele)
 
     short_time = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
     print_file(res, short_time+'_time_seq')
 
-    def take5(elem):
-        return elem[4]
+    def take_total_cost(elem):
+        return elem[5]
 
-    res.sort(key=take5)
+    res.sort(key=take_total_cost)
     print_file(res, short_time+'_cost_seq')
     t2 = datetime.datetime.now()
     print(t2-t1)
