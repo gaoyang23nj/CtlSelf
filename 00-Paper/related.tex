@@ -142,65 +142,74 @@ demonstrated its high accuracy.
 A compositional secured routing algorithm for the DTNs
 was proposed in~\cite{Saha2018Design},
 where the information list of malicious nodes was delivered by the trusted nodes.
-
-
-Optimization schemes of OppNets can be classified into
-several types, the most typical one tries to formulate
-the transmitting process in terms of a trade-off between
-the network management cost and the transmission performance.
-For example, on optimal neighbor discovery,
-PWEND~\cite{DBLP:journals/adhoc/ChenQLLWYL20} and
-Pharos~\cite{DBLP:conf/secon/Zhu00L19} adopted time model
-for neighbor discovery and investigated the most energy efficient way
-and the least discovery latency, respectively.
-Then for a given energy budget,
-how to optimizing the number of discovered peers was researched
-in~\cite{DBLP:journals/tmc/LoretiB20},
-what is the best achievable discovery latency was addressed
-by~\cite{DBLP:conf/sigcomm/KindtC19}.
-
-As for optimal data forwarding,
-\cite{DBLP:journals/tvt/ZhouLZXF17} proposed an
-efficient time-aware data forwarding strategy(TCCB) for OMNs,
- based on temporal social contact patterns.
- The model performed a close delivery ratio to
- Epidemic but with significantly reduced delivery cost.
-\cite{DBLP:journals/tvt/LiuWXWLY17} introduced
-a centralized heuristic algorithm
-which aimed to discover a tree for multicasting,
-with resource constrained (i.e. the delay-constrained least-const) in MONs.
-Both centralized and decentralized single-copy message forwarding algorithms
-were proposed in~\cite{DBLP:journals/tsipn/ShaghaghianC15},
-which aimed to minimize the expected latencies
-from any node in the Opportunistic DTNs.
-However, aforementioned works just consider one part of
-the message transmission in OppNets,
-\cite{DBLP:journals/tcss/WuDH18} mathematically characterized
-message transmission of the selfish
-and altruistic cases as an optimal control problem,
-whose controlling parameters were chosen according
-to the forwarding rate and beaconing rate, respectively.
-Then the Pontryagin's Maximum Principle was exploited
-to search the problem solution in multiple destinations scenario
-and the optimal control policies were proved to satisfy the threshold form.
-%Wu et al. considered the optimal forwarding and beaconing control problem at the same time in DTN and gave solution based on Pontryagin's Maximum Principle in ~\cite{DBLP:journals/tcss/WuDH18}, where multiple destinations exist.
-
-Minimize the contact duration by optimizing
-mobile data offloading in OMNs is the objective
-of~\cite{DBLP:journals/tits/LiJWZ014,DBLP:conf/icc/WangW18}.
-A mathematical framework to study the problem of
-coding-based mobile data offloading
-was established in~\cite{DBLP:journals/tits/LiJWZ014},
-the authors formulated the problem as a users' interest
-satisfaction maximization problem
-with multiple linear constraints of
-limited storage and efficient scheme
-was proposed to solve it.
-An optimal traffic offloading scheme through
-data partition, which generated forwarding paths
-with possible heterogeneous data chunks,
-was presented in~\cite{DBLP:conf/icc/WangW18}.
-\cite{Sacha2016Stalk}
+The types and effectiveness of Sybil attacks in OppNets
+was introduced by~\cite{Sacha2016Stalk},
+with the consideration of various resource and 
+attack boosting graph faking attempts.
+The problem of crisis of confidence caused by malicious nodes
+was proposed in~\cite{Yao2016Secure}, 
+and a dynamic trust management model 
+was presented there to solve the problem.
+In~\cite{Chen2016Trust},
+an adaptive trust management
+protocol for social IoT systems was proposed 
+to choose the trust parameter settings and change node's social conditions. 
+%Optimization schemes of OppNets can be classified into
+%several types, the most typical one tries to formulate
+%the transmitting process in terms of a trade-off between
+%the network management cost and the transmission performance.
+%For example, on optimal neighbor discovery,
+%PWEND~\cite{DBLP:journals/adhoc/ChenQLLWYL20} and
+%Pharos~\cite{DBLP:conf/secon/Zhu00L19} adopted time model
+%for neighbor discovery and investigated the most energy efficient way
+%and the least discovery latency, respectively.
+%Then for a given energy budget,
+%how to optimizing the number of discovered peers was researched
+%in~\cite{DBLP:journals/tmc/LoretiB20},
+%what is the best achievable discovery latency was addressed
+%by~\cite{DBLP:conf/sigcomm/KindtC19}.
+%
+%As for optimal data forwarding,
+%\cite{DBLP:journals/tvt/ZhouLZXF17} proposed an
+%efficient time-aware data forwarding strategy(TCCB) for OMNs,
+% based on temporal social contact patterns.
+% The model performed a close delivery ratio to
+% Epidemic but with significantly reduced delivery cost.
+%\cite{DBLP:journals/tvt/LiuWXWLY17} introduced
+%a centralized heuristic algorithm
+%which aimed to discover a tree for multicasting,
+%with resource constrained (i.e. the delay-constrained least-const) in MONs.
+%Both centralized and decentralized single-copy message forwarding algorithms
+%were proposed in~\cite{DBLP:journals/tsipn/ShaghaghianC15},
+%which aimed to minimize the expected latencies
+%from any node in the Opportunistic DTNs.
+%However, aforementioned works just consider one part of
+%the message transmission in OppNets,
+%\cite{DBLP:journals/tcss/WuDH18} mathematically characterized
+%message transmission of the selfish
+%and altruistic cases as an optimal control problem,
+%whose controlling parameters were chosen according
+%to the forwarding rate and beaconing rate, respectively.
+%Then the Pontryagin's Maximum Principle was exploited
+%to search the problem solution in multiple destinations scenario
+%and the optimal control policies were proved to satisfy the threshold form.
+%%Wu et al. considered the optimal forwarding and beaconing control problem at the same time in DTN and gave solution based on Pontryagin's Maximum Principle in ~\cite{DBLP:journals/tcss/WuDH18}, where multiple destinations exist.
+%
+%Minimize the contact duration by optimizing
+%mobile data offloading in OMNs is the objective
+%of~\cite{DBLP:journals/tits/LiJWZ014,DBLP:conf/icc/WangW18}.
+%A mathematical framework to study the problem of
+%coding-based mobile data offloading
+%was established in~\cite{DBLP:journals/tits/LiJWZ014},
+%the authors formulated the problem as a users' interest
+%satisfaction maximization problem
+%with multiple linear constraints of
+%limited storage and efficient scheme
+%was proposed to solve it.
+%An optimal traffic offloading scheme through
+%data partition, which generated forwarding paths
+%with possible heterogeneous data chunks,
+%was presented in~\cite{DBLP:conf/icc/WangW18}.
 
 Few these existing works focus on
 optimal control policy, while we introduce it
