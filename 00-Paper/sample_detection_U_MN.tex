@@ -121,11 +121,8 @@ which is
 \end{equation}
 \end{small}
 where $D(0) = 0$ and $\lambda_{D}(T) = 0$.
-We can solve the BVP problem with the shooting method by the bvpSolve package of R.
-The whole algorithm are shown in Alg.~\ref{alg:opt_detection},
-where $\delta t$ presents the time granularity.
-The message replication time and the state switching time are recorded by $src$.
-So the reward can also be computed by $src$.
+We can solve the BVP problem with the shooting method 
+by the bvpSolve package of R.
 %footnote code link!!!
 Then we analyze the properties of the optimal control $U^{*}(t)$.
 \begin{algorithm}
@@ -297,3 +294,25 @@ Then $W(t) \le \alpha N$, when $0 \le t \le T$.
 Therefore the optimal control $U^{*}(t) \equiv 0$,
 when $0 \le t \le T$ in this situation.
 \end{proof}
+
+The whole algorithm is shown in Alg.~\ref{alg:opt_detection},
+where $\delta t$ presents the time granularity.
+First the states of all the relay nodes are set as state $R$.
+When the node contacts $src$, 
+the message will be replicated to the node 
+and the corresponding state is set as state $I$.
+With the time increasing,
+the node may discard the message
+and then its state may converts to state $D$ at the same time.
+According to the results from (\ref{eq:bvp}),
+the detection will be conducted at the switching-on duration.
+If $src$ detect the node in state $R$ or state $I$,
+state will not change.
+If the node in state $D$ is selected to detected
+its state will be reset as state $I$ 
+and the switching time is recorded by $src$.
+Because the message replication time and
+the state switching time are recorded by $src$,
+the reward of each node,
+i.e., the time of the node staying in state $I$ and state $D$,
+can also be computed by $src$.
