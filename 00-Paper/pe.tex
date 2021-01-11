@@ -36,8 +36,15 @@ are obtained by repeating $20$ times.
 \label{subsec:pe_valid}
 \begin{figure}
   \includegraphics[width=.45\textwidth]{fig/twohop_without_detection.eps}
-  \caption{Comparison of the theoretical and simulation results of the proposed ODE model in  case $1$.}
+  \caption{Comparison of the theoretical and simulation results
+  of the proposed ODE model in case $1$.}
   \label{fig:twohop_predict_wod}
+\end{figure}
+\begin{figure}
+  \includegraphics[width=.45\textwidth]{fig/twohop_with_fully_detection.eps}
+  \caption{Comparison of the theoretical an simulation results
+  of the proposed ODE model in case $2$.}
+  \label{fig:twohop_predict_full_d}
 \end{figure}
 As shown in Section~\ref{sec:ode_model},
 we mathematically model the state transition of nodes by the ODEs,
@@ -127,9 +134,16 @@ as discussed in Lemma.~\ref{lem:Dstable}.
 
 \subsection{Optimal Selfish Node Detection}
 \begin{figure}
-  \includegraphics[width=.45\textwidth]{fig/twohop_with_fully_detection.eps}
-  \caption{Comparison of the theoretical an simulation results or the proposed ODE model in case $2$.}
-  \label{fig:twohop_predict_full_d}
+  \centering
+  {\includegraphics[width=0.47\textwidth]{fig/state.eps}}
+     \caption{State variable of analysis with time.}
+     \label{fig:pe_opt_state_time}
+\end{figure}
+\begin{figure}
+  \centering
+  {\includegraphics[width=0.47\textwidth]{fig/Ut.eps}}
+     \caption{The optimal control policy of $U(t)$.}
+     \label{fig:pe_opt_control_Ut}
 \end{figure}
 The weight $\alpha$ and the message lifetime $T$
 are set as $0.9$ and $500$ $s$, respectively.
@@ -169,7 +183,7 @@ Combining with Fig.~\ref{fig:pe_opt_state_time},
 we can also find that $D(t)$ and $\lambda_{D}(t)$
 is not also smooth at the switching time.
 Besides the optimal policy when $\alpha=0.9$,
-Fig.~\ref{lem:Ut0} also shows the optimal policy 
+Fig.~\ref{lem:Ut0} also shows the optimal policy
 when $\alpha=0.995$.
 Since $0.995$ is higher than $\alpha_{th} =
 \frac{\rho}{\lambda(\lambda+\rho)+\rho} \approx 0.9946$.
@@ -200,43 +214,41 @@ which is correspond to Lemma.~\ref{lem:alpha}.
 %When time equals to $450$,
 %the network will switch from the `on state' to an `off state'.
 
-\subsection{Cost $J$ v.s. Switching Time}
-\begin{figure}
-  \centering
-  {\includegraphics[width=0.47\textwidth]{fig/state.eps}}
-     \caption{State variable of analysis with time.}
-     \label{fig:pe_opt_state_time}
-\end{figure}
-\begin{figure}
-  \centering
-  {\includegraphics[width=0.47\textwidth]{fig/Ut.eps}}
-     \caption{The optimal control policy of $U(t)$.}
-     \label{fig:pe_opt_control_Ut}
-\end{figure}
+\subsection{Cost $J$ and Reward $P$ v.s. Switching Time}
 \begin{figure}
   \centering
   {\includegraphics[width=0.47\textwidth]{fig/cost_all_t0t1.eps}}
-     \caption{Different choices of $t0$ and $t1$.}
-     \label{fig:pe_diff_choices}
+     \caption{Total Cost $J$ v.s. ($t_{on}$, $t_{off}$).}
+     \label{fig:cost_ton_toff}
 \end{figure}
-Fig.~\ref{fig:pe_diff_choices} shows the total cost $J$
-with different switching time $t_{s}$ and $t_{t}$,
+\begin{figure}
+  \centering
+  {\includegraphics[width=0.47\textwidth]{fig/reward_all_t0t1.eps}}
+     \caption{Total Reward $P$ v.s. ($t_{on}$, $t_{off}$).}
+     \label{fig:reward_ton_toff}
+\end{figure}
+%min_cost:1.0995e+03 max_cost:1.7286e+03
+Fig.~\ref{fig:cost_ton_toff} shows the total cost $J$
+with different switching time $t_{on}$ and $t_{off}$,
 when $\alpha=0.9$ and $T=500$ $s$.
-Here the combination $(t_{s}, t_{t})$
+Here the combination $(t_{on}, t_{off})$
 is greedily set from $(0, 0)$ to $(500, 500)$
-Here $(t_{s}, t_{t}) = (0, 500)$
+with the stepwise of $20$.
+Here $(t_{on}, t_{off}) = (0, 500)$
 indicates the case with the complete detection.
-And $t_{s} = t_{t}$ represents the case without detection.
-in the stepwise of $10$ $s$.
-For each specific combination $(t_{s}, t_{t})$,
+And the situation of $t_{on} = t_{off}$
+represents the case without detection.
+For each specific combination $(t_{on}, t_{off})$,
 the cost $J$ is approximately calculate
 with $J \approx \sum_{t} (1-\alpha)D(t) + \alpha U(t)$
-and the time granularity of $0.1$ $s$
+in out experiments.
+Additionally, the time granularity of $0.1$ $s$
 during $20$ times simulations.
-We can find that $J$ ranges around from $1,400$ to $1,600$.
-The optimal solution of our method is that
-$t_{s}=102$ $s$ and $t_{t}=402$ $s$,
-which is labeled as `*'.
+We can find that $J$ ranges around from $1,100$ to $1,700$.
+The optimal solution according to our method is that
+$t_{on}=102.1$ $s$ and $t_{off}=402.59$ $s$,
+whose cost $J$ is $1109.87$ 
+indicated by `*'.
 Thus the proposed method in this paper
 can provide the near optimal solution of the selfish node detection,
 i.e., around the minimum cost $J_{min}$,
@@ -246,7 +258,8 @@ in the opportunistic network.
 %in the third experiment,
 %we analysis the impact of different $t_0$ and $t_1$.
 %As shown in Fig.~\ref{fig:pe_diff_choices},
-%the total cost is calculated by adjusting $t_0$ and $t_1$ form $0$ to $400$ and from $0$ to $500$,
+%the total cost is calculated by adjusting $t_0$ and $t_1$ 
+%form $0$ to $400$ and from $0$ to $500$,
 %respectively.
 %We can observe that the total cost of system has a minimal value.
 %For example,
@@ -255,5 +268,16 @@ in the opportunistic network.
 %It is clear that the optimal cost can guide the design of OppNets,
 %where the selfish nodes exist.
 
-[*** P ***] another benchmark? maybe?
-
+%min_reward:1.8904e+03 max_reward:2.9107e+03
+The total reward $P$ with ($t_{on}, t_{off}$) is shown in
+Fig.~\ref{fig:reward_ton_toff},
+where the unit reward $\beta$ in (\ref{eq:reward}) is set as $0.9$.
+We can find that the minimum reward, i.e., around $1,900$
+at ($t_{on}, t_{off}$) is ($0$,$500$),
+which is because all the possible detections are conducted.
+When $t_{on} = t_{off}$,
+the case without detection leads to the maximum reward from $src$ to
+the relay nodes.
+The difference between the cost $J$ and the reward $P$
+is that we introduce the detection cost 
+$\int_{0}^{T} U(t) \mathrm{d}t$.

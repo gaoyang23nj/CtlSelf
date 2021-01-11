@@ -117,7 +117,7 @@ class Sim(object):
     def get_cost(self, granularity=para_time_granularity):
         cost_from_sel = np.sum(self.res_nr_nodes_selfish) * granularity
         # cost_from_detect = len(self.res_detect_ability)
-        cost_from_detect = self.t1 - self.t0
+        cost_from_detect = (self.t1 - self.t0) * para_Um
         cost_from_rewardI = np.sum(self.res_nr_nodes_with_message) * granularity
         return cost_from_sel, cost_from_detect, cost_from_rewardI
 
