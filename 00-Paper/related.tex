@@ -7,90 +7,66 @@ with low-delay and cost-effective services.
 Therefore, many research works targeted to address these issues.
 
 \subsection{Message Transmission in OppNets}
-In order to mitigate the performance degradation caused by
-the selfish behaviours in OppNets,
-much effort has been made to explore
-the methods of selfish node
-detection~\cite{DBLP:journals/tvt/LiSWJSZ11, DBLP:journals/comsur/JedariXN18}.
-%To achieve message transmission in selfish OppNets,
-%the very first step is to find selfish nodes,
-%due to their uncooperative behaviour causes vulnerability
-%and decreases the performance
-%of OppNets
-An early investigation on the selfish behaviour detection
-is~\cite{DBLP:conf/mobicom/MartiGLB00},
-where the watchdog nodes were proposed
-to analyze the traffic received from their encountered nodes.
-%The first approach implements the watchdog nodes to analyze the traffic received from their encountered nodes to decide whether they have selfish behaviour in message relaying or not~\cite{DBLP:conf/mobicom/MartiGLB00}.
-This work was extended for applications with
-the elimination of the limited knowledge on node detection by single watchdog,
-and the cooperative systems with multiple watchdogs were proposed
-in~\cite{DBLP:journals/tmc/Hernandez-Orallo15, DBLP:journals/tie/DiasRXM15,
-DBLP:journals/fgcs/JedariXCDTA19}.
-%Nevertheless, poor performance mould incur if relying on local watchdogs only, and a number of cooperative watchdog systems have been proposed to tackle this problem in recent few years~\cite{DBLP:journals/tmc/Hernandez-Orallo15,
-%DBLP:journals/tie/DiasRXM15,
-%DBLP:journals/fgcs/JedariXCDTA19}.
-\cite{DBLP:journals/tmc/Hernandez-Orallo15} proposed
-a collaborative approach (CoCoWa, Collaborative Contact-based Watchdog),
-which considered the diffusion of local selfish nodes awareness,
-to conduct the selfish node detection in MANETs.
-Through accelerating the information propagation,
-the method improved the performance of selfish node detection
-in terms of the time and the precision.
-\cite{DBLP:journals/fgcs/JedariXCDTA19} proposed
-a social-based watchdog system (SoWatch),
-with a watchdog module to protect SoWatch
-against the wrong watchdogs manipulated by malicious nodes.
-
-%categories
-%Selfish node detection strategies are classified into two main classes:
-%watchdog systems and social trust-based communications in the work~
-%\cite{DBLP:journals/comsur/JedariXN18}.
-Another kind of approach tries to establish social trust relationships
-between mobile nodes in OppNets by leveraging their online social information
-(explicit trust) as well as their interactions or mobility properties (implicit trust).
-In~\cite{DBLP:journals/tpds/ZhuDGDC14}, a probabilistic misbehavior detection scheme(iTrust),
-which introduced a periodically available Trusted Authority(TA),
-was presented to judge a node's behaviour.
-Another trust framework PROVEST (PROVEnance-baSed Trust model)
-that aimed to achieve accurate peer-to-peer trust assessment was presented
-in~\cite{DBLP:journals/tdsc/ChoC18}.
-The partial selfishness was investigated and credit-based algorithm to
-measure the degree of selfishness was designed in~\cite{DBLP:journals/tmc/ChoiSLW12}.
-
-\cite{DBLP:journals/jnca/BasuBRB18} combined watchdog technique
-with trust-based communications and integrated with PRoPHET
-to build a global perception of forwarding behavior for detection of selfish nodes.
-\cite{DBLP:conf/icdcs/GaoMAH18} introduced ensemble learning
-for environment-adaptive malicious node detection.
-\cite{DBLP:journals/tvt/NomikosCVWK20} integrated
-buffer-aided full-duplex/half-duplex relaying with
-non-orthogonal multiple access(BAHyNOMA) for relay selection.
-
-Routing is a critical bottleneck when selfish behaviour
-is exhibited and a potential alleviation is to
-develop incentivizing mechanisms for message forwarding.
-Incentive-based protocols, such as SEIR~\cite{DBLP:conf/ciss/ChhabraVS17},
-Multicent~\cite{DBLP:journals/tpds/ChenSY15},
-were devised to increase node participation in message forwarding
-by opting for mechanisms that reward active participation of nodes
-in the forwarding of messages and penalize them otherwise.
-To balance the tradeoff between the delivery rate and forwarding cost,
-game theory was introduced to optimize the configuration in MANET
+The primary goal of message forwarding in OppNets
+is to exploit the nodes' contact, context,
+and social information to improve
+the message delivery performance
+in terms of different metrics(e.g.,
+delivery ratio, delay, overhead,
+, energy consumption and privacy).
+Geo-casting routing protocols, like LoSeRo
+\cite{DBLP:journals/tmc/CostantinoMMS20},
+exploited knowledge of the most frequently visited
+to route message in OppNets, achieved a significant
+high delivery rate but
+introduced privacy concerns.
+Then onion-based anonymous routing approach~\cite{DBLP:conf/icdcs/SakaiSKWA16}
+and ePRIVO~\cite{DBLP:journals/tvt/MagaiaBPC18} were proposed to keep users' information private.
+To achieve the tradeoff between the delivery rate
+and forwarding cost,
+game theory was introduced to
+optimize the network configuration in MANETs
 for more efficient energy-aware routing in~\cite{DBLP:journals/monet/MaoZ15}.
-While geo-casting routing protocols like LoSeRo~\cite{DBLP:journals/tmc/CostantinoMMS20}
-exploited the location data to enhance the message routing performance,
-onion-based anonymous routing approach~\cite{DBLP:conf/icdcs/SakaiSKWA16}
-and ePRIVO~\cite{DBLP:journals/tvt/MagaiaBPC18} were proposed
-to keep users' information private.
 For MOSNs, which exhibits a nested core-periphery hierarchy(NCPH),
-\cite{DBLP:journals/tvt/Zheng017} presented an up-and down routing protocol
-to upload message from source node to the network core
-and then download to the destination.
+\cite{DBLP:journals/tvt/Zheng017} presented an up-and down routing protocol and
+achieved a better balance
+among the data delivery delay, ratio, and cost.
 \cite{DBLP:journals/adhoc/RosasGH20} proposed
 a context-aware self-adaptive routing protocol
 that is able to adapt to different scenarios.
 
+The majority of aforementioned protocols
+assume that mobile nodes willingly participate in data delivery. Nevertheless,
+rational nodes in OppNets have strategic interactions
+and may exhibit selfish behaviors.
+In order to mitigate the performance degradation
+caused by the selfishness,
+much effort has been made to explore
+appropriate incentive mechanisms
+to encourage selfish nodes to
+participate in data relaying.
+For example, the tit-for-tat (TFT)-based scheme,
+which forces nodes to exchange the same number
+of messages during an opportunistic contact,
+was introduced to ensure that mobile nodes provide better
+forwarding services for cooperation nodes
+but avoid selfish behaviors in
+\cite{DBLP:journals/tmc/MastronardePXLS16,
+DBLP:journals/twc/HsuD17}.
+Trust and reputation-based scheme
+\cite{DBLP:journals/tvt/ChenLWW16,DBLP:conf/mdm/JethawaM18}
+was adopted to build direct trust relationships
+or indirect trust recommendations among mobile nodes.
+Eventually, better services were provided
+for nodes with high reputation
+or strong trust relationships.
+Credit-based scheme, such as SEIR~\cite{DBLP:conf/ciss/ChhabraVS17},
+Multicent~\cite{DBLP:journals/tpds/ChenSY15},
+were designed to encourage the node participation
+in data relay by employing various forms
+of the virtual credit to
+reward cooperative nodes
+and punishing them for selfish behaviors.
 \subsection{Optimizations of OppNets}
 Due to the openness of
 the wireless communication and the limitations of the
@@ -98,7 +74,7 @@ the wireless communication and the limitations of the
 the performance of data delivery in OppNets may be reduced
 by abnormal behaviors.
 For example,
-the selfish behavior will highly degrade
+the selfish behaviors will highly degrade
 the efficiency of data offloading
 and the malicious behaviors
 will disrupt the
@@ -116,7 +92,7 @@ put into its design~\cite{DBLP:journals/fgcs/JedariXCDTA19, Zhou2015Incentive, C
 In~\cite{DBLP:journals/fgcs/JedariXCDTA19},
 a general altruism model,
 called SoWatch,
-was utilized to 
+was utilized to
 distinguish individually selfish behaviour and socially selfish behaviour.
 It also showed that the individual and social preferences of selfish nodes
 may mitigate the cooperation in data relaying.
@@ -125,35 +101,35 @@ was proposed in~\cite{Zhou2015Incentive},
 with the objective of maximizing the utility of the content inventory stored in node's buffer.
 \cite{Chen2014Dynamic} proposed a dynamic trust management protocol,
 in which `healthiness' and
-`unselfishness' are considered as two social trust metrics. 
+`unselfishness' are considered as two social trust metrics.
 A more comprehensive set of performance metrics to characterize QoS in the OppNets
 was investigated in~\cite{DBLP:journals/tdsc/ChoC18}.
 To guaranty the security requirements of the OppNets,
 a credit-based
 rewarding scheme was proposed in~\cite{Wang2016A}.
 
-On the other hand, 
+On the other hand,
 the protection and defense mechanisms for malicious behaviors have
 been demanded by the OppNets.
 To deal with the blackhole and greyhole attacks
 in DTN,
 \cite{Pham2016Detecting} proposed a statistical-based detection scheme and
-demonstrated its high accuracy. 
+demonstrated its high accuracy.
 A compositional secured routing algorithm for the DTNs
 was proposed in~\cite{Saha2018Design},
 where the information list of malicious nodes was delivered by the trusted nodes.
 The types and effectiveness of Sybil attacks in OppNets
 was introduced by~\cite{Sacha2016Stalk},
-with the consideration of various resource and 
+with the consideration of various resource and
 attack boosting graph faking attempts.
 The problem of crisis of confidence caused by malicious nodes
-was proposed in~\cite{Yao2016Secure}, 
-and a dynamic trust management model 
+was proposed in~\cite{Yao2016Secure},
+and a dynamic trust management model
 was presented there to solve the problem.
 In~\cite{Chen2016Trust},
 an adaptive trust management
-protocol for social IoT systems was proposed 
-to choose the trust parameter settings and change node's social conditions. 
+protocol for social IoT systems was proposed
+to choose the trust parameter settings and change node's social conditions.
 %Optimization schemes of OppNets can be classified into
 %several types, the most typical one tries to formulate
 %the transmitting process in terms of a trade-off between
