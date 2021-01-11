@@ -1,56 +1,105 @@
 \section{Introduction}
 \label{sec:intro}
-Opportunistic networks (OppNets)
-have been attracting the research attentions in the recent years,
-which are usually exploited to 
-provide the communication service
-as the valid complement of the cellular network,
-especially in the remote areas
-and in the emergency situations~\cite{DBLP:journals/tsc/KhalidKKZ14,
+Recent advances in mobile communication, 
+devices manufacturing and data technologies have
+made the deployment and applications of Opportunistic Networks 
+(OppNets) possible. 
+Typically,
+mobile users in the emergency scenarios can
+opportunistically communicate and share 
+resources with each other~\cite{DBLP:journals/tsc/KhalidKKZ14,
 DBLP:journals/tmc/ChatzopoulosAKH18,
-DBLP:journals/tmc/HanHKMSS12,
-DBLP:journals/tmc/LiQJHW014}.
-%describe the scenario,
-%where the communication link may be
-%established with contact opportunities
-%among mobile nodes.
-With the popularity of mobile communication devices,
-various OppNet-based 
-applications~\cite{DBLP:journals/tsc/KhalidKKZ14,
-DBLP:journals/tmc/ChatzopoulosAKH18} are designed and deployed
-in the academia and industry
-besides the traditional advertisement and communication application.
-%At present, with a widespread use and
-%availability of mobile communication devices,
-%OppNets presents very broad development prospect,
-%and numerous applications rely on it prospered.
-% consider?
-\cite{DBLP:journals/tsc/KhalidKKZ14} presented 
-a venue recommendation platform OmniSuggest based on OppNets,
-which exploited the mobility pattern 
-to achieve the optimal recommendations.
-%where where mobility patterns of users are tracked.
-%to generate optimal venue recommendations.
-%In this project, user activities,
-Inspired by the message forwarding in OppNets,
-the computation offloading framework,
-which integrates the incentive scheme and the reputation mechanism,
-was proposed to reduce the execution time and energy consumption
-in the scenarios without cellular infrastructures~\cite{DBLP:journals/tmc/ChatzopoulosAKH18}.
-%can also be utilized to construct
-%a platform to offload the heavy tasks
-%a distributed computing task platform
-%The opportunistic computing technology utilize
-%the shared resources of OppNets to
-%provide a platform for the execution
-%of distributed computing tasks~\cite{DBLP:journals/tmc/ChatzopoulosAKH18}.
-%More examples can be found in mobile data offloading,
-%such as~\cite{DBLP:journals/tmc/HanHKMSS12,
-%DBLP:journals/tmc/LiQJHW014}.
+DBLP:journals/tmc/LiQJHW014}. 
+Meanwhile,
+\cite{DBLP:journals/tmc/HanHKMSS12}
+exploit opportunistic communication 
+to construct information 
+dissemination in mobile
+social networks. 
+By deploying the OppNets, 
+not only the ubiquitous communication can be 
+implemented with a `store-carry-and-forward' approach,
+but also the temporary networking
+in the environment without the pre-established infrastructures 
+becomes more likely.
 
-Much research effort on the routing schemes 
+However,
+the communication in OppNets relies on
+the cooperation of contacted nodes,
+which may suffer from the following problems.
+First, 
+the mobile user with limited resources,
+i.e.,
+battery capacity, 
+network bandwidth and social preferences,
+will exhibit selfish behaviors and not be 
+reluctant to relay data for others~\cite{DBLP:journals/comsur/JedariXN18}.
+The selfishness has seriously affected the performance
+of data dissemination in OppNets.
+Second,
+the message or data is stored in user's buffer,
+and will obviously bring new safety risk,
+which is neglected by  
+most of the existing data dissemination protocols in OppNets.   
+
+
+
+%the OppNets adopt a `store-carry-forward' paradigm
+%the communication of opportunistic network depends on nodes
+%cooperating with each other.
+
+%%Opportunistic networks (OppNets)
+%%have been attracting the research attentions in the recent years,
+%%which are usually exploited to
+%%provide the communication service
+%%as the valid complement of the cellular network,
+%%especially in the remote areas
+%%and in the emergency situations~\cite{DBLP:journals/tsc/KhalidKKZ14,
+%%DBLP:journals/tmc/ChatzopoulosAKH18,
+%%DBLP:journals/tmc/HanHKMSS12,
+%%DBLP:journals/tmc/LiQJHW014}.
+%%%describe the scenario,
+%%%where the communication link may be
+%%%established with contact opportunities
+%%%among mobile nodes.
+%%With the popularity of mobile communication devices,
+%%various OppNet-based
+%%applications~\cite{DBLP:journals/tsc/KhalidKKZ14,
+%%DBLP:journals/tmc/ChatzopoulosAKH18} are designed and deployed
+%%in the academia and industry
+%%besides the traditional advertisement and communication application.
+%%%At present, with a widespread use and
+%%%availability of mobile communication devices,
+%%%OppNets presents very broad development prospect,
+%%%and numerous applications rely on it prospered.
+%%% consider?
+%%\cite{DBLP:journals/tsc/KhalidKKZ14} presented
+%%a venue recommendation platform OmniSuggest based on OppNets,
+%%which exploited the mobility pattern
+%%to achieve the optimal recommendations.
+%%%where where mobility patterns of users are tracked.
+%%%to generate optimal venue recommendations.
+%%%In this project, user activities,
+%%Inspired by the message forwarding in OppNets,
+%%the computation offloading framework,
+%%which integrates the incentive scheme and the reputation mechanism,
+%%was proposed to reduce the execution time and energy consumption
+%%in the scenarios without cellular infrastructures~\cite{DBLP:journals/tmc/ChatzopoulosAKH18}.
+%%can also be utilized to construct
+%%a platform to offload the heavy tasks
+%%a distributed computing task platform
+%%The opportunistic computing technology utilize
+%%the shared resources of OppNets to
+%%provide a platform for the execution
+%%of distributed computing tasks~\cite{DBLP:journals/tmc/ChatzopoulosAKH18}.
+%%More examples can be found in mobile data offloading,
+%%such as~\cite{DBLP:journals/tmc/HanHKMSS12,
+%%DBLP:journals/tmc/LiQJHW014}.
+
+To overcome these problems, 
+much research effort on the routing schemes
 exist in the literature,
-where the message dissemination performance 
+where the message dissemination performance
 dominates the applications of
 OppNets~\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
 DBLP:conf/mobicom/RadenkovicH17,
@@ -63,10 +112,10 @@ DBLP:journals/tmc/LoretiB20}.
 %DBLP:conf/mobicom/RadenkovicH17,
 %DBLP:journals/comsur/JedariXN18,
 %DBLP:journals/tmc/LoretiB20}.
-However, the selfish behavior is also 
+However, the selfish behavior is also
 the bottleneck of the routing performance besides the routing methods,
 especially considering that
-the message carrying service will occupy 
+the message carrying service will occupy
 the limited energy and memory of the.
 Thus how to suppress the selfish behaviors
 becomes another critical issue in OppNets.
@@ -84,11 +133,11 @@ becomes another critical issue in OppNets.
 %introduce extra detection traffic,
 %degrading the overall performance of OppNets.
 
-A valid methodology to mitigate the selfish behaviors 
+A valid methodology to mitigate the selfish behaviors
 is conducting the selfish node detection.
 %Much research effort on selfish node detection
 %exists in the literature.
-The state-of-the-art detection schemes 
+The state-of-the-art detection schemes
 can be divided into two categories
 in light of their aims:
 watchdog systems~\cite{DBLP:conf/mobicom/MartiGLB00,
