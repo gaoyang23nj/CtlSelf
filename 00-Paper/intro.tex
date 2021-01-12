@@ -1,47 +1,51 @@
 \section{Introduction}
 \label{sec:intro}
-Recent advances in mobile communication, 
+Recent advances in mobile communication,
 devices manufacturing and data technologies have
-made the deployment and applications of Opportunistic Networks 
-(OppNets) possible. 
+made the deployment and applications of Opportunistic Networks
+(OppNets) possible.
 Typically,
 mobile users in the emergency scenarios can
-opportunistically communicate and share 
+opportunistically communicate and share
 resources with each other~\cite{DBLP:journals/tsc/KhalidKKZ14,
 DBLP:journals/tmc/ChatzopoulosAKH18,
-DBLP:journals/tmc/LiQJHW014}. 
+DBLP:journals/tmc/LiQJHW014}.
 Meanwhile,
 \cite{DBLP:journals/tmc/HanHKMSS12}
-exploit opportunistic communication 
-to construct information 
+exploit opportunistic communication
+to construct information
 dissemination in mobile
-social networks. 
-By deploying the OppNets, 
-not only the ubiquitous communication can be 
+social networks.
+By deploying the OppNets,
+not only the ubiquitous communication can be
 implemented with a `store-carry-and-forward' approach,
 but also the temporary networking
-in the environment without the pre-established infrastructures 
+in the environment without the pre-established infrastructures
 becomes more likely.
 
-However,
+Unfortunately,
 the communication in OppNets relies on
 the cooperation of contacted nodes,
 which may suffer from the following problems.
-First, 
+First,
 the mobile user with limited resources,
 i.e.,
-battery capacity, 
-network bandwidth and social preferences,
-will exhibit selfish behaviors and not be 
+battery capacity
+and network bandwidth,
+will exhibit individual selfishness and not be
 reluctant to relay data for others~\cite{DBLP:journals/comsur/JedariXN18}.
-The selfishness has seriously affected the performance
-of data dissemination in OppNets.
 Second,
-the message or data is stored in user's buffer,
-and will obviously bring new safety risk,
-which is neglected by  
-most of the existing data dissemination protocols in OppNets.   
-
+due to the existing social relations,
+users prefer to 
+provide forwarding services for their friends or strangers 
+with the same social objectives~\cite{DBLP:journals/tmc/HanHKMSS12}.
+Third,
+the message or data is prestored in user's buffer
+but will obviously bring new safety risk~\cite{Saha2018Design},
+which leads to a lower participation willingness of the collaboration.
+These selfish behaviours have seriously 
+affected the performance
+of data dissemination in OppNets.
 
 
 %the OppNets adopt a `store-carry-forward' paradigm
@@ -96,43 +100,44 @@ most of the existing data dissemination protocols in OppNets.
 %%such as~\cite{DBLP:journals/tmc/HanHKMSS12,
 %%DBLP:journals/tmc/LiQJHW014}.
 
-To overcome these problems, 
+To overcome these problems,
 much research effort on the routing schemes
-exist in the literature,
-where the message dissemination performance
-dominates the applications of
-OppNets~\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
-DBLP:conf/mobicom/RadenkovicH17,
-DBLP:journals/comsur/JedariXN18,
-DBLP:journals/tmc/LoretiB20}.
-%Exploiting mobile nodes to transmit message in
-%OppNets has been attracting
-%increasing research attentions
-%\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
-%DBLP:conf/mobicom/RadenkovicH17,
+exist in the literature~\cite{
 %DBLP:journals/comsur/JedariXN18,
-%DBLP:journals/tmc/LoretiB20}.
-However, the selfish behavior is also
-the bottleneck of the routing performance besides the routing methods,
-especially considering that
-the message carrying service will occupy
-the limited energy and memory of the.
-Thus how to suppress the selfish behaviors
-becomes another critical issue in OppNets.
-%Traditional message dissemination approaches
-%heavily rely on voluntary cooperation between
-%mobile nodes, which excessively consumes the
-%limited energy supply and lead to massive useless
-%message copies due to the selfish behavior.
-%%Adopting selfish node detection mechanisms
-%%to avoid selfish nodes involved in data forwarding,
-%%reduces and balances the communication loads
-%%of nodes (and thus their energy consumptions).
-%However, selfish node detection leads to network
-%management cost due to the detecting expense, and
-%introduce extra detection traffic,
-%degrading the overall performance of OppNets.
+DBLP:journals/tmc/LoretiB20}.
+%,
+%where the message dissemination performance
+%dominates the applications of
+%OppNets
 
+%
+%%Exploiting mobile nodes to transmit message in
+%%OppNets has been attracting
+%%increasing research attentions
+%%\cite{DBLP:conf/sigcomm/SouzaMSMCC16,
+%%DBLP:conf/mobicom/RadenkovicH17,
+%%DBLP:journals/comsur/JedariXN18,
+%%DBLP:journals/tmc/LoretiB20}.
+%However, the selfish behavior is also
+%the bottleneck of the routing performance besides the routing methods,
+%especially considering that
+%the message carrying service will occupy
+%the limited energy and memory of the.
+%Thus how to suppress the selfish behaviors
+%becomes another critical issue in OppNets.
+%%Traditional message dissemination approaches
+%%heavily rely on voluntary cooperation between
+%%mobile nodes, which excessively consumes the
+%%limited energy supply and lead to massive useless
+%%message copies due to the selfish behavior.
+%%%Adopting selfish node detection mechanisms
+%%%to avoid selfish nodes involved in data forwarding,
+%%%reduces and balances the communication loads
+%%%of nodes (and thus their energy consumptions).
+%%However, selfish node detection leads to network
+%%management cost due to the detecting expense, and
+%%introduce extra detection traffic,
+%%degrading the overall performance of OppNets.
 A valid methodology to mitigate the selfish behaviors
 is conducting the selfish node detection.
 %Much research effort on selfish node detection
@@ -146,6 +151,7 @@ DBLP:journals/tie/DiasRXM15,
 DBLP:journals/fgcs/JedariXCDTA19}
 and social trust-based communications~\cite{DBLP:journals/tpds/ZhuDGDC14,
 DBLP:journals/tdsc/ChoC18,
+DBLP:conf/sigcomm/SouzaMSMCC16,
 DBLP:journals/tmc/ChoiSLW12}.
 The former intends to detect selfish behavior
 by analyzing the traffic received
@@ -160,7 +166,6 @@ lead to network management cost
 due to the detecting expense,
 and introduce extra detection traffic,
 degrading the overall performance of OppNets.
-
 Incentive methods, i.e., reward,
 are often exploited to attract the cooperations of nodes.
 But the selfish nodes can pretend to carry the message
@@ -168,6 +173,7 @@ and gain the reward by cheating at the same time.
 The detection can decrease the impact of selfish behaviors effectively.
 However, the detection also introduces the detection cost,
 including the computation cost and the communication cost.
+
 In this paper, we exploit the Pontryagin's maximum principle to
 minimize the weighted cost of the detection and the reward
 based on the constructed message dissemination model.
