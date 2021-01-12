@@ -40,7 +40,7 @@ users prefer to
 provide forwarding services for their friends or strangers
 with the same social objectives~\cite{DBLP:journals/tmc/HanHKMSS12}.
 Third,
-the message or data is prestored in user's buffer
+the message or data was prestored in user's buffer
 but will obviously bring new safety risk~\cite{Saha2018Design},
 which leads to a lower participation willingness of the collaboration.
 These selfish behaviours have seriously
@@ -100,16 +100,21 @@ of data dissemination in OppNets.
 %%such as~\cite{DBLP:journals/tmc/HanHKMSS12,
 %%DBLP:journals/tmc/LiQJHW014}.
 
-To overcome these problems,
+To overcome above-mentioned problems,
 much research effort on the routing schemes
-exist in the literature~\cite{
-%DBLP:journals/comsur/JedariXN18,
+exist in the literature~\cite{DBLP:journals/tpds/ZhuDGDC14,
+DBLP:conf/mobicom/MartiGLB00,
 DBLP:journals/tmc/LoretiB20}.
-%,
+On the other end of the spectrum,
+selfish node detection schemes,
+which distinguish the selfish behaviors
+and design the seasonable mechanism to 
+incentive the users,
+is a more efficient approach to improve
+message delivery in OppNets. 
 %where the message dissemination performance
 %dominates the applications of
 %OppNets
-
 %
 %%Exploiting mobile nodes to transmit message in
 %%OppNets has been attracting
@@ -138,19 +143,18 @@ DBLP:journals/tmc/LoretiB20}.
 %%management cost due to the detecting expense, and
 %%introduce extra detection traffic,
 %%degrading the overall performance of OppNets.
-A valid methodology to mitigate the selfish behaviors
-is conducting the selfish node detection.
+%A valid methodology to mitigate the selfish behaviors
+%is conducting the selfish node detection.
 %Much research effort on selfish node detection
 %exists in the literature.
-The state-of-the-art detection schemes
+Normally, 
+the detection schemes
 can be divided into two categories
 in light of their aims:
-watchdog systems~\cite{DBLP:conf/mobicom/MartiGLB00,
-DBLP:journals/tmc/Hernandez-Orallo15,
+watchdog systems~\cite{DBLP:journals/tmc/Hernandez-Orallo15,
 DBLP:journals/tie/DiasRXM15,
 DBLP:journals/fgcs/JedariXCDTA19}
-and social trust-based communications~\cite{DBLP:journals/tpds/ZhuDGDC14,
-DBLP:journals/tdsc/ChoC18,
+and social trust-based communications~\cite{DBLP:journals/tdsc/ChoC18,
 DBLP:conf/sigcomm/SouzaMSMCC16,
 DBLP:journals/tmc/ChoiSLW12}.
 The former intends to detect selfish behavior
@@ -159,19 +163,20 @@ from their contacted nodes,
 while the latter establishes social trust relationships
 to select trusted and secured relay nodes.
 Most of these works,
-either watchdog system methods
-or social trust-based communicating approaches,
+%either watchdog system methods
+%or social trust-based communicating approaches,
 are micro-perspective studies,
 lead to network management cost
 due to the detecting expense,
 and introduce extra detection traffic,
 degrading the overall performance of OppNets.
-Incentive methods, i.e., reward,
-are often exploited to attract the cooperations of nodes.
-But the selfish nodes can pretend to carry the message
-and gain the reward by cheating at the same time.
+%Incentive methods, i.e., reward,
+%are often exploited to attract the cooperations of nodes.
+%But the selfish nodes can pretend to carry the message
+%and gain the reward by cheating at the same time.
 The detection can decrease the impact of selfish behaviors effectively.
-However, the detection also introduces the detection cost,
+However, 
+the detection also introduces the detection cost,
 including the computation cost and the communication cost.
 
 In this paper, we exploit the Pontryagin's maximum principle to
