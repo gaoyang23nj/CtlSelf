@@ -73,3 +73,5 @@ ylabel('t_{off}');
 zlabel('reward');
 colorbar('position',[0.8 0.3 0.025 0.45])
 set(gca, 'Fontname', 'Times New Roman','FontSize',15);
+
+p = all(end,3)/(all(end,3) + all(end,5))

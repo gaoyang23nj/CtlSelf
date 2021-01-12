@@ -214,7 +214,8 @@ which is correspond to Lemma.~\ref{lem:alpha}.
 %When time equals to $450$,
 %the network will switch from the `on state' to an `off state'.
 
-\subsection{Cost $J$ and Reward $P$ v.s. Switching Time}
+%\subsection{Cost $J$ and Reward $P$ v.s. Switching Time}
+\subsection{Cost $J$ and Reward $P$}
 \begin{figure}
   \centering
   {\includegraphics[width=0.47\textwidth]{fig/cost_all_t0t1.eps}}
@@ -247,7 +248,7 @@ during $20$ times simulations.
 We can find that $J$ ranges around from $1,100$ to $1,700$.
 The optimal solution according to our method is that
 $t_{on}=102.1$ $s$ and $t_{off}=402.59$ $s$,
-whose cost $J$ is $1109.87$ 
+whose cost $J$ is $1109.87$
 indicated by `*'.
 Thus the proposed method in this paper
 can provide the near optimal solution of the selfish node detection,
@@ -258,7 +259,7 @@ in the opportunistic network.
 %in the third experiment,
 %we analysis the impact of different $t_0$ and $t_1$.
 %As shown in Fig.~\ref{fig:pe_diff_choices},
-%the total cost is calculated by adjusting $t_0$ and $t_1$ 
+%the total cost is calculated by adjusting $t_0$ and $t_1$
 %form $0$ to $400$ and from $0$ to $500$,
 %respectively.
 %We can observe that the total cost of system has a minimal value.
@@ -279,5 +280,42 @@ When $t_{on} = t_{off}$,
 the case without detection leads to the maximum reward from $src$ to
 the relay nodes.
 The difference between the cost $J$ and the reward $P$
-is that we introduce the detection cost 
+is that we introduce the detection cost
 $\int_{0}^{T} U(t) \mathrm{d}t$.
+Meanwhile, the utilization ratio of reward
+according the optimal solution
+is about $41$ \%.
+
+%\subsection{Cost $J$ v.s. weight $\alpha$}
+\begin{figure}
+  \centering
+  {\includegraphics[width=0.47\textwidth]{fig/cost_vs_alpha.eps}}
+     \caption{Total Cost $J$ v.s. $\alpha$.}
+     \label{fig:cost_alpha}
+\end{figure}
+Fig.~\ref{fig:cost_alpha} shows the total cost $J$ of different methods
+when $\alpha$ ranges from $0.7$ to $1$.
+We can find that our method always can 
+provide the solution with the minimum cost
+when $0.7 \le \alpha \le 1$.
+Note that there are some deviations of cost
+since the experiments are conducted
+with the random settings of the contacts and 
+the detected nodes.
+The method with complete detection performs better
+than the method without detection in terms of the cost $J$
+when $0.7 \le \alpha<0.94$.
+But the method without detection is better
+when $0.94 < \alpha \le 1$.
+This is because that the high $\alpha$ indicates that
+the increment of the cost $J$
+is affected more by the detections than by the selfish behaviors.
+Here the performance comparison in the situations,
+when $0 \le \alpha < 0.7$,
+is omitted,
+because the cost of our method and the method with complete detection
+are still lower than that of others.
+Meanwhile, the cost of the method with half detection,
+where the detection rate is $\frac{U_{m}}{2}$ in the message lifetime ,
+locates between the the method with complete detection 
+and the method without detection.
