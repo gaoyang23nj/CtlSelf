@@ -62,7 +62,7 @@ $I(t)$ and $D(t)$ is the state functions.
 $U(t)$ is the controllable variable, $0 \le U(t)\ \le U_{m}$.
 
 \subsection{Optimal Control by Pontryagin's Maximum Principle}
-Now we utilize the Pontryagin's maximal principle~\cite{DBLP:journals/tcss/WuDH18}
+Now we utilize the Pontryagin's maximum principle~\cite{DBLP:journals/tcss/WuDH18}
 to find the optimal $U(t)$, which will minimize the total cost.
 First, the Hamilton function is
 \begin{small}
@@ -121,7 +121,7 @@ which is
 \end{equation}
 \end{small}
 where $D(0) = 0$ and $\lambda_{D}(T) = 0$.
-We can solve the BVP problem with the shooting method 
+We can solve the BVP problem with the shooting method
 by the bvpSolve package of R.
 %footnote code link!!!
 Then we analyze the properties of the optimal control $U^{*}(t)$.
@@ -151,7 +151,7 @@ as the switch-on duration $\mathcal{T}$}
     \STATE {$t \leftarrow t + \delta t$}
 \ENDWHILE
 \FOR {$n_{i}$, $1 \le i \le N$}
-    \STATE {pay reward to $n_{i}$ based on 
+    \STATE {pay reward to $n_{i}$ based on
     the time of staying in state $I$}
 \ENDFOR
 \end{algorithmic}
@@ -195,7 +195,7 @@ Based on (\ref{eq:opt_U}), the optimal $U(T)=0$.
 Based on the differential function $\dot{I}$,
 the equilibrium point of $I$ can be obtained from $\dot{I}=0$,
 which is $I^{*}=\frac{\lambda N}{\lambda+\rho}$.
-When $I(t)<I^{*}$, $I(t)$ will increase 
+When $I(t)<I^{*}$, $I(t)$ will increase
 with $t$ and approach to $\frac{\lambda N}{\lambda+\rho}$.
 Meanwhile, in this paper $I(0)=0$ at the beginning of time.
 We also note that $I(t)$ will not be effected by
@@ -260,8 +260,8 @@ W(t^{*}) &= \lambda_{D}(t^{*}) D(t^{*})
 According to $\dot{\lambda_{D}}$ in (\ref{eq:bvp}),
 the equilibrium point of $\lambda_{D}$
 is that $\lambda_{D}^{*} = \frac{1-\alpha}{\lambda+\frac{U}{N}}$.
-Since $0 \le U \le U_{m}$, 
-$0 < \frac{1-\alpha}{\lambda+\frac{U_{m}}{N}} 
+Since $0 \le U \le U_{m}$,
+$0 < \frac{1-\alpha}{\lambda+\frac{U_{m}}{N}}
 \le \lambda_{D}^{*} \le \frac{1-\alpha}{\lambda}$.
 Note $\lambda_{D}(T)=0$.
 Based on the phase line in ODE for $\dot{\lambda_{D}}$,
@@ -269,25 +269,25 @@ $\lambda_{D}(t)$ decreases with $t$ when
 $\lambda_{D}(t) < \lambda_{D}^{*}$.
 Conversely, $\lambda_{D}(t)$ increases with $t$
 when $\lambda_{D}(t) > \lambda_{D}^{*}$.
-Thus $0 \le \lambda_{D}(t) \le \lambda_{D}^{*} 
+Thus $0 \le \lambda_{D}(t) \le \lambda_{D}^{*}
 \le \frac{1-\alpha}{\lambda}$ when $0 \le t \le T$.
 Additionally, $0 \le I(t) \le \frac{\lambda N}{\lambda + \rho}$.
-From (\ref{eq:W_t_star}), we can derive that 
+From (\ref{eq:W_t_star}), we can derive that
 the upper boundary of $W(t)$, $W_{up}$, which is
 \begin{small}
 \begin{equation}
 \nonumber
 \begin{aligned}
-W(t) \le W(t^{*}) \le \frac{\rho}{1-\alpha} 
-\frac{\lambda N}{\lambda + \rho} (\frac{1-\alpha}{\lambda})^2 
+W(t) \le W(t^{*}) \le \frac{\rho}{1-\alpha}
+\frac{\lambda N}{\lambda + \rho} (\frac{1-\alpha}{\lambda})^2
 = \frac{\rho N (1-\alpha)}{\lambda(\lambda+\rho)} = W_{up}.
 \end{aligned}
 \end{equation}
 \end{small}
 
 Assume that $\alpha$ can satisfy that $W_{up} \le \alpha N$,
-which means that 
-$\alpha \ge 
+which means that
+$\alpha \ge
 \frac{\rho}{\lambda(\lambda+\rho)+\rho}
 = \alpha_{th}$.
 Then $W(t) \le \alpha N$, when $0 \le t \le T$.
@@ -298,8 +298,8 @@ when $0 \le t \le T$ in this situation.
 The whole algorithm is shown in Alg.~\ref{alg:opt_detection},
 where $\delta t$ presents the time granularity.
 First the states of all the relay nodes are set as state $R$.
-When the node contacts $src$, 
-the message will be replicated to the node 
+When the node contacts $src$,
+the message will be replicated to the node
 and the corresponding state is set as state $I$.
 With the time increasing,
 the node may discard the message
@@ -309,7 +309,7 @@ the detection will be conducted at the switching-on duration.
 If $src$ detect the node in state $R$ or state $I$,
 state will not change.
 If the node in state $D$ is selected to detected
-its state will be reset as state $I$ 
+its state will be reset as state $I$
 and the switching time is recorded by $src$.
 Because the message replication time and
 the state switching time are recorded by $src$,
