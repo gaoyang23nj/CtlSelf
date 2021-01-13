@@ -12,8 +12,8 @@ Assume that the detection can be conducted.
 The detection rate is $U(t)$, $0 \le U(t) \le U_{m}$.
 $U_{m}$ is the limitation of the detection rate, which is the constraint from the hardware and the time sequences.
 Then, the ODEs can be reformulated as
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:SIM_t}
 %\nonumber
 \begin{aligned}
@@ -24,42 +24,30 @@ Then, the ODEs can be reformulated as
 \frac{\mathrm{d} R(t)}{\mathrm{d} t} &=
 - \beta (N-I(t)-D(t)) + \frac{D(t)}{N} U(t).
 \end{aligned}
-\end{equation}
 \end{small}
-Meanwhile,
-\begin{small}
-\begin{equation}
-\label{eq:SIM_0}
-%\nonumber
-\begin{aligned}
-I(0)=0,\\
-D(0)=0,\\
-R(0)=N.
-\end{aligned}
 \end{equation}
-\end{small}
-
+Meanwhile, we have $I(0)=D(0)=0$ and $R(0)=N$.
 Thus $I(t)$ is the same with that in the situation without detection, which is
-\begin{small}
 \begin{equation}
+\begin{small}
 %\nonumber
 \label{eq:I}
 \begin{aligned}
 I(t) = \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}).
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 
 Considering that the detection is also the cost,
 the object function will be
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 J &= \int_{0}^{T} (1-\alpha) D + \alpha U dt.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Here $\alpha$ is the weight, which can control the importance
 between the cost of selfish relay nodes
 and detections.
@@ -72,8 +60,8 @@ $U(t)$ is the controllable variable, $0 \le U(t)\ \le U_{m}$.
 Now we utilize the Pontryagin's maximum principle~\cite{DBLP:journals/tcss/WuDH18}
 to find the optimal $U(t)$, which will minimize the total cost.
 First, the Hamilton function is
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 H =& (1-\alpha) D + \alpha U + \lambda_{I} (\lambda (N-I) - \rho I) \\
@@ -83,25 +71,26 @@ H =& (1-\alpha) D + \alpha U + \lambda_{I} (\lambda (N-I) - \rho I) \\
 =& (1-\alpha) D + \lambda_{I} (\lambda (N-I) - \rho I) \\
 & + \lambda_{D} (\rho I  - \lambda D) + ( \alpha - \lambda_{D} \frac{D}{N}) U.
 \end{aligned}
-\end{equation}
 \end{small}
-Note that $\lambda_{I}$ and $\lambda_{D}$ denote two co-state functions.
+\end{equation}
+Note that $\lambda_{I}$ and $\lambda_{D}$ 
+denote two co-state functions.
 Without the final constraint, the terminal condition is
 $\lambda_{I}(T) = 0$ and $\lambda_{D}(T) = 0$.
 Then the adjoint function is
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 \dot{\lambda_{D}} = - \frac{ \partial H}{ \partial D}
 = \lambda_{D} (\lambda + \frac{U}{N} ) - (1-\alpha).
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 
 Thus
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:opt_U}
 %\nonumber
 U^{*}(t) =
@@ -111,22 +100,23 @@ U^{*}(t) =
 &U_{m},        & \text{if } \alpha - \lambda_{D} \frac{D}{N} < 0
 \end{aligned}
 \right.
-\end{equation}
 \end{small}
+\end{equation}
 
 In summary, we have the ODE functions $\dot{D}$, $\dot{\lambda_{D}}$,
-the initial condition $D(0)=0$ and the boundary condition $\lambda_{D}(T)=0$,
+the initial condition $D(0)=0$ and 
+the boundary condition $\lambda_{D}(T)=0$,
 Thus the problem is to solve a BVP problem,
 which is
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:bvp}
 \begin{aligned}
 \dot{D} &= - (\lambda + \frac{U^{*}}{N}) D + \rho I,\\
 \dot{\lambda_{D}} &= (\lambda + \frac{U^{*}}{N} ) \lambda_{D} - (1-\alpha),\\
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 where $D(0) = 0$ and $\lambda_{D}(T) = 0$.
 We can solve the BVP problem with the shooting method
 by the bvpSolve package of R.
@@ -229,8 +219,8 @@ namely $U(t)=0$, $0 \le t \le T$.
 \begin{proof}
 Assume that $\rho$, $N$, $\beta$ is given.
 Let $W(t) = \lambda_{D}(t)D(t)$.
-\begin{small}
 \begin{equation}
+\begin{small}
 %\nonumber
 \label{eq:W_diff}
 \begin{aligned}
@@ -241,8 +231,8 @@ W^{'}(t) =& D^{'}(t) \lambda_{D}(t) + D(t) \lambda_{D}^{'}(t)\\
 - (1-\alpha) \right)\\
 =& \rho \lambda_{D}(t) I(t) - (1-\alpha)D(t).
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Based on (\ref{eq:opt_U}),
 we can find that the switching time $t$ is determined by
 whether $\lambda_{D}(t)D(t) \le \alpha N$.
@@ -253,16 +243,16 @@ Now we focus on the poles of $W(t)$, namely $t^{*}$,
 where $W^{'}(t^{*})=\rho \lambda_{D}(t^{*}) I(t^{*})
 - (1-\alpha)D(t^{*})=0$.
 Then $D(t^{*}) = \frac{\rho \lambda_{D}(t^{*}) I(t^{*})}{1-\alpha}$.
-\begin{small}
 \begin{equation}
+\begin{small}
 %\nonumber
 \label{eq:W_t_star}
 \begin{aligned}
 W(t^{*}) &= \lambda_{D}(t^{*}) D(t^{*})
 = \frac{\rho I(t^{*}) \lambda_{D}(t^{*})^2}{1-\alpha}.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 
 According to $\dot{\lambda_{D}}$ in (\ref{eq:bvp}),
 the equilibrium point of $\lambda_{D}$
@@ -281,16 +271,16 @@ Thus $0 \le \lambda_{D}(t) \le \lambda_{D}^{*}
 Additionally, $0 \le I(t) \le \frac{\lambda N}{\lambda + \rho}$.
 From (\ref{eq:W_t_star}), we can derive that
 the upper boundary of $W(t)$, $W_{up}$, which is
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 W(t) \le W(t^{*}) \le \frac{\rho}{1-\alpha}
 \frac{\lambda N}{\lambda + \rho} (\frac{1-\alpha}{\lambda})^2
 = \frac{\rho N (1-\alpha)}{\lambda(\lambda+\rho)} = W_{up}.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 
 Assume that $\alpha$ can satisfy that $W_{up} \le \alpha N$,
 which means that

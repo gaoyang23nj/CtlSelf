@@ -55,7 +55,7 @@ we can obtain the general solutions of $I(t)$, that is,
 \begin{small}
 \nonumber
 \begin{aligned}
-I(t) = C_{I} e^{-(\lambda + \rho)t} 
+I(t) = C_{I} e^{-(\lambda + \rho)t}
 + \frac{ \lambda N }{ \lambda + \rho }.
 \end{aligned}
 \end{small}
@@ -72,17 +72,17 @@ I(t) = \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}),
 \end{small}
 \end{equation}
 where $0 \le t \le T$.
-Similarly, we can calculate 
+Similarly, we can calculate
 the general solution of the first-order ODE $D(t)$
 from $\frac{\mathrm{d} D(t)}{\mathrm{d} t} + \lambda D(t) = \rho I(t)$,
 \begin{equation}
 \begin{small}
 \label{eq:D_formula}
 \begin{aligned}
-D(t) &= C_{D} e^{-\int \lambda dt} + e^{-\int \lambda dt} 
+D(t) &= C_{D} e^{-\int \lambda dt} + e^{-\int \lambda dt}
 \int \rho I(t) e^{\int \lambda dt} dt \\
 %&= C_{D} e^{- \lambda t} +
-%e^{- \lambda t} \int \rho \frac{ \lambda N }{ \lambda + \rho } 
+%e^{- \lambda t} \int \rho \frac{ \lambda N }{ \lambda + \rho }
 %(1 - e^{-(\lambda + \rho)t}) e^{ \lambda t} dt \\
 &= C_{D} e^{- \lambda t} + \frac{ \lambda N }{ \lambda + \rho }
 e^{-(\lambda + \rho)t} + \frac{ \rho N }{ \lambda + \rho }.
@@ -113,9 +113,9 @@ R(t) &= N e^{- \lambda t},
 \end{aligned}
 \end{small}
 \end{equation}
-which depicts the change of the states 
+which depicts the change of the states
 when the time ranges from $0$ to $T$.
-And $I(t)$, $D(t)$, $R(t)$ $\ge 0$ always hold 
+And $I(t)$, $D(t)$, $R(t)$ $\ge 0$ always hold
 when $t \ge 0$.
 From the solutions of $I(t)$, $D(t)$ and $R(t)$,
 we can find that $I(t) \rightarrow \frac{ \lambda N }
@@ -125,10 +125,10 @@ and $R(t) \rightarrow 0$,
 when $t \rightarrow + \infty$.
 To verify the validity of the ODE model (\ref{eq:IDR_wo}),
 we conduct the simulations with randomly settings.
-The corresponding results are presented in 
+The corresponding results are presented in
 Section.~\ref{subsec:pe_valid}.
 
-The cost $J$ in (\ref{eq:obj}) also can be 
+The cost $J$ in (\ref{eq:obj}) also can be
 calculated based on (\ref{eq:IDR_wo_solu}).
 Note that $U(t)=0$, $\forall t$,
 in the case without detection.
@@ -141,7 +141,7 @@ Thus $J$ can be computed as
 \label{eq:IDR_wo_J}
 \begin{aligned}
 J &= \int_{0}^{T} (1-\alpha) D(t) dt, \\
-&= \int_{0}^{T} (1-\alpha) N (\frac{\lambda e^{-(\lambda + \rho)t} 
+&= \int_{0}^{T} (1-\alpha) N (\frac{\lambda e^{-(\lambda + \rho)t}
 + \rho}{ \lambda + \rho } - e^{- \lambda t}) dt, \\
 &= N (1-\alpha) \left( \frac{\lambda (1-e^{-(\lambda+\rho)T})}
 { (\lambda + \rho)^{2} }
@@ -233,7 +233,7 @@ we can derive that
 \begin{aligned}
 & D(t) \\
 =& C_{2D} e^{\int -(\lambda + \frac{U_{m}}{N}) dt}
-+ e^{\int -(\lambda + \frac{U_{m}}{N}) dt} 
++ e^{\int -(\lambda + \frac{U_{m}}{N}) dt}
 \int \rho I(t) e^{\int (\lambda + \frac{U_{m}}{N}) dt} dt \\
 =& C_{2D} e^{-(\lambda + \frac{U_{m}}{N})t}
 - \frac{ \rho \lambda N }
@@ -282,8 +282,8 @@ Based on the approximate model (\ref{eq:IDR_full})
 and the corresponding solutions (\ref{eq:IDR_full_solu}),
 the estimation of the total cost $\hat{J}$
 can be computed as
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:IDR_full_J}
 \begin{aligned}
 \hat{J} =& \int_{0}^{T} (1-\alpha) D(t) + \alpha U(t) dt, \\
@@ -294,17 +294,19 @@ can be computed as
 (e^{-(\lambda + \rho)T} - 1 )
 + \alpha T U_{m}.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 The reason why (\ref{eq:IDR_full_J}) is the estimation of the cost
-is that the decrement of $D(t)$ actually occurs in the end of the detection cycle.
+is that the decrement of $D(t)$ actually occurs
+at the end of the detection cycle.
 However, the change rate of $D(t)$ in (\ref{eq:IDR_full})
 is denoted by $\frac{D(t)}{N}U(t)$ in the above analysis.
 So there exists a deviation between the true cost $J$ and
 the estimated cost $\hat{J}$ in the case with complete detection.
 \begin{lem}\label{lem:Dstable}
 When $t \rightarrow +\infty$, $T_{m} \ll T$,
-a deviation between $D(t)$ in the approximate model (\ref{eq:IDR_full_solu})
+a deviation between $D(t)$ 
+in the approximate model (\ref{eq:IDR_full_solu})
 and in the real scenario is limited.
 \end{lem}
 \begin{proof}
@@ -326,8 +328,8 @@ when $t \rightarrow +\infty$,
 $D(t)$ also approaches to the stable state,
 where $D(t_{i-1}^{+}) = D(t_{i}^{+})$.
 We can obtain that
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 D(t_{i-1}^{+}) = & C_{i} e^{-\lambda t_{i-1}^{+}}
@@ -337,40 +339,41 @@ D(t_{i}^{-}) = & C_{i} e^{-\lambda t_{i}^{+}}
 + \frac{\lambda N}{\lambda + \rho} e^{-(\lambda+\rho)t_{i}^{+}}
 + \frac{\rho N}{\lambda+\rho},
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 in $(t_{i-1}, t_{i})$ based on (\ref{eq:D_formula}).
 Then, when $i \rightarrow +\infty$,
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 D(t_{i}^{+}) =& \frac{N-1}{N} D(t_{i}^{-}) \\
 =& \frac{N-1}{N} D(t_{i-1}^{+}) e^{-\lambda T_{m}}
-+ \frac{\rho (N-1)}{\lambda + \rho} (1 - e^{-\lambda T_{m}})
++ \frac{\rho (N-1)}{\lambda + \rho} (1 - e^{-\lambda T_{m}}).
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Considering that $D(t_{i-1}^{+}) = D(t_{i}^{+})$, we can get that
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 \lim_{i \rightarrow +\infty} D(t_{i}^{+}) &=
 \frac{\rho(N-1)}{\lambda+\rho} \frac{1 - e^{-\lambda T_{m}}}
-{(1 - \frac{N-1}{N}e^{-\lambda T_{m}})} \\
+{(1 - \frac{N-1}{N}e^{-\lambda T_{m}})}, \\
 \lim_{i \rightarrow +\infty} D(t_{i}^{-}) &=
 \frac{\rho N}{\lambda+\rho} \frac{1 - e^{-\lambda T_{m}}}
-{(1 - \frac{N-1}{N}e^{-\lambda T_{m}})} \\
+{(1 - \frac{N-1}{N}e^{-\lambda T_{m}})}. \\
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 According to (\ref{eq:IDR_full_solu}),
 $D(+\infty) = \frac{\rho \lambda N}
 {(\lambda + \rho)(\lambda + \frac{U_{m}}{N})}$.
 Since these limitations are the limited values related to
 $\rho$, $\lambda$, $N$ and $U_{m}$,
-the deviation of $D(t)$ between in the approximate model and in the real scenario is limited.
+the deviation of $D(t)$ between in the approximate model
+and in the real scenario is limited.
 \end{proof}
 
 \begin{lem}\label{lem:Jnear}
@@ -382,23 +385,23 @@ $|J - \hat{J}|$ is less than $(1-\alpha) T N$.
 Considering that $U(t) = \hat{U}(t) = U_{m}$,
 we can derive that $\int_{0}^{T} U(t) dt = T U_{m} = \int_{0}^{T} \hat{U}(t) dt $.
 And the deviation between the estimated cost and the true cost
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:delta_J}
 \begin{aligned}
-|J - \hat{J}| = & \left| \int_{0}^{T} (1-\alpha)D(t) dt - \int_{0}^{T} (1-\alpha) \hat{D(t)} dt \right| \\
-\le & (1-\alpha) \int_{0}^{T} |(D(t)-\hat{D(t)})| dt \\
-\le & (1-\alpha) T N
+|J - \hat{J}| = & \left| \int_{0}^{T} (1-\alpha)D(t) dt 
+- \int_{0}^{T} (1-\alpha) \hat{D}(t) dt \right| \\
+\le & (1-\alpha) \int_{0}^{T} |(D(t)-\hat{D}(t))| dt \\
+\le & (1-\alpha) T N,
 \end{aligned}
-\end{equation}
 \end{small}
-where $0 \le D(t), \hat{D(t)} \le N$.
-
+\end{equation}
+where $0 \le D(t), \hat{D}(t) \le N$.
 \end{proof}
 
 We also can compute the approximate total reward is
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 \hat{P} &= \beta \int_{0}^{T} I(t) + D(t) dt, \\
@@ -408,10 +411,10 @@ We also can compute the approximate total reward is
 &+ \frac{\beta \rho \lambda N }{ {(\lambda + \rho)}^{2} (\frac{U_{m}}{N} - \rho) }
 (e^{-(\lambda + \rho)T} - 1 )
 + \frac{ \lambda N }{ (\lambda + \rho)^2 } (e^{-(\lambda + \rho)T} - 1 ) \\
-& + \frac{ \beta \lambda N T }{ \lambda + \rho }
+& + \frac{ \beta \lambda N T }{ \lambda + \rho }.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Similarly, the utilization ratio of reward also can be obtained
 $\hat{p} = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}$.
 From (\ref{eq:IDR_full_solu}) to (\ref{eq:IDR_wo_solu}),
