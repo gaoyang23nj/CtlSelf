@@ -11,7 +11,7 @@ resources with each other~\cite{DBLP:journals/tsc/KhalidKKZ14,
 DBLP:journals/tmc/ChatzopoulosAKH18,
 DBLP:journals/tmc/LiQJHW014}.
 Meanwhile,
-information dissemination 
+information dissemination
 in mobile social networks is exploited by
 the opportunistic communication~\cite{DBLP:journals/tmc/HanHKMSS12}.
 By deploying the OppNets,
@@ -38,7 +38,7 @@ users prefer to
 provide forwarding services for their friends or strangers
 with the same social objectives~\cite{DBLP:journals/tmc/HanHKMSS12}.
 Third,
-the message or data are prestored in mobile user's buffer 
+the message or data are prestored in mobile user's buffer
 and delivered when encounter others.
 This pattern obviously brings new safety risk~\cite{Saha2018Design},
 and leads to a lower participation willingness of the collaboration.
@@ -164,7 +164,7 @@ to select trusted and secured relay nodes.
 Most of these works
 focus on alleviating the selfish behaviours
 or stimulating the mobile users participating in cooperation,
-but introduce extra detection traffic 
+but introduce extra detection traffic
 and degrade the overall performance of OppNets.
 %either watchdog system methods
 %or social trust-based communicating approaches,
@@ -173,11 +173,14 @@ and degrade the overall performance of OppNets.
 %But the selfish nodes can pretend to carry the message
 %and gain the reward by cheating at the same time.
 
-In this paper, 
+In this paper,
 we tackle this problem from a new angle.
-exploit the Pontryagin's maximum principle to
-minimize the weighted cost of the detection and the reward
-based on the constructed message dissemination model.
+Following a Pontryagin's maximum principle,
+we try to find the optimal control 
+of the state transition of nodes,
+and thus the selfish behaviour can be 
+mitigated obviously.
+
 %With a widespread use and availability of
 %mobile communication devices, numerous applications
 %emerge based on message transmission in OppNets,
@@ -189,14 +192,14 @@ based on the constructed message dissemination model.
 The main contributions are as follows.
 
 \begin{itemize}
-\item {we formulate the ordinary differential equation model (ODE)
+\item {We formulate the ordinary differential equation model (ODE)
 to capture and analytically evaluate the state transition of nodes
 in OppNets without detection and with complete detection.}
-\item {we propose an optimal solution of selfish node detection
+\item {We propose an optimal solution of selfish node detection
 based on the Pontryagin's maximum principle
 to achieve the tradeoff between the detection cost
 and the reward of selfish behaviors.}
-\item {we conduct experiments to evaluate
+\item {We conduct experiments to evaluate
 the effectiveness of the proposed model
 and the optimal selfish detection solution
 in terms of the total cost, the wasted reward and the node state transition.}
