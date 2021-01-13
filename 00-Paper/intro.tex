@@ -16,7 +16,7 @@ in mobile social networks is exploited by
 the opportunistic communication~\cite{DBLP:journals/tmc/HanHKMSS12}.
 By deploying the OppNets,
 not only the ubiquitous communication can be
-implemented with a `store-carry-and-forward' approach,
+implemented with a `store-carry-forward' approach,
 but also the temporary networking
 in the environment without the pre-established infrastructures
 becomes more likely.
@@ -40,9 +40,10 @@ with the same social objectives~\cite{DBLP:journals/tmc/HanHKMSS12}.
 Third,
 the message or data are prestored in mobile user's buffer
 and delivered when encounter others.
-This pattern obviously brings new safety risk~\cite{Saha2018Design},
+This pattern obviously brings 
+the new safety risk~\cite{Saha2018Design},
 and leads to a lower participation willingness of the collaboration.
-These selfish behaviours have seriously
+These selfish behaviors have seriously
 affected the performance
 of data dissemination in OppNets.
 
@@ -104,10 +105,10 @@ much research effort on the routing schemes
 exist in the literature~\cite{DBLP:journals/tpds/ZhuDGDC14,
 DBLP:conf/mobicom/MartiGLB00,
 DBLP:journals/tmc/LoretiB20}.
-On the other end of the spectrum,
+At the other end of the spectrum,
 selfish node detection schemes,
 which distinguish the selfish behaviors
-and design the seasonable mechanism to
+and design the reasonable mechanism to
 incentive the users,
 is a more efficient approach to improve
 message delivery in OppNets.
@@ -162,9 +163,9 @@ from their contacted nodes,
 while the latter establishes social trust relationships
 to select trusted and secured relay nodes.
 Most of these works
-focus on alleviating the selfish behaviours
-or stimulating the mobile users participating in cooperation,
-but introduce extra detection traffic
+focus on alleviating the selfish behaviors
+or stimulating the mobile users to participate in cooperation,
+but introduce the extra detection traffic
 and degrade the overall performance of OppNets.
 %either watchdog system methods
 %or social trust-based communicating approaches,
@@ -174,11 +175,11 @@ and degrade the overall performance of OppNets.
 %and gain the reward by cheating at the same time.
 
 In this paper,
-we tackle this problem from a new angle.
+we tackle this problem from another angle.
 Following a Pontryagin's maximum principle,
-we try to find the optimal control 
+we try to find the optimal control
 of the state transition of nodes,
-and thus the selfish behaviour can be 
+and thus the selfish behavior can be
 mitigated obviously.
 
 %With a widespread use and availability of
@@ -192,7 +193,7 @@ mitigated obviously.
 The main contributions are as follows.
 
 \begin{itemize}
-\item {We formulate the ordinary differential equation model (ODE)
+\item {We formulate the ordinary differential equation (ODE) model
 to capture and analytically evaluate the state transition of nodes
 in OppNets without detection and with complete detection.}
 \item {We propose an optimal solution of selfish node detection
@@ -208,7 +209,8 @@ in terms of the total cost, the wasted reward and the node state transition.}
 The rest of this paper is organized as follows.
 The literature is reviewed in Section~\ref{sec:related}.
 We formulate the problem in Section~\ref{sec:preli}.
-The change of network state without detection and with fully detection
+The change of node state in the network without detection 
+and with complete detection
 is investigated in Section~\ref{sec:ode_model}.
 The optimal solution of the selfish detection in OppNets
 is presented in Section~\ref{sec:opt_detect},

@@ -7,11 +7,11 @@ opt = all(:,2);
 wo = all(:,3);
 wc = all(:,4);
 w_half = all(:,5);
-plot(alpha, opt, 'color','red','linestyle','-','LineWidth',1, 'Marker','^','MarkerIndices',1:2:length(opt));
+plot(alpha, opt, 'color','red','linestyle','-','LineWidth',2, 'Marker','^','MarkerIndices',1:3:length(opt), 'MarkerSize',8);
 hold on;
-plot(alpha, wo, 'color','black','linestyle','-.','LineWidth',1, 'Marker','s','MarkerIndices',1:2:length(wo));
-plot(alpha, wc, 'color','blue','linestyle','--','LineWidth',1, 'Marker','o','MarkerIndices',1:2:length(wc));
-plot(alpha, w_half, 'color','green','linestyle','--','LineWidth',1, 'Marker','d','MarkerIndices',1:2:length(w_half));
+plot(alpha, wo, 'color','black','linestyle','-.','LineWidth',2, 'Marker','s','MarkerIndices',1:3:length(wo), 'MarkerSize',8);
+plot(alpha, wc, 'color','blue','linestyle','--','LineWidth',2, 'Marker','o','MarkerIndices',1:3:length(wc), 'MarkerSize',8);
+plot(alpha, w_half, 'color','green','linestyle','--','LineWidth',2, 'Marker','d','MarkerIndices',1:3:length(w_half), 'MarkerSize',8);
 legend('our method','without detection','with complete detection', 'with half detection');
 ylabel('cost','FontSize',12)
 xlabel('\alpha','FontSize',12)

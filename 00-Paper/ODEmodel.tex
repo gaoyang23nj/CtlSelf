@@ -19,13 +19,17 @@ but the selfish detection is not conducted by $src$.
 Then the state transition is shown
 in Fig.~\ref{fig:ss_wo_dt} with the following rules.
 The nodes change from state $R$ to state $I$ if they contact $src$.
-The corresponding incremental rate of state $I$ is $\lambda R(t)$ at time $t$.
-Since the selfish node may also contact $src$ with the contact rate $\lambda$,
-the rate of change from state $D$ to state $I$ is $\lambda D(t)$.
+The corresponding incremental rate
+of state $I$ is $\lambda R(t)$ at time $t$.
+Since the selfish node may also contact
+$src$ with the contact rate $\lambda$,
+the rate of change from state $D$
+to state $I$ is $\lambda D(t)$.
 Because $N=R(t)+I(t)+D(t)$,
 the total incremental rate of $I(t)$ is
-$\lambda (R(t)+D(t))=\lambda (N-I(t))$.
-Additionally, the rate of change from state $I$ to state $D$ is $\rho I(t)$.
+$\lambda \left( R(t)+D(t) \right) = \lambda \left( N-I(t) \right)$.
+Additionally, the rate of change
+from state $I$ to state $D$ is $\rho I(t)$.
 We can obtain the derivative of $I(t)$ with respect to time $t$,
 $\frac{\mathrm{d} I(t)}{\mathrm{d} t} = \lambda (N-I(t)) - \rho I(t)$.
 Similar to $\frac{\mathrm{d} I(t)}{\mathrm{d} t}$,
@@ -34,128 +38,143 @@ and the derivative of $R(t)$ respectively,
 i.e., $\frac{\mathrm{d} D(t)}{\mathrm{d} t}$ and
 $\frac{\mathrm{d} R(t)}{\mathrm{d} t}$.
 Thus the state transition can be represented as
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:IDR_wo}
 \begin{aligned}
 \frac{\mathrm{d} I(t)}{\mathrm{d} t} &=  \lambda (N-I(t)) - \rho I(t),\\
 \frac{\mathrm{d} D(t)}{\mathrm{d} t} &= - \lambda D(t) + \rho I(t),\\
 \frac{\mathrm{d} R(t)}{\mathrm{d} t} &= - \lambda (N-I(t)-D(t)).
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Since $I(t)$ in (\ref{eq:IDR_wo}) is formed by the first-order first-power
 ordinary differential equations (ODE)~\cite{CC2007PerfAnaly},
 we can obtain the general solutions of $I(t)$, that is,
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
-I(t) = C_{I} e^{-(\lambda + \rho)t} + \frac{ \lambda N }{ \lambda + \rho }.
+I(t) = C_{I} e^{-(\lambda + \rho)t} 
++ \frac{ \lambda N }{ \lambda + \rho }.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Note that $I(0)=0$, $D(0)=0$ and $R(0)=N$,
 which means only $src$ carries the message at time $0$.
 Thus $C_{I} = \frac{ -\lambda N }{ \lambda + \rho }$, and
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 I(t) = \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}),
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 where $0 \le t \le T$.
-Similarly, we can calculate the general solution of the first-order ODE $D(t)$
+Similarly, we can calculate 
+the general solution of the first-order ODE $D(t)$
 from $\frac{\mathrm{d} D(t)}{\mathrm{d} t} + \lambda D(t) = \rho I(t)$,
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:D_formula}
 \begin{aligned}
-D(t) &= C_{D} e^{-\int \lambda dt} + e^{-\int \lambda dt} \int \rho I(t) e^{\int \lambda dt} dt \\
+D(t) &= C_{D} e^{-\int \lambda dt} + e^{-\int \lambda dt} 
+\int \rho I(t) e^{\int \lambda dt} dt \\
 %&= C_{D} e^{- \lambda t} +
-%e^{- \lambda t} \int \rho \frac{ \lambda N }{ \lambda + \rho } (1 - e^{-(\lambda + \rho)t}) e^{ \lambda t} dt \\
-&= C_{D} e^{- \lambda t} + \frac{ \lambda N }{ \lambda + \rho } e^{-(\lambda + \rho)t} + \frac{ \rho N }{ \lambda + \rho }.
+%e^{- \lambda t} \int \rho \frac{ \lambda N }{ \lambda + \rho } 
+%(1 - e^{-(\lambda + \rho)t}) e^{ \lambda t} dt \\
+&= C_{D} e^{- \lambda t} + \frac{ \lambda N }{ \lambda + \rho }
+e^{-(\lambda + \rho)t} + \frac{ \rho N }{ \lambda + \rho }.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Because of $D(0)=0$,
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 D(t) &= -N e^{- \lambda t} + \frac{ \lambda N }{ \lambda + \rho } e^{-(\lambda + \rho)t} + \frac{ \rho N }{ \lambda + \rho }.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Since $I(t)+D(t)+R(t)=N$, $0 \le t \le T$,
 $R(t)$ can be computed based on the solved solution of $I(t)$ and $D(t)$.
 Thus the solution of (\ref{eq:IDR_wo}) can be derived as
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:IDR_wo_solu}
 \begin{aligned}
-I(t) &= \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}), \\
-D(t) &= N (\frac{\lambda e^{-(\lambda + \rho)t} + \rho}{ \lambda + \rho } - e^{- \lambda t}), \\
+I(t) &= \frac{ \lambda N }{ \lambda + \rho }
+(1- e^{-(\lambda + \rho)t}), \\
+D(t) &= N (\frac{\lambda e^{-(\lambda + \rho)t} + \rho}
+{ \lambda + \rho } - e^{- \lambda t}), \\
 R(t) &= N e^{- \lambda t},
 \end{aligned}
-\end{equation}
 \end{small}
-which depicts the change of the states when the time ranges from $0$ to $T$.
-And $I(t)$, $D(t)$, $R(t)$ $\ge 0$ always hold when $t \ge 0$.
+\end{equation}
+which depicts the change of the states 
+when the time ranges from $0$ to $T$.
+And $I(t)$, $D(t)$, $R(t)$ $\ge 0$ always hold 
+when $t \ge 0$.
 From the solutions of $I(t)$, $D(t)$ and $R(t)$,
-we can find that $I(t) \rightarrow \frac{ \lambda N }{ \lambda + \rho }$,
+we can find that $I(t) \rightarrow \frac{ \lambda N }
+{ \lambda + \rho }$,
 $D(t) \rightarrow \frac{ \rho N }{ \lambda + \rho }$
 and $R(t) \rightarrow 0$,
 when $t \rightarrow + \infty$.
 To verify the validity of the ODE model (\ref{eq:IDR_wo}),
 we conduct the simulations with randomly settings.
-The corresponding results are presented in Section.~\ref{subsec:pe_valid}.
+The corresponding results are presented in 
+Section.~\ref{subsec:pe_valid}.
 
-The cost $J$ in (\ref{eq:obj}) also can be calculated based on (\ref{eq:IDR_wo_solu}).
+The cost $J$ in (\ref{eq:obj}) also can be 
+calculated based on (\ref{eq:IDR_wo_solu}).
 Note that $U(t)=0$, $\forall t$,
 in the case without detection.
 $J$ is determined by the expected number of selfish nodes $D(t)$,
 $0 \le t \le T$,
 which is proportional to the reward consumed by selfish behaviors.
 Thus $J$ can be computed as
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:IDR_wo_J}
 \begin{aligned}
 J &= \int_{0}^{T} (1-\alpha) D(t) dt, \\
-&= \int_{0}^{T} (1-\alpha) N (\frac{\lambda e^{-(\lambda + \rho)t} + \rho}{ \lambda + \rho } - e^{- \lambda t}) dt, \\
-&= N (1-\alpha) \left( \frac{\lambda (1-e^{-(\lambda+\rho)T})}{ (\lambda + \rho)^{2} }
+&= \int_{0}^{T} (1-\alpha) N (\frac{\lambda e^{-(\lambda + \rho)t} 
++ \rho}{ \lambda + \rho } - e^{- \lambda t}) dt, \\
+&= N (1-\alpha) \left( \frac{\lambda (1-e^{-(\lambda+\rho)T})}
+{ (\lambda + \rho)^{2} }
 + \frac{\rho T}{\lambda + \rho}
 - \frac{1-e^{-\lambda T}}{\lambda} \right).
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Similarly, we can get the total paid reward in this case
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 P &= \beta \int_{0}^{T} I(t) + D(t) dt
 %&= \beta \int_{0}^{T} (N - N e^{- \lambda t}) dt, \\
 = N \beta (T - \frac{ 1 - e^{-\lambda T} }{\lambda} ).
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Furthermore, the fraction between the wasted reward and the total paid reward can be obtained as
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 p = \frac{\int_{0}^{T} D(t) dt}{\int_{0}^{T} I(t) + D(t) dt}
-&= \frac{ \frac{\lambda (1-e^{-(\lambda+\rho)T})}{ (\lambda + \rho)^{2} }
+&= \frac{ \frac{\lambda (1-e^{-(\lambda+\rho)T})}
+{ (\lambda + \rho)^{2} }
 + \frac{\rho T}{\lambda + \rho}
 - \frac{1-e^{-\lambda T}}{\lambda} }
 {T - \frac{ 1 - e^{-\lambda T} }{\lambda} }.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 
 \subsection{Case 2: with complete detection}
 \label{subsec:full_detc}
@@ -191,16 +210,16 @@ Thus the state transition of the fully detection case
 is constructed as Fig.~\ref{fig:ss_dt}.
 The approximate model of the state transition in the case with complete detection
 will be constructed as
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:IDR_full}
 \begin{aligned}
 \frac{\mathrm{d} I(t)}{\mathrm{d} t} &=  \lambda (N-I(t)) - \rho I(t),\\
 \frac{\mathrm{d} D(t)}{\mathrm{d} t} &= - \lambda D(t) + \rho I(t) - \frac{D(t)}{N} U(t),\\
 \frac{\mathrm{d} R(t)}{\mathrm{d} t} &= - \lambda (N-I(t)-D(t)) + \frac{D(t)}{N} U(t),
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 based on the model in the case without detection (\ref{eq:IDR_wo}).
 Here $U(t) = U_{m}$, $\forall t$, $0 \le t \le T$.
 The initial state is that $I(0)=D(0)=0$ and $R(0)=N$.
@@ -208,44 +227,53 @@ So the solution of $I(t)$, which does not change from $(\ref{eq:IDR_wo_solu})$,
 is that $I(t) = \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t})$.
 From $\frac{\mathrm{d} D(t)}{\mathrm{d} t} + (\lambda + \frac{U_{m}}{N}) D(t)= \rho I(t)$,
 we can derive that
-\begin{small}
 \begin{equation}
+\begin{small}
 \nonumber
 \begin{aligned}
 & D(t) \\
 =& C_{2D} e^{\int -(\lambda + \frac{U_{m}}{N}) dt}
-+ e^{\int -(\lambda + \frac{U_{m}}{N}) dt} \int \rho I(t) e^{\int (\lambda + \frac{U_{m}}{N}) dt} dt \\
++ e^{\int -(\lambda + \frac{U_{m}}{N}) dt} 
+\int \rho I(t) e^{\int (\lambda + \frac{U_{m}}{N}) dt} dt \\
 =& C_{2D} e^{-(\lambda + \frac{U_{m}}{N})t}
-- \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}
-+ \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }.
+- \frac{ \rho \lambda N }
+{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}
++ \frac{ \rho \lambda N }
+{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }.
 \end{aligned}
-\end{equation}
 \end{small}
+\end{equation}
 Since $D(0) = 0$ and $I(t) + D(t) + R(t) = N$,
 the solution of (\ref{eq:IDR_full}) can be calculated as
-\begin{small}
 \begin{equation}
+\begin{small}
 \label{eq:IDR_full_solu}
 \begin{aligned}
-I(t) =& \frac{ \lambda N }{ \lambda + \rho }(1- e^{-(\lambda + \rho)t}),\\
-D(t) =& \frac{ \rho \lambda N }{ (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }
-+ \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}
+I(t) =& \frac{ \lambda N }{ \lambda + \rho }
+(1- e^{-(\lambda + \rho)t}),\\
+D(t) =& \frac{ \rho \lambda N }{ (\lambda + \rho)
+(\lambda + \frac{U_{m}}{N}) }
++ \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})
+(\frac{U_{m}}{N} - \rho)}
 e^{-(\lambda + \frac{U_{m}}{N})t}\\
-& - \frac{ \rho \lambda N }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) }
+& - \frac{ \rho \lambda N }{ (\lambda + \rho)
+(\frac{U_{m}}{N} - \rho) }
 e^{-(\lambda + \rho)t},\\
 R(t) =& N - \frac{ \lambda N }{ \lambda + \rho }
 \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)
-+ \frac{ \lambda U_{m} }{ (\lambda + \rho)(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}\\
-& - \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}.
++ \frac{ \lambda U_{m} }{ (\lambda + \rho)
+(\frac{U_{m}}{N} - \rho) } e^{-(\lambda + \rho)t}\\
+& - \frac{\rho \lambda N}{(\lambda + \frac{U_{m}}{N})
+(\frac{U_{m}}{N} - \rho)}  e^{-(\lambda + \frac{U_{m}}{N})t}.
 \end{aligned}
-\end{equation}
 \end{small}
-We can find that $I(t) \rightarrow 
+\end{equation}
+We can find that $I(t) \rightarrow
 \frac{ \lambda N }{ \lambda + \rho }$,
 $D(t) \rightarrow \frac{ \rho \lambda N }
 { (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) }$,
-and $R(t) \rightarrow  
-N - \frac{ \lambda N }{ \lambda + \rho } 
+and $R(t) \rightarrow
+N - \frac{ \lambda N }{ \lambda + \rho }
 \left( \frac{\rho}{\lambda + \frac{U_{m}}{N}} + 1 \right)$
 when $t \rightarrow +\infty$ according to (\ref{eq:IDR_full_solu}).
 Here $R(+\infty) \neq 0$ in the steady state
