@@ -10,16 +10,15 @@ The Poisson-contact mobility model is synthetic,
 %quasi-synthetic,
 %in which
 where the parameter $\lambda$ is set as
-$4 \times 10^{-3}$ $s^{-1}$.
-The source node is fixed at the center of the network scenario.
+$4 \times 10^{-3}s^{-1}$.
+%The source node is fixed at the center of the network scenario.
 %The speed of nodes is randomly selected in a uniform distribution
 %changing from 4 to 10 m/s,
 %and the communication range of these nodes is set to be $20$$m$.
-We set the parameter $\rho$ as $1.1 \times 10^{-2}$ $s^{-1}$.
-The weight $\alpha$ is limited,
-i.e., $\alpha \in (0, 1)$.
-The minimum detection cycle is that $T_{m}=1$ $s$.
-Note that all statistical results in the experiments
+We set the parameter $\rho$ as $1.1 \times 10^{-2}s^{-1}$.
+The weight $\alpha$, $\alpha \in (0, 1)$, is a constant factor.
+The minimum detection cycle is that $T_{m}=1s$.
+Note that all numerical results in the experiments
 are obtained by repeating $20$ times.
 %We consider two cases in the simulations.
 %In the first case (Section~\ref{subsec:wo_detc}),
@@ -48,12 +47,12 @@ are obtained by repeating $20$ times.
 \end{figure}
 As shown in Section~\ref{sec:ode_model},
 we mathematically model the state transition of nodes by the ODEs,
-based on which we achieve the optimal control
-through the Pontryagin's Maximum Principle.
+and further achieve the optimal control
+%based on the optimal control achieved
+based on the Pontryagin's Maximum Principle.
 Thus it is critical to verify
 %the accuracy of the proposed model.
-whether the proposed model can depict the state transition
-in the message lifetime,
+whether the proposed model can depict the state transition,
 i.e., the expected number of nodes in state $R$, $I$ and $D$.
 %Therefore,
 %in the first experiment,
@@ -66,25 +65,25 @@ and the analytical result in Case $1$,
 where the detection are not conducted at all.
 Here the expected number of nodes in different states,
 i.e., $D(t)$, $I(t)$ and $R(t)$
-are counted as the mean value of $20$ simulations at $t$,
-which is the simulation result.
+are counted as the mean value of $20$ simulations at $t$.
+%which is the simulation result.
 %when $\lambda = 0.004$, $\rho = 0.01$, $N=100$ and $T=2,500$,
 The dotted lines represent the analytical results,
 which is calculated from (\ref{eq:IDR_wo_solu})
 for any specific time.
 We can find that the analytical $I(t)$ and $D(t)$
-can match the simulated $R(t)$ and $I(t)$ closely,
+can match the simulated $I(t)$ and $D(t)$ closely,
 %the analytical result
 %match the simulation result,
 which validates the accuracy of
 modeling message dissemination without detection.
-We notice that $I(t)$ and $D(t)$ approaches to
+We notice that $I(t)$ and $D(t)$ approach to
 $\frac{ \lambda N }{ \lambda + \rho } \approx 26.7$
 and $\frac{ \rho N }{ \lambda + \rho } \approx 73.3$
-after $1,000$ $s$ respectively,
+after $1,000s$ respectively,
 which is conforms to the theoretical analysis.
 
-The experiment of case $2$, i.e., with complete detection
+The experiment of case $2$, i.e., complete detection,
 is shown in Fig.~\ref{fig:twohop_predict_full_d}.
 %The result in Fig.~\ref{fig:twohop_predict_full_d} shows that
 %the accuracy of the proposed ODE models in Case $2$.
@@ -107,14 +106,14 @@ decreases much compared to $D(t)$ in
 Fig.~\ref{fig:twohop_predict_wod} due to
 the successive selfish node detections.
 Similarly,
-$I(t)$ and $D(t)$ approaches to
+$I(t)$ and $D(t)$ approach to
 $\frac{ \lambda N }{ \lambda + \rho } \approx 26.7$
 and $\frac{ \rho \lambda N }
 { (\lambda + \rho)(\lambda + \frac{U_{m}}{N}) } \approx 20.9$
 when $t \rightarrow +\infty$
 in the steady state.
 Meanwhile, the analytical $I(t)$ and $D(t)$ also tend to be stable
-as discussed in Lemma.~\ref{lem:Dstable}.
+as discussed in Lemma~\ref{lem:Dstable}.
 %In this figure,
 %$I(t)$, $D(t)$ and $R(t)$ with time $t$
 %are computed from prediction and simulations
@@ -146,7 +145,7 @@ as discussed in Lemma.~\ref{lem:Dstable}.
      \label{fig:pe_opt_control_Ut}
 \end{figure}
 The weight $\alpha$ and the message lifetime $T$
-are set as $0.9$ and $500$ $s$, respectively.
+are set as $0.9$ and $500s$, respectively.
 Then the corresponding numerical solution
 of the boundary value problem (\ref{eq:bvp}),
 i.e., $D(t)$ and $\lambda_{D}(t)$,
@@ -165,30 +164,31 @@ have been calculated,
 $U^{*}(t)$ can be obtained based on (\ref{eq:opt_U}).
 Fig.~\ref{fig:pe_opt_control_Ut} shows the optimal policy
 of the selfish node detections,
-when $\alpha = 0.9$ and $T=500$ $s$.
-As discussed in Lemma.~\ref{lem:Ut0},
-the detection always is off at the start
+when $\alpha = 0.9$ and $T=500s$.
+As discussed in Lemma~\ref{lem:Ut0},
+the detection is always off at the start
 and the end of the message lifetime.
 We can find that the optimal control
 is `off-on-off' function.
 In the `on' state of $U^{*}(t)$,
-$src$ will conduct the self node detection
+$src$ will conduct the selfish node detection
 with the minimum cycle $T_{m}$.
 But no detection will be conducted
 in the `off' state of $U^{*}(t)$.
 Thus the switching time $t_{on}$ and $t_{off}$,
-around $102$ $s$ and $452$ $s$,
+around $102s$ and $452s$,
 dominate the cost $J$ in the whole simulation.
-Combining with Fig.~\ref{fig:pe_opt_state_time},
-we can also find that $D(t)$ and $\lambda_{D}(t)$
-is not also smooth at the switching time.
+Combining Fig.~\ref{fig:pe_opt_state_time} and
+Fig.~\ref{fig:pe_opt_control_Ut},
+we can also find that neither $D(t)$ nor $\lambda_{D}(t)$
+is smooth at the switching time.
 Besides the optimal policy when $\alpha=0.9$,
 Fig.~\ref{lem:Ut0} also shows the optimal policy
 when $\alpha=0.995$.
 Since $0.995$ is higher than $\alpha_{th} =
 \frac{\rho}{\lambda(\lambda+\rho)+\rho} \approx 0.9946$.
 we can drive that $U^{*}(t) = 0$, $\forall t$,
-which is correspond to Lemma.~\ref{lem:alpha}.
+which is correspond to Lemma~\ref{lem:alpha}.
 %In the second experiment,
 %we analysis efficacy of the approximate method.
 %Fig.~\ref{fig:pe_opt_state_time} shows
@@ -231,9 +231,9 @@ which is correspond to Lemma.~\ref{lem:alpha}.
 %min_cost:1.0995e+03 max_cost:1.7286e+03
 Fig.~\ref{fig:cost_ton_toff} shows the total cost $J$
 with different switching time $t_{on}$ and $t_{off}$,
-when $\alpha=0.9$ and $T=500$ $s$.
-Here the combination $(t_{on}, t_{off})$
-is greedily set from $(0, 0)$ to $(500, 500)$
+when $\alpha=0.9$ and $T=500s$.
+Here the combination $(t_{on}, t_{off})$ spans
+from $(0, 0)$ to $(500, 500)$
 with the stepwise of $20$.
 Here $(t_{on}, t_{off}) = (0, 500)$
 indicates the case with the complete detection.
@@ -242,12 +242,12 @@ represents the case without detection.
 For each specific combination $(t_{on}, t_{off})$,
 the cost $J$ is approximately calculate
 with $J \approx \sum_{t} (1-\alpha)D(t) + \alpha U(t)$
-in out experiments.
-Additionally, the time granularity of $0.1$ $s$
+in our experiments.
+Additionally, the time granularity of $0.1s$
 during $20$ times simulations.
-We can find that $J$ ranges around from $1,100$ to $1,700$.
+We can find that $J$ ranges from $1,100$ to $1,700$.
 The optimal solution according to our method is that
-$t_{on}=102.1$ $s$ and $t_{off}=402.59$ $s$,
+$t_{on}=102.1s$ and $t_{off}=402.59s$,
 whose cost $J$ is $1109.87$
 indicated by `*'.
 Thus the proposed method in this paper
@@ -272,19 +272,19 @@ in the opportunistic network.
 %min_reward:1.8904e+03 max_reward:2.9107e+03
 The total reward $P$ with ($t_{on}, t_{off}$) is shown in
 Fig.~\ref{fig:reward_ton_toff},
-where the unit reward $\beta$ in (\ref{eq:reward}) is set as $0.9$.
-We can find that the minimum reward, i.e., around $1,900$
-at ($t_{on}, t_{off}$) is ($0$,$500$),
+where the unit reward $\beta$ in (\ref{eq:reward}) is set as $0.1$.
+We can find that the minimum reward around $1,900$
+at ($0$,$500$),
 which is because all the possible detections are conducted.
 When $t_{on} = t_{off}$,
 the case without detection leads to the maximum reward from $src$ to
 the relay nodes.
-The difference between the cost $J$ and the reward $P$
-is that we introduce the detection cost
-$\int_{0}^{T} U(t) \mathrm{d}t$.
-Meanwhile, the utilization ratio of reward
+%The difference between the cost $J$ and the reward $P$
+%is that we introduce the detection cost
+%$\int_{0}^{T} U(t) \mathrm{d}t$.
+Meanwhile, the utilization ratio of reward $p$
 according the optimal solution
-is about $41$ \%.
+is about $41$\%.
 
 %\subsection{Cost $J$ v.s. weight $\alpha$}
 \begin{figure}
@@ -302,8 +302,8 @@ Note that there are some deviations of cost
 since the experiments are conducted
 with the random settings of the contacts and
 the detected nodes.
-The method with complete detection performs better
-than the method without detection in terms of the cost $J$
+The method with complete detection outperforms
+the method without detection in terms of the cost $J$
 when $0.7 \le \alpha<0.94$.
 But the method without detection is better
 when $0.94 < \alpha \le 1$.
@@ -317,6 +317,6 @@ because the cost of our method and the method with complete detection
 are still lower than that of others.
 Meanwhile, the cost of the method with half detection,
 where the detection cycle in the message lifetime
-is $2T_{m} = 2$ $s$,
-locates between the the method with complete detection
+is $2T_{m} = 2s$,
+is between the the method with complete detection
 and the method without detection.

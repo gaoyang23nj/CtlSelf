@@ -1,42 +1,35 @@
 \section{Preliminaries}
 \label{sec:preli}
 % motivation
-In the opportunistic network scenario,
-the source node of the message always needs to 
-disseminate the message, e.g., advertisement, urgent notification,
-to the persons as many as possible.
+In the OppNets,
+the messages, e.g., advertisements, urgent notifications, 
+reports and tasks,
+always need to be disseminated
+to the specific group of users.
 As an example, the source node $src$ 
-needs to disseminate its message $m$
+should disseminate the message $m$
 to vehicles or pedestrians.
-The $N$ relay nodes can replicate $m$
-and send it to the vehicles,
-which is shown in Fig.~\ref{fig:sketch}.
+There are $N$ relay nodes in the network, 
+which can replicate, store $m$ and send it further.
 Thus the potential coverage area of the message
-can be broadened by the opportunistic network.
+can be broadened by this network.
 To encourage the collaboration of relay nodes,
 $src$ should reward the relay node $n_{i}$
-$(1 \le i \le N)$ based on the time,
-during which the message are carried by $n_{i}$.
-The time ranges from the replication time ($\tau_{i}$)
-to the time-to-live of the message ($T$).
-$\tau_{i}$ can be recorded by $src$ when
-$n_{i}$ contacts $src$ and replicates $m$.
+$(1 \le i \le N)$ based on the message carrying time,
+which starts from the replication time $\tau_{i}^{s}$
+to the message lifetime $T$.
+%during which the message are carried by $n_{i}$.
+%The message carrying time
+%ranges from the replication time ($\tau_{i}$)
+%to the message lifetime ($T$).
+Since $\tau_{i}^{s}$ is recorded by $src$ 
+at the contact between $src$ and $n_{i}$,
+$src$ can calculate the reward 
+as $\beta (T-\tau_{i}^{s})$, where $\beta$ is the reward per second.
+%$n_{i}$ contacts $src$ and replicates $m$.
 %Since the message only can be replicated
 %from $src$ to the relay node in this paper,
 %$src$ can record the replication time $\tau_{i}$.
-However, $n_{i}$ may discard $m$ immediately after the contact
-to earn the reward without carrying $m$,
-which is the selfish behavior.
-%, which is the cost of selfish behaviors.
-So $src$ can check the checksum of $m$'s specific part,
-which is store in the randomly selected relay node $n_{i}$.
-If the check failed,
-$n_{i}$ will be identified as the selfish node
-and can not receive the reward.
-In this paper, we propose the optimal randomly detection strategy
-to achieve the tradeoff between
-the cost of the random detections and
-the wasted reward of the selfish behaviors.
 
 \begin{figure}
   \centering
@@ -44,6 +37,45 @@ the wasted reward of the selfish behaviors.
      \caption{Sate transition by behaviors in the time sequence.}
      \label{fig:schedule}
 \end{figure}
+However, $n_{i}$ may discard $m$
+% immediately after the contact
+to earn the reward without carrying $m$,
+which is called as the selfish behavior.
+To mitigate the behaviors,
+$src$ adopts the detection,
+%, which is the cost of selfish behaviors.
+which can be conducted as follows:
+$1$) $src$ selects a detected relay node $n_{r}$
+from the $N$ node set randomly;
+$2$) $src$ determines the random segment of the message $m_{+}$;
+$3$) $src$ sends the query about the checksum of $m_{+}$
+to $n_{r}$ via cellular networks;
+$4$) If $src$ receives the correct checksum after $T_{m}$,
+$n_{r}$ has not been a selfish node;
+otherwise, $n_{r}$ has become a selfish node.
+For example, if $n_{i}$ is identified 
+as a selfish node at $\tau_{i}^{d}$,
+the reward will be computed as $\beta(\tau_{i}^{d} - \tau_{i}^{s})$,
+which means that $n_{i}$ will not receive the reward 
+from $\tau_{i}^{d}$.
+The whole process,
+including contacts, detections and rewards,
+is shown in Fig.~\ref{fig:schedule}.
+State $I$ means that the nodes carry $m$.
+State $D$ denotes that the nodes have discarded $m$.
+Other nodes stay in state $R$.
+The contacts can make the nodes in state $R$ or in state $D$
+convert into the state $I$.
+The selfish behavior let the node discard the message
+and still earn the messages until be detected.
+After the message lifetime,
+the reward can be calculated according to
+the contacts and the detections recorded in $src$.
+In this paper, we propose the optimal randomly detection strategy
+to achieve the tradeoff between
+the cost of the random detections and
+the wasted reward of the selfish behaviors.
+
 %1.Poisson process of contacts
 %2.Poisson process of being selfish
 $E(R(t))$ denotes the expected number of the relay nodes,
@@ -72,16 +104,6 @@ To simplify the denotations,
 we use $R(t)$, $I(t)$ and $D(t)$ to
 replace $E(R(t))$, $E(I(t))$ and $E(D(t))$,
 respectively.
-The whole process,
-including contacts, detections and reward,
-is shown in Fig.~\ref{fig:schedule}.
-The contacts can make the nodes in state $R$ and state $D$
-to become the state $I$.
-The selfish behavior let the node discard the message
-and still earn the messages until be detected.
-After the message lifetime,
-the reward can be calculated according to
-the contacts and the detections recorded in $src$.
 Then the main objective of our work is to
 to solve the following problem,
 \begin{equation}
