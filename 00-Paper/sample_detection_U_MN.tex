@@ -3,7 +3,7 @@
 Here we propose the optimal method to
 control the selfish detection rate about the relay nodes.
 with the Pontryagin's maximum principle.
-Then we derive the properties of 
+Then we derive the properties of
 the optimal control variable $U^{*}(t)$.
 The whole process of our method is also presented.
 
@@ -11,7 +11,7 @@ The whole process of our method is also presented.
 Assume that the detection can be conducted.
 The detection rate is $U(t)$, $0 \le U(t) \le U_{m}$.
 $U_{m}$ is the limitation of the detection rate, which is the constraint from the hardware and the time sequences.
-Then, the ODEs can be reformulated as
+Then the ODEs can be reformulated as
 \begin{equation}
 \begin{small}
 \label{eq:SIM_t}
@@ -27,7 +27,8 @@ Then, the ODEs can be reformulated as
 \end{small}
 \end{equation}
 Meanwhile, we have $I(0)=D(0)=0$ and $R(0)=N$.
-Thus $I(t)$ is the same with that in the situation without detection, which is
+Thus $I(t)$ in this section is the same as
+$I(t)$ in the case without detection, which can be computed as
 \begin{equation}
 \begin{small}
 %\nonumber
@@ -44,7 +45,7 @@ the object function will be
 \begin{small}
 \nonumber
 \begin{aligned}
-J &= \int_{0}^{T} (1-\alpha) D + \alpha U dt.
+J &= \int_{0}^{T} \big( (1-\alpha) D(t) + \alpha U(t) \big) dt.
 \end{aligned}
 \end{small}
 \end{equation}
@@ -73,7 +74,7 @@ H =& (1-\alpha) D + \alpha U + \lambda_{I} (\lambda (N-I) - \rho I) \\
 \end{aligned}
 \end{small}
 \end{equation}
-Note that $\lambda_{I}$ and $\lambda_{D}$ 
+Note that $\lambda_{I}$ and $\lambda_{D}$
 denote two co-state functions.
 Without the final constraint, the terminal condition is
 $\lambda_{I}(T) = 0$ and $\lambda_{D}(T) = 0$.
@@ -100,11 +101,11 @@ U^{*}(t) =
 &U_{m},        & \text{if } \alpha - \lambda_{D} \frac{D}{N} < 0
 \end{aligned}
 \right.
-\end{small}
+\end{small}.
 \end{equation}
 
 In summary, we have the ODE functions $\dot{D}$, $\dot{\lambda_{D}}$,
-the initial condition $D(0)=0$ and 
+the initial condition $D(0)=0$ and
 the boundary condition $\lambda_{D}(T)=0$,
 Thus the problem is to solve a BVP problem,
 which is
@@ -128,33 +129,31 @@ Then we analyze the properties of the optimal control $U^{*}(t)$.
 \begin{small}
 \begin{algorithmic}[1]
 \REQUIRE $T_{m}$, ${U}_{m}$, $\lambda$, $\rho$, $T$
-\STATE {time $t$ $\leftarrow$ $0$}
+\STATE {$t$ $\leftarrow$ $0$}
 \STATE {compute the solution of (\ref{eq:bvp})
 as the switch-on duration $\mathcal{T}$}
 \WHILE {$t \le T$}
     \IF {contact $n_{i}$ without message}
         \STATE {replicate $m$ to $n_{i}$}
         \STATE {state of $n_{i}$ changes to state $I$}
-        \STATE {$src$ record $t$ as the message replication time}
+        \STATE {$src$ records $t$ as the message replication time}
     \ENDIF
     \IF {$t$ $\in$ $\mathcal{T}$}
         \STATE {select a relay node $n_{j}$ randomly}
-        \STATE {$src$ conduct the selfish node detection to $n_{j}$}
+        \STATE {$src$ conducts the selfish node detection to $n_{j}$}
             \IF {$n_{j}$ is detected as a selfish node}
                 \STATE {state of $n_{j}$ changes to state $R$}
-                \STATE {$src$ record $t$ as the state switching time}
+                \STATE {$src$ records $t$ as the state switching time}
             \ENDIF
     \ENDIF
     \STATE {$t \leftarrow t + \delta t$}
 \ENDWHILE
-\FOR {$n_{i}$, $1 \le i \le N$}
-    \STATE {pay reward to $n_{i}$ based on
-    the time of staying in state $I$}
+\FORALL {$i \in [1, N]$}
+    \STATE {pay reward to $n_{i}$ based on the message carrying time}
 \ENDFOR
 \end{algorithmic}
 \end{small}
 \end{algorithm}
-
 %BVP Problem: solution exist and unique
 %BVP?a¦Ì?¡ä??¨²o¨ª?¡§¨°?D??¡§¨¤¨ª
 %\begin{lem}
@@ -171,22 +170,23 @@ as the switch-on duration $\mathcal{T}$}
 %Thus $D(t)$ comforts to the Lipschitz conduction,
 %and the corresponding Lipschitz parameter is $\frac{N}{T}$.
 %\end{proof}
+
 \begin{lem}\label{lem:Ut0}
-At the beginning and the end of the whole duration,
-the optimal control stop the selfish node detection,
-which means $U(0)=U(T)=0$.
+At the beginning and the end of the message lifetime,
+the optimal control of the selfish node detection is off,
+which means that $U^{*}(0)=U^{*}(T)=0$.
 \end{lem}
 
 \begin{proof}
-At the beginning of the duration, $M(0)=0$,
-which is the initial condition of \ref{eq:bvp}.
+At the beginning of the duration, $D(0)=0$,
+which is the initial condition of (\ref{eq:bvp}).
 Then $\alpha - \lambda_{D}(0) \frac{D(0)}{N} = \alpha > 0$.
-Following (\ref{eq:opt_U}), the optimal $U(0)=0$.
+Thus the optimal $U^{*}(0)=0$ according to (\ref{eq:opt_U}), .
 
-At the end of the duration, $\lambda_{2}(T)=0$,
-which is the boundary condition of \ref{eq:bvp}.
-Then $\alpha - \lambda_{D}(T) \frac{D(T)}{N} = \alpha > 0$.
-Based on (\ref{eq:opt_U}), the optimal $U(T)=0$.
+Similarly, $\lambda_{D}(T)=0$,
+which is the boundary condition of (\ref{eq:bvp}).
+Then we have $\alpha - \lambda_{D}(T) \frac{D(T)}{N} = \alpha > 0$.
+Based on (\ref{eq:opt_U}), the optimal $U^{*}(T)=0$.
 \end{proof}
 
 Based on the differential function $\dot{I}$,
@@ -211,9 +211,12 @@ $D^{*}=\frac{\rho I^{*}}{\beta + \frac{1}{N} U_{m}}
 
 Since $\alpha$ is the weight of detecting the selfish nodes,
 we can assume that if $\alpha$ is enough high, the detection will not perform according to the optimal control strategy.
+
 \begin{lem}\label{lem:alpha}
-If $\alpha \ge \alpha_{th}$, the optimal control let the detection stop in the whole duration,
-namely $U(t)=0$, $0 \le t \le T$.
+If $\alpha \ge \alpha_{th}$, 
+the optimal control of the detection is off
+within the message lifetime,
+namely $U(t)=0$, $\forall t \in [0, T]$.
 \end{lem}
 
 \begin{proof}
@@ -242,7 +245,8 @@ $W(0)=W(T)=0<\alpha N$.
 Now we focus on the poles of $W(t)$, namely $t^{*}$,
 where $W^{'}(t^{*})=\rho \lambda_{D}(t^{*}) I(t^{*})
 - (1-\alpha)D(t^{*})=0$.
-Then $D(t^{*}) = \frac{\rho \lambda_{D}(t^{*}) I(t^{*})}{1-\alpha}$.
+According to $W^{'}(t^{*}) = 0$,
+$D(t^{*}) = \frac{\rho \lambda_{D}(t^{*}) I(t^{*})}{1-\alpha}$.
 \begin{equation}
 \begin{small}
 %\nonumber

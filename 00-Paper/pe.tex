@@ -1,23 +1,29 @@
 \section{Performance Evaluation}
 \label{sec:pe}
+\begin{figure}
+  \centering
+  \includegraphics[width=.45\textwidth]{fig/twohop_without_detection.eps}
+  \caption{Comparison of the theoretical and simulation results
+  of the proposed ODE model in case $1$.}
+  \label{fig:twohop_predict_wod}
+\end{figure}
 %We consider a $5000 \times 5000 m^2$
 %sparse sensing field with
 %$100$ relay nodes.
 The total number of relay nodes is $100$,
-excluding $src$,
-which means that $N=100$.
+excluding $src$, namely $N=100$.
 The Poisson-contact mobility model is synthetic,
 %quasi-synthetic,
 %in which
 where the parameter $\lambda$ is set as
-$4 \times 10^{-3}s^{-1}$.
+$4 \times 10^{-3}$.
 %The source node is fixed at the center of the network scenario.
 %The speed of nodes is randomly selected in a uniform distribution
 %changing from 4 to 10 m/s,
 %and the communication range of these nodes is set to be $20$$m$.
-We set the parameter $\rho$ as $1.1 \times 10^{-2}s^{-1}$.
+We set the parameter $\rho$ as $1.1 \times 10^{-2}$.
 The weight $\alpha$, $\alpha \in (0, 1)$, is a constant factor.
-The minimum detection cycle is that $T_{m}=1s$.
+The minimum detection cycle is that $T_{m}=1$s.
 Note that all numerical results in the experiments
 are obtained by repeating $20$ times.
 %We consider two cases in the simulations.
@@ -34,12 +40,7 @@ are obtained by repeating $20$ times.
 \subsection{Accuracy of Modeling}
 \label{subsec:pe_valid}
 \begin{figure}
-  \includegraphics[width=.45\textwidth]{fig/twohop_without_detection.eps}
-  \caption{Comparison of the theoretical and simulation results
-  of the proposed ODE model in case $1$.}
-  \label{fig:twohop_predict_wod}
-\end{figure}
-\begin{figure}
+  \centering
   \includegraphics[width=.45\textwidth]{fig/twohop_with_fully_detection.eps}
   \caption{Comparison of the theoretical an simulation results
   of the proposed ODE model in case $2$.}
@@ -134,13 +135,13 @@ as discussed in Lemma~\ref{lem:Dstable}.
 \subsection{Optimal Selfish Node Detection}
 \begin{figure}
   \centering
-  {\includegraphics[width=0.47\textwidth]{fig/state.eps}}
+  {\includegraphics[width=0.45\textwidth]{fig/state.eps}}
      \caption{State variable of analysis with time.}
      \label{fig:pe_opt_state_time}
 \end{figure}
 \begin{figure}
   \centering
-  {\includegraphics[width=0.47\textwidth]{fig/Ut.eps}}
+  {\includegraphics[width=0.45\textwidth]{fig/Ut.eps}}
      \caption{The optimal control policy of $U(t)$.}
      \label{fig:pe_opt_control_Ut}
 \end{figure}
@@ -218,14 +219,14 @@ which is correspond to Lemma~\ref{lem:alpha}.
 \subsection{Cost $J$ and Reward $P$}
 \begin{figure}
   \centering
-  {\includegraphics[width=0.47\textwidth]{fig/cost_all_t0t1.eps}}
-     \caption{Total cost $J$ v.s. ($t_{on}$, $t_{off}$).}
+  {\includegraphics[width=0.45\textwidth]{fig/cost_all_t0t1.eps}}
+     \caption{Total cost $J$ vs. ($t_{on}$, $t_{off}$).}
      \label{fig:cost_ton_toff}
 \end{figure}
 \begin{figure}
   \centering
-  {\includegraphics[width=0.47\textwidth]{fig/reward_all_t0t1.eps}}
-     \caption{Total reward $P$ v.s. ($t_{on}$, $t_{off}$).}
+  {\includegraphics[width=0.45\textwidth]{fig/reward_all_t0t1.eps}}
+     \caption{Total reward $P$ vs. ($t_{on}$, $t_{off}$).}
      \label{fig:reward_ton_toff}
 \end{figure}
 %min_cost:1.0995e+03 max_cost:1.7286e+03
@@ -287,12 +288,6 @@ according the optimal solution
 is about $41$\%.
 
 %\subsection{Cost $J$ v.s. weight $\alpha$}
-\begin{figure}
-  \centering
-  {\includegraphics[width=0.47\textwidth]{fig/cost_vs_alpha.eps}}
-     \caption{Total cost $J$ v.s. $\alpha$.}
-     \label{fig:cost_alpha}
-\end{figure}
 Fig.~\ref{fig:cost_alpha} shows the total cost $J$ of different methods
 when $\alpha$ ranges from $0.7$ to $1$.
 We can find that our method always can
