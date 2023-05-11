@@ -1,1 +1,0 @@
-result of simluation and analyse
