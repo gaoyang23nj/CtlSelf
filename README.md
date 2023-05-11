@@ -1,4 +1,4 @@
-# CtlSelf
+# OptCtl for Selfish Dection in OppNet
 Optimal Control for Selfish OppNets
 
 The Ordinary Differential Equations are adopted to describe the dynamics of the nodes in different states (i.e., without message, withe message and being selfish).
